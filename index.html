@@ -1,0 +1,1677 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Galgal — Project Offer for Alana Yakovlev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
+<link href="https://fonts.cdnfonts.com/css/product-sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#0a0a0a;
+    --text:#1a1a1a;
+    --muted:#6b6b6b;
+    --line:#e6e6e6;
+    --line-soft:#f0f0f0;
+    --tint:#f1f7ed;
+    --accent:#466d56;
+    --accent-light:#9bca80;
+    --pill:#f3f3f3;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Product Sans','Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100%;width:100%}
+
+  /* DECK CONTAINER */
+  .deck-viewport{
+    width:100vw;height:100vh;
+    overflow:hidden;position:relative;
+  }
+  .deck{
+    position:relative;width:100vw;height:100vh;
+  }
+
+  /* SLIDE — stacked, crossfade + subtle scale (Keynote-style) */
+  .slide{
+    position:absolute;inset:0;
+    width:100vw;height:100vh;
+    padding:64px 88px 96px;
+    display:flex;flex-direction:column;
+    overflow-y:auto;
+    opacity:0;
+    transform:scale(1.015);
+    transition:opacity .75s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.4,0,.2,1);
+    pointer-events:none;
+    will-change:opacity, transform;
+  }
+  .slide.active{
+    opacity:1;
+    transform:scale(1);
+    pointer-events:auto;
+    z-index:2;
+  }
+  .slide.leaving{
+    opacity:0;
+    transform:scale(.985);
+    z-index:1;
+  }
+  .slide::-webkit-scrollbar{width:6px;height:6px}
+  .slide::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+
+  /* SLIDE HEADER (consistent across slides) */
+  .slide-header{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:48px;flex-shrink:0;
+  }
+  .slide-header .brand{font-size:15px;font-weight:500;letter-spacing:-.01em;color:var(--ink)}
+  .slide-header .brand .dot{color:var(--accent)}
+  .slide-header .slide-meta{font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-weight:500}
+
+  /* SLIDE BODY — every content slide is top-aligned so titles sit in the same place */
+  .slide-body{
+    flex:1;display:flex;flex-direction:column;justify-content:flex-start;
+    max-width:1080px;width:100%;margin:0 auto;
+  }
+  /* .top is an alias kept for backwards-compatibility (default behavior) */
+  .slide-body.top{justify-content:flex-start}
+
+  /* EYEBROW (smaller pill on slides) */
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:500;color:var(--muted);margin-bottom:24px}
+  .eyebrow .num{background:var(--pill);padding:4px 10px;border-radius:100px;font-variant-numeric:tabular-nums;color:var(--text);font-weight:500}
+
+  /* TYPOGRAPHY */
+  h1.hero-title{font-size:45px;font-weight:600;letter-spacing:-.025em;line-height:1.15;margin:0 auto 28px;color:var(--ink);max-width:920px;text-align:center}
+  .slide[data-title="The Idea"] .lead{font-size:36px;font-weight:400;letter-spacing:-.015em;line-height:1.3;color:var(--muted);max-width:940px;margin:0 auto;text-align:center}
+
+  /* COVER slide — banner + meta text below, all centered */
+  .slide.cover-slide .cover-body{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:44px;
+  }
+  .cover-banner{margin-bottom:0 !important;width:100%}
+  .cover-meta-below{
+    text-align:center;font-weight:700;color:#D0E7DB;
+    font-size:clamp(38px,4.2vw,54px);letter-spacing:-.015em;line-height:1.25;
+  }
+  .cover-meta-below .name{display:block;font-weight:700}
+  .cover-meta-below .date{display:block;font-weight:600;margin-top:6px}
+
+  /* IDEA slide — illustration on left, text on right */
+  .slide.idea-slide .idea-body{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    padding:0 24px;
+  }
+  .idea-grid{
+    display:grid;grid-template-columns:1fr 1.15fr;gap:56px;
+    align-items:center;width:100%;max-width:1200px;
+  }
+  .idea-illustration{display:flex;align-items:center;justify-content:center}
+  .idea-illustration img{
+    width:100%;max-width:380px;max-height:62vh;
+    height:auto;display:block;border-radius:24px;object-fit:cover;
+  }
+  /* Override centered text from .lead default when on idea slide */
+  .slide.idea-slide .idea-text h1.hero-title{
+    text-align:left;margin:0 0 24px;max-width:100%;
+  }
+  .slide.idea-slide .idea-text p.lead{
+    text-align:left;margin:0;max-width:100%;
+  }
+  @media (max-width:880px){
+    .idea-grid{grid-template-columns:1fr;gap:28px}
+    .idea-illustration img{max-width:280px}
+    .slide.idea-slide .idea-text h1.hero-title,
+    .slide.idea-slide .idea-text p.lead{text-align:center}
+  }
+  h2.slide-title{font-size:clamp(56px,7.5vw,112px);font-weight:500;letter-spacing:-.025em;line-height:1.02;margin:0 0 24px;color:var(--ink)}
+  h2.slide-title.compact{font-size:32px;font-weight:600;letter-spacing:-.015em;line-height:1.15;margin:0 0 16px}
+
+  /* Inline title with number pill — consistent across every slide */
+  .slide-title-row{
+    display:flex;align-items:center;gap:18px;margin:0 0 18px;flex-wrap:wrap;
+  }
+  .slide-title-row .title-num{
+    background:var(--pill);border-radius:14px;
+    padding:5px 14px;
+    font-size:18px;font-weight:500;color:var(--muted);
+    font-variant-numeric:tabular-nums;line-height:1.3;
+    letter-spacing:.02em;
+  }
+  .slide-title-row h2{
+    font-size:36px;font-weight:700;letter-spacing:-.02em;
+    margin:0;color:var(--ink);line-height:1.1;
+  }
+  /* Subtitle (.lead) — supports the title, doesn't compete with it */
+  .slide-body > .lead{
+    font-size:17px;color:var(--muted);max-width:760px;
+    margin:0 0 40px;line-height:1.5;font-weight:400;
+  }
+  p.lead{font-size:clamp(18px,1.5vw,24px);color:var(--text);max-width:880px;margin:0 0 14px;line-height:1.45}
+  p.lead.muted{color:var(--muted)}
+
+  /* INTRO SLIDE — banner + idea */
+  .intro-banner{
+    position:relative;width:100%;border-radius:20px;overflow:hidden;
+    margin-bottom:64px;flex-shrink:0;
+  }
+  .intro-banner img{width:100%;height:auto;display:block;max-height:42vh;object-fit:cover}
+  .intro-overlay{
+    position:absolute;inset:0;
+    padding:28px 32px;color:#fff;
+    text-shadow:0 2px 18px rgba(0,0,0,.35);
+    pointer-events:none;
+  }
+  .intro-overlay a{color:#fff;text-decoration:none;pointer-events:auto}
+  .intro-overlay .meta-right{
+    position:absolute;top:28px;right:32px;
+    font-size:13px;line-height:1.55;text-align:right;
+  }
+  .intro-overlay .meta-right strong{font-weight:600}
+  .intro-overlay .brand-logo{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    font-size:clamp(32px,4.2vw,58px);font-weight:700;letter-spacing:-.03em;
+    line-height:1;
+  }
+  .intro-overlay .brand-logo .dot{opacity:.85}
+
+  /* VISION HEADER — title block + platforms side by side */
+  .vision-header{
+    display:grid;grid-template-columns:1.25fr 1fr;gap:64px;align-items:start;
+    margin-bottom:8px;
+  }
+  .vision-header .platforms-band{margin:0}
+
+  /* VISION INTRO — title, subtitle, centered Built for, chunks */
+  .vision-intro-platforms{
+    margin:32px auto 36px;max-width:780px;
+  }
+  .chunks{
+    margin-top:8px;
+  }
+  .chunks-label{
+    font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;margin-bottom:18px;text-align:left;
+  }
+  .chunks-list{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .chunk h4{
+    font-size:18px;font-weight:700;color:var(--accent);margin:0 0 8px;letter-spacing:-.01em;
+  }
+  .chunk p{
+    font-size:14px;color:var(--muted);margin:0;line-height:1.55;
+  }
+
+  /* THEMED CARDS slide — cards grouped by theme (Community / Commerce / Platform) */
+  .all-cards-slide .slide-body{padding-top:0}
+  .themed-cards{display:flex;flex-direction:column;gap:20px}
+  .theme-section{}
+  .theme-label{
+    font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin-bottom:10px;
+  }
+  .theme-grid{display:grid;gap:12px}
+  .theme-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+  .theme-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+  .theme-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .theme-grid.cols-3 .vision-card.featured{grid-column:span 2}
+  /* compact card variant for themed view */
+  .themed-cards .vision-card{
+    padding:14px 16px;gap:3px;border-radius:12px;
+    transition:transform .28s cubic-bezier(.4,0,.2,1), box-shadow .28s;
+    cursor:pointer;position:relative;
+    transform-origin:center center;
+  }
+  .themed-cards .vision-card .num{font-size:13.5px;margin-bottom:8px;padding-bottom:6px}
+  .themed-cards .vision-card li{font-size:12px;padding:2px 0;line-height:1.4}
+  .themed-cards .vision-card.featured{padding:16px 18px}
+  .themed-cards .vision-card.featured::after{top:12px;right:14px;font-size:14px}
+
+  /* HOVER POP — card scales 2x for readability */
+  .themed-cards .vision-card:hover{
+    transform:scale(2);
+    z-index:50;
+    box-shadow:0 24px 60px rgba(70,109,86,.28);
+  }
+  .themed-cards .vision-card.featured:hover{transform:scale(1.5)}
+  /* Edge cards — pop inward so they don't get clipped */
+  .theme-grid > .vision-card:first-child:hover{transform-origin:20% center}
+  .theme-grid > .vision-card:last-child:hover{transform-origin:80% center}
+  /* Featured AI spans 2 cols — anchor its scale to its center, never overflow */
+  .theme-grid.cols-3 > .vision-card.featured:hover{transform-origin:25% center}
+
+  @media (max-width:880px){
+    .chunks-list{grid-template-columns:1fr;gap:18px}
+    .theme-grid.cols-4,.theme-grid.cols-3,.theme-grid.cols-2{grid-template-columns:1fr;gap:10px}
+    .theme-grid.cols-3 .vision-card.featured{grid-column:span 1}
+  }
+
+  /* PLATFORMS BAND — minimalistic line illustrations */
+  .platforms-band{
+    margin:24px 0 36px;
+  }
+  .platforms-band-title{
+    font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    text-align:center;margin-bottom:20px;
+  }
+  .platforms-band-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    align-items:end;justify-items:center;
+  }
+  .platform{
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    color:var(--accent);
+  }
+  .platform svg{height:110px;width:auto;display:block;color:var(--accent)}
+  .platform span{
+    font-size:12px;color:var(--text);font-weight:500;letter-spacing:.04em;
+  }
+
+  /* PRODUCT VISION — modular grid */
+  .features-label{
+    font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    text-align:left;margin:24px 0 14px;
+  }
+  .vision-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0;
+  }
+  /* No borders — soft green-tinted backgrounds instead */
+  .vision-card{
+    padding:26px 24px 22px;border-radius:16px;
+    background:linear-gradient(180deg, #f5faf2 0%, #fafcf8 100%);
+    display:flex;flex-direction:column;gap:6px;position:relative;
+  }
+  .vision-card .num{
+    font-size:17px;color:var(--accent);font-weight:700;letter-spacing:-.005em;
+    line-height:1.3;margin-bottom:14px;padding-bottom:10px;
+    border-bottom:1px solid rgba(70,109,86,.14);
+  }
+  /* Featured (AI) card — the bright star with full gradient */
+  .vision-card.featured{
+    grid-column:span 2;
+    background:linear-gradient(135deg,#466d56 0%,#6b8e74 55%,#9bca80 100%);
+    color:#fff;
+    box-shadow:0 12px 40px rgba(70,109,86,.22);
+    padding:28px 30px;
+  }
+  .vision-card.featured .num{
+    color:#fff;border-color:rgba(255,255,255,.22);
+  }
+  .vision-card.featured li{color:rgba(255,255,255,.96)}
+  .vision-card.featured li::before{color:rgba(255,255,255,.7)}
+  .vision-card.featured::after{
+    content:"✦";position:absolute;top:22px;right:24px;
+    color:rgba(255,255,255,.55);font-size:18px;line-height:1;
+  }
+  .vision-card ul{margin:0;padding:0;list-style:none}
+  .vision-card li{font-size:13.5px;color:var(--text);padding:3px 0;line-height:1.5;display:flex;gap:8px;align-items:flex-start}
+  .vision-card li::before{content:"·";color:var(--accent);font-weight:700;flex-shrink:0}
+
+  /* PHASES GRID — 4 phase columns, all visible, no scroll */
+  .phases-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+    margin-top:32px;
+  }
+  .phase-card{
+    padding:24px 22px 22px;border-radius:16px;
+    background:linear-gradient(180deg, #f6faf3 0%, #fafcf8 100%);
+    display:flex;flex-direction:column;gap:0;
+  }
+  .phase-card .phase-icon{
+    width:64px;height:64px;color:var(--accent);margin-bottom:14px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .phase-card .phase-icon svg{width:100%;height:100%;display:block}
+  .phase-card .phase-tag{
+    font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;margin-bottom:4px;
+  }
+  .phase-card .phase-name{
+    font-size:19px;font-weight:700;color:var(--ink);margin:0 0 6px;letter-spacing:-.01em;
+    line-height:1.2;
+  }
+  .phase-card .phase-timing{
+    font-size:12px;color:var(--accent);margin-bottom:14px;font-weight:600;
+  }
+  .phase-card .phase-goal{
+    font-size:13px;color:var(--text);line-height:1.5;margin:0 0 16px;
+    padding-bottom:14px;border-bottom:1px solid rgba(70,109,86,.16);
+  }
+  .phase-card .phase-steps{
+    list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px;
+  }
+  .phase-card .phase-steps li{
+    font-size:12.5px;color:var(--muted);line-height:1.45;
+    display:flex;gap:8px;align-items:flex-start;
+  }
+  .phase-card .phase-steps li::before{
+    content:"·";color:var(--accent);font-weight:700;flex-shrink:0;
+  }
+  .phase-card.future{opacity:.88}
+  .phase-card.future .phase-tag{color:var(--muted)}
+
+  @media (max-width:880px){
+    .phases-grid{grid-template-columns:1fr;gap:12px}
+  }
+
+  /* INDEX slide */
+  .index-list{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:18px 28px;margin-top:28px;
+  }
+  .index-item{
+    padding:20px 22px;border-radius:14px;
+    background:linear-gradient(180deg, #f6faf3 0%, #fafcf8 100%);
+  }
+  .index-item .ix-letter{
+    font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin-bottom:6px;
+  }
+  .index-item h4{
+    font-size:16px;font-weight:600;color:var(--ink);margin:0 0 8px;letter-spacing:-.01em;
+  }
+  .index-item p{
+    font-size:13.5px;color:var(--muted);margin:0;line-height:1.55;
+  }
+  @media (max-width:880px){.index-list{grid-template-columns:1fr;gap:14px}}
+
+  /* HORIZONTAL TIMELINE — illustrations above, line in middle, content below, scrollable */
+  .horizon-wrap{position:relative;margin-top:36px;margin-right:-88px}
+  .horizon-timeline{
+    display:flex;gap:36px;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-behavior:smooth;
+    padding:0 8px 24px 8px;
+    position:relative;
+    scrollbar-width:thin;scrollbar-color:#d8d8d8 transparent;
+  }
+  .horizon-timeline::-webkit-scrollbar{height:8px}
+  .horizon-timeline::-webkit-scrollbar-thumb{background:#d8d8d8;border-radius:4px}
+  .horizon-timeline::-webkit-scrollbar-track{background:transparent}
+  .horizon-timeline::before{
+    content:"";position:absolute;
+    top:130px;left:78px;right:78px;
+    height:1.5px;background:var(--line);z-index:0;
+  }
+  .station{
+    flex:0 0 260px;display:flex;flex-direction:column;
+    position:relative;z-index:1;
+  }
+  .station-icon{
+    width:120px;height:120px;color:var(--accent);
+    align-self:center;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .station-icon svg{width:100%;height:100%;display:block}
+  .station-dot{
+    width:14px;height:14px;border-radius:50%;background:var(--ink);
+    align-self:center;margin:4px auto 20px;
+    border:3px solid var(--bg);
+    box-shadow:0 0 0 1px var(--bg);
+  }
+  .station-phase-tag{
+    font-size:10px;color:var(--accent);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;margin-bottom:6px;
+  }
+  .station-name{
+    font-size:18px;font-weight:600;letter-spacing:-.01em;
+    color:var(--ink);margin:0 0 6px;line-height:1.25;
+  }
+  .station-timing{
+    font-size:12px;color:var(--muted);margin-bottom:12px;font-weight:500;
+  }
+  .station-desc{
+    font-size:13px;color:var(--muted);line-height:1.5;margin:0;
+  }
+  .station.future{opacity:.92}
+  .station.future .station-phase-tag{color:var(--muted)}
+  .station.future .station-dot{background:var(--muted)}
+  .scroll-hint{
+    text-align:center;margin-top:6px;
+    font-size:12px;color:var(--muted);font-style:italic;
+    letter-spacing:.04em;
+  }
+
+  /* PROCESS — isometric step illustrations */
+  .process-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:36px 24px;margin-top:36px;
+  }
+  .process-step{
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    gap:10px;padding:8px 12px;
+  }
+  .process-step .step-num{
+    font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .process-step .step-icon{
+    width:130px;height:130px;color:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .process-step .step-icon svg{width:100%;height:100%;display:block}
+  .process-step h3{
+    font-size:18px;font-weight:600;letter-spacing:-.01em;margin:4px 0 0;color:var(--ink);
+  }
+  .process-step p{
+    font-size:13px;color:var(--muted);margin:0;line-height:1.5;max-width:240px;
+  }
+  .process-step .delivers{
+    font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.06em;
+    margin-top:4px;max-width:240px;line-height:1.5;
+  }
+  .process-footnote{
+    margin-top:40px;padding:18px 22px;
+    border:1px dashed var(--line);border-radius:12px;background:#fafafa;
+    font-size:14px;color:var(--muted);line-height:1.55;
+    max-width:760px;
+  }
+  .process-footnote strong{color:var(--text);font-weight:600}
+  .process-footnote .tag{
+    display:inline-block;background:rgba(70,109,86,.08);color:var(--accent);
+    font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 8px;border-radius:100px;margin-right:8px;
+  }
+
+  /* WHAT WE BUILD — 3x3 GRID */
+  .layers-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px 40px;margin-top:36px;
+  }
+  .layer-item .num{font-size:12px;color:var(--muted);font-weight:500;margin-bottom:6px;letter-spacing:.04em}
+  .layer-item h3{font-size:17px;font-weight:600;letter-spacing:-.01em;margin:0 0 6px;color:var(--ink)}
+  .layer-item p{font-size:14px;color:var(--muted);margin:0;line-height:1.5}
+
+  /* PHASES TIMELINE */
+  .timeline{margin-top:48px}
+  .timeline-dur{display:grid;grid-template-columns:repeat(4,1fr);font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+  .timeline-line{position:relative;height:1px;background:var(--line);margin:0}
+  .timeline-dots{display:grid;grid-template-columns:repeat(4,1fr);position:absolute;top:-5px;left:0;right:0}
+  .timeline-dot{width:10px;height:10px;border-radius:50%;background:var(--ink);justify-self:start}
+  .timeline-labels{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:30px;align-items:start}
+  .timeline-step .step-tag{font-size:12px;color:var(--muted);font-weight:500;margin-bottom:8px;letter-spacing:.02em}
+  .timeline-step .step-tag .rec{color:var(--accent);font-weight:500}
+  .timeline-step h4{font-size:19px;font-weight:600;letter-spacing:-.01em;margin:0 0 16px;color:var(--ink);padding-bottom:12px;border-bottom:1px solid var(--line-soft)}
+  .timeline-step .phase-detail{display:flex;flex-direction:column;gap:14px}
+  .timeline-step .phase-row .lbl{font-size:10px;color:var(--accent);font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
+  .timeline-step .phase-row .txt{font-size:13.5px;color:var(--text);line-height:1.45}
+  .timeline-step .phase-row .txt.muted{color:var(--muted)}
+
+  /* MVP BOARDS — interactive feature buckets (split across two slides) */
+  .mvp-board{
+    display:grid;gap:18px;margin-top:24px;align-items:stretch;
+  }
+  .mvp-board.solo{grid-template-columns:1fr}
+  .mvp-board.solo .feature-col-body{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;
+  }
+  .mvp-board.beyond{grid-template-columns:1fr 1fr}
+  .feature-col{
+    background:linear-gradient(180deg, #f6faf3 0%, #fafcf8 100%);
+    border-radius:16px;
+    padding:20px 18px;display:flex;flex-direction:column;gap:14px;min-height:420px;
+    transition:background .25s;
+  }
+  .feature-col[data-bucket="mvp"]{
+    background:linear-gradient(180deg, #e9f3e2 0%, #f3f9ee 100%);
+  }
+  .feature-col[data-bucket="future"]{opacity:.92;background:linear-gradient(180deg, #f4f6f3 0%, #fafbf9 100%)}
+  .feature-col-header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-bottom:10px;border-bottom:1px solid rgba(70,109,86,.14);
+  }
+  .feature-col-name{font-size:13px;font-weight:600;color:var(--text);letter-spacing:.02em;text-transform:uppercase}
+  .feature-col[data-bucket="mvp"] .feature-col-name{color:var(--accent)}
+  .feature-col-count{
+    font-size:11px;color:var(--muted);background:#fff;
+    padding:2px 9px;border-radius:100px;border:1px solid var(--line);
+    font-variant-numeric:tabular-nums;font-weight:600;
+  }
+  .feature-col-body{display:flex;flex-direction:column;gap:6px;min-height:50px}
+  .feature-chip{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    padding:9px 12px;background:#fff;
+    border-radius:10px;font-family:inherit;font-size:13px;color:var(--text);
+    cursor:pointer;text-align:left;transition:transform .15s, box-shadow .15s;
+    width:100%;line-height:1.35;
+    box-shadow:0 1px 0 rgba(70,109,86,.08);
+  }
+  .feature-chip:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(70,109,86,.12)}
+  .feature-chip .name{flex:1;text-align:left}
+  .feature-chip .size{
+    font-size:10px;font-weight:700;letter-spacing:.04em;
+    padding:2px 7px;border-radius:100px;flex-shrink:0;
+    font-variant-numeric:tabular-nums;
+  }
+  .feature-chip[data-size="XL"] .size{background:#466d56;color:#fff}
+  .feature-chip[data-size="L"] .size{background:rgba(70,109,86,.18);color:var(--accent)}
+  .feature-chip[data-size="M"] .size{background:var(--pill);color:var(--text)}
+  .feature-chip[data-size="S"] .size{background:#fff;color:var(--muted);border:1px solid var(--line)}
+  .mvp-controls{
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;
+    margin-top:22px;padding-top:18px;border-top:1px solid var(--line-soft);
+  }
+  .size-legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--muted)}
+  .size-legend .lbl{font-weight:600;color:var(--text);letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+  .legend-chip{display:inline-flex;align-items:center;gap:6px}
+  .legend-chip .size{font-size:10px;font-weight:700;padding:2px 7px;border-radius:100px}
+  .legend-chip[data-s="XL"] .size{background:#466d56;color:#fff}
+  .legend-chip[data-s="L"] .size{background:rgba(70,109,86,.18);color:var(--accent)}
+  .legend-chip[data-s="M"] .size{background:var(--pill);color:var(--text)}
+  .legend-chip[data-s="S"] .size{background:#fff;color:var(--muted);border:1px solid var(--line)}
+  .reset-btn{
+    font-family:inherit;font-size:12px;color:var(--muted);background:transparent;
+    border:1px solid var(--line);border-radius:100px;padding:6px 14px;cursor:pointer;
+    transition:border-color .2s, color .2s;
+  }
+  .reset-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .rn-callout{
+    margin-top:16px;font-size:13px;color:var(--muted);font-style:italic;line-height:1.5;
+  }
+  .rn-callout strong{color:var(--text);font-weight:600;font-style:normal}
+
+  /* AI 2-col */
+  .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+  .ai-card{padding:28px;border-radius:16px}
+  .ai-card.process{background:linear-gradient(180deg, #e6f0df 0%, #f3f9ee 100%)}
+  .ai-card.product{
+    background:linear-gradient(135deg, rgba(70,109,86,.78) 0%, rgba(70,109,86,.6) 100%), url('banner2.png') center/cover no-repeat;
+    color:#fff;box-shadow:0 10px 32px rgba(70,109,86,.22);
+    text-shadow:0 1px 8px rgba(0,0,0,.25);
+  }
+  .ai-card.product h3{color:#fff}
+  .ai-card.product li{color:rgba(255,255,255,.96)}
+  .ai-card.product li strong{color:#fff}
+  .ai-card h3{font-size:17px;font-weight:600;margin:0 0 12px;color:var(--ink)}
+  .ai-card ul{margin:0;padding-left:18px}
+  .ai-card li{font-size:14px;color:var(--text);margin:6px 0;line-height:1.5}
+  .ai-card li strong{color:var(--ink);font-weight:600}
+
+  /* VALUE — what you get section */
+  .value-section{margin-top:24px;margin-bottom:36px}
+  .section-label{
+    font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;margin:0 0 18px;
+  }
+  .value-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px 22px;
+  }
+  .value-item{
+    padding:20px 22px;border-radius:14px;
+    background:linear-gradient(180deg, #f5faf2 0%, #fafcf7 100%);
+  }
+  .value-item .vn{
+    font-size:11px;color:var(--accent);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;margin-bottom:6px;
+  }
+  .value-item h4{
+    font-size:15px;font-weight:600;letter-spacing:-.01em;margin:0 0 6px;color:var(--ink);
+  }
+  .value-item p{font-size:13px;color:var(--muted);margin:0;line-height:1.5}
+
+  /* PHASE LIST in pricing card */
+  .phase-list{display:flex;flex-direction:column;gap:8px;margin:10px 0 6px}
+  .phase-item{
+    padding:10px 12px;background:var(--pill);border-radius:8px;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+  }
+  .phase-item-left .phase-name{font-size:13px;font-weight:600;color:var(--ink);line-height:1.2}
+  .phase-item-left .phase-meta{font-size:11px;color:var(--muted);margin-top:2px}
+  .phase-item .phase-price{font-size:16px;font-weight:700;color:var(--accent);white-space:nowrap}
+  .phase-total{
+    margin-top:6px;padding:14px 16px;background:var(--accent);color:#fff;
+    border-radius:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;
+  }
+  .phase-total .total-label{
+    font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.9;
+  }
+  .phase-total .total-value{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .phase-total .total-meta{font-size:11px;opacity:.85;flex-basis:100%;text-align:right;margin-top:-4px}
+  .post-mvp-note{
+    margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);
+    font-size:12px;color:var(--muted);line-height:1.5;
+  }
+  .post-mvp-note strong{color:var(--text);font-weight:600}
+
+  /* PRICING 3-card */
+  .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  .price{
+    padding:26px 24px;border-radius:18px;
+    background:linear-gradient(180deg, #f6faf3 0%, #fafcf8 100%);
+    display:flex;flex-direction:column;gap:6px;position:relative;
+  }
+  .price.recommended{background:linear-gradient(180deg,#e9f3e2 0%, #f6faf3 100%)}
+  .price .pill{display:inline-block;background:var(--pill);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:500;width:fit-content;color:var(--text)}
+  .price.recommended .pill{background:rgba(70,109,86,.1);color:var(--accent)}
+  .price .big{font-size:36px;font-weight:600;letter-spacing:-.025em;color:var(--ink);margin:14px 0 2px;line-height:1}
+  .price .big span{font-size:15px;font-weight:500;color:var(--muted)}
+  .price .sub{font-size:13px;color:var(--muted);margin:0 0 14px}
+  .price ul{margin:6px 0 0;padding:0;list-style:none;border-top:1px solid var(--line);padding-top:14px}
+  .price li{font-size:13.5px;color:var(--text);padding:5px 0;display:flex;align-items:flex-start;gap:8px}
+  .price li::before{content:"✓";color:var(--accent);font-weight:600;flex-shrink:0}
+  .price .footnote{font-size:12.5px;color:var(--muted);margin-top:12px;font-style:italic}
+
+  /* HOURLY */
+  .hourly{margin-top:24px;padding:18px 24px;border:1px dashed var(--line);border-radius:14px;background:#fafafa;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .hourly .rate{font-size:26px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+  .hourly .rate span{font-size:14px;font-weight:500;color:var(--muted)}
+  .hourly .note{font-size:13.5px;color:var(--text);flex:1;min-width:280px;line-height:1.5}
+  .hourly .note strong{color:var(--ink)}
+
+  /* PATH */
+  .path-card{padding:40px;border:1px solid var(--line);border-radius:18px;background:var(--tint);margin-top:32px}
+  .path-card ol{margin:0;padding-left:22px}
+  .path-card li{font-size:18px;margin:12px 0;color:var(--text);line-height:1.5}
+  .path-card li strong{color:var(--ink);font-weight:600}
+  .path-card .pn{font-size:14.5px;color:var(--muted);font-style:italic;margin:20px 0 0}
+
+  /* TEAM */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:36px;align-items:start}
+  .member-photo{
+    width:80px;height:80px;border-radius:50%;overflow:hidden;
+    background:linear-gradient(135deg,#eef5e9 0%,#dceacf 100%);
+    margin-bottom:18px;display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .member-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .member-photo .initials{
+    font-size:22px;font-weight:600;color:var(--accent);letter-spacing:-.02em;
+  }
+  .member .role{font-size:12px;color:var(--muted);font-weight:500;margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}
+  .member h4{font-size:22px;font-weight:600;letter-spacing:-.01em;margin:0 0 12px;color:var(--ink)}
+  .member p{font-size:14px;color:var(--text);line-height:1.55;margin:0}
+
+  /* THANK YOU slide — three-photo cascade layout */
+  .slide.thanks .thanks-body{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .thanks-collage{
+    position:relative;
+    width:100%;max-width:740px;
+    height:82vh;
+    margin:0 auto;
+  }
+  .thanks-photo{
+    position:absolute;border-radius:24px;overflow:hidden;
+  }
+  .thanks-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  /* Top-right square */
+  .thanks-photo.p1{
+    width:30%;aspect-ratio:1/1;
+    top:0;right:0;
+  }
+  /* Middle wide banner with text */
+  .thanks-photo.p2{
+    width:92%;aspect-ratio:2.6/1;
+    top:36%;left:0;
+  }
+  /* Bottom-left landscape */
+  .thanks-photo.p3{
+    width:44%;aspect-ratio:5/4;
+    bottom:0;left:6%;
+  }
+  .thanks-photo.p2 .thanks-text{
+    position:absolute;right:6%;top:50%;transform:translateY(-50%);
+    color:#fff;font-size:clamp(28px,3.4vw,42px);font-weight:700;letter-spacing:-.01em;
+    text-shadow:0 2px 16px rgba(0,0,0,.18);
+  }
+
+  /* DECK NAV */
+  .deck-nav{
+    position:fixed;left:0;right:0;bottom:0;
+    display:flex;justify-content:center;align-items:center;gap:14px;
+    padding:16px 24px;z-index:50;
+    pointer-events:none;
+  }
+  .deck-nav > *{pointer-events:auto}
+  .nav-btn{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+    background:var(--bg);color:var(--ink);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:16px;
+    transition:background .2s, border-color .2s;
+    font-family:inherit;
+  }
+  .nav-btn:hover{background:var(--pill);border-color:var(--ink)}
+  .nav-btn:disabled{opacity:.3;cursor:not-allowed}
+  .nav-counter{
+    font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;
+    font-variant-numeric:tabular-nums;min-width:80px;text-align:center;
+    background:var(--bg);border:1px solid var(--line);padding:8px 14px;border-radius:100px;
+  }
+  .nav-counter strong{color:var(--ink);font-weight:600}
+
+  /* PRINT — one slide per landscape page */
+  @page{size:landscape;margin:0}
+  @media print{
+    html,body{height:auto !important;overflow:visible !important;background:#fff}
+    .deck-viewport{height:auto !important;overflow:visible !important}
+    .deck{display:block !important;height:auto !important;transform:none !important;transition:none !important;width:100% !important}
+    .slide{
+      position:relative !important;inset:auto !important;
+      width:100% !important;height:100vh !important;
+      opacity:1 !important;transform:none !important;pointer-events:auto !important;
+      page-break-after:always;page-break-inside:avoid;
+      overflow:hidden !important;box-shadow:none !important;
+    }
+    .slide:last-child{page-break-after:auto}
+    .deck-nav{display:none !important}
+    .vision-card:hover,.feature-chip:hover{transform:none !important;box-shadow:none !important;z-index:auto !important}
+    .horizon-timeline{overflow:visible !important}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;color-adjust:exact !important}
+  }
+
+  /* MOBILE — fallback to vertical */
+  @media (max-width:760px){
+    html,body{overflow:auto;height:auto}
+    .deck{display:block;width:100%;height:auto;overflow:visible}
+    .slide{width:100%;height:auto;min-height:auto;padding:40px 20px 64px;page-break-after:always}
+    .slide.cover{height:auto;min-height:60vh}
+    .slide.cover .cover-overlay{padding:24px 22px}
+    .layers-grid,.vision-grid,.process-grid{grid-template-columns:1fr;gap:16px}
+    .vision-card.featured{grid-column:span 1}
+    .vision-header{grid-template-columns:1fr;gap:24px}
+    .platforms-band-grid{grid-template-columns:1fr;gap:24px}
+    .platform svg{height:90px}
+    .process-step .step-icon{width:100px;height:100px}
+    .timeline-dur,.timeline-dots,.timeline-labels{grid-template-columns:1fr 1fr}
+    .timeline-line{display:none}
+    .timeline-labels{gap:32px}
+    .scope,.ai-grid,.pricing,.team,.mvp-board,.value-grid{grid-template-columns:1fr;gap:16px}
+    .feature-col{min-height:auto}
+    .deck-nav{display:none}
+    h1.hero-title,h2.slide-title{font-size:clamp(32px,8vw,48px)}
+  }
+</style>
+</head>
+<body>
+
+<div class="deck-viewport">
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1 — COVER -->
+  <section class="slide cover-slide" data-title="Cover">
+    <div class="slide-body cover-body">
+      <div class="intro-banner cover-banner">
+        <img src="banner.png" alt="Galgal" />
+        <div class="intro-overlay">
+          <div class="brand-logo">galgal<span class="dot">.</span></div>
+        </div>
+      </div>
+      <div class="cover-meta-below">
+        <span class="name">Project offer for Alana Yakovlev</span>
+        <span class="date">June 8, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 — THE IDEA -->
+  <section class="slide idea-slide" data-title="The Idea">
+    <div class="slide-body idea-body">
+      <div class="idea-grid">
+        <div class="idea-illustration">
+          <img src="banner3.png" alt="Hands joined together — inner circle" />
+        </div>
+        <div class="idea-text">
+          <h1 class="hero-title">An inner circle for Jewish women to connect, create, and grow.</h1>
+          <p class="lead muted">A private, trusted digital home to learn, sell, and discover opportunities, all in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 — PROJECT NORTH STAR (intro only: title, subtitle, Built for centered, chunks explanation) -->
+  <section class="slide" data-title="Project North Star">
+    <div class="slide-header">
+      <div class="brand">galgal<span class="dot">.</span></div>
+      <div class="slide-meta">01 · Project North Star</div>
+    </div>
+    <div class="slide-body">
+      <div class="slide-title-row">
+        <span class="title-num">01</span>
+        <h2>Project North Star</h2>
+      </div>
+      <p class="lead muted">This is the project full scope. Not all of it ships at launch, but everything here is part of the long-term product.</p>
+
+      <div class="vision-intro-platforms">
+        <div class="platforms-band">
+          <div class="platforms-band-title">Built for</div>
+          <div class="platforms-band-grid">
+            <div class="platform">
+              <svg viewBox="0 0 80 140" fill="none" stroke="currentColor" stroke-width="1.4" xmlns="http://www.w3.org/2000/svg">
+                <rect x="14" y="6" width="52" height="128" rx="12" />
+                <rect x="32" y="12" width="16" height="3" rx="1.5" fill="currentColor" stroke="none" />
+                <line x1="32" y1="128" x2="48" y2="128" stroke-linecap="round" stroke-width="1.6" />
+              </svg>
+              <span>iOS</span>
+            </div>
+            <div class="platform">
+              <svg viewBox="0 0 80 140" fill="none" stroke="currentColor" stroke-width="1.4" xmlns="http://www.w3.org/2000/svg">
+                <rect x="14" y="6" width="52" height="128" rx="5" />
+                <circle cx="40" cy="13" r="1.7" fill="currentColor" stroke="none" />
+                <polygon points="26,129 29,125 32,129" stroke-linejoin="round" />
+                <circle cx="40" cy="127" r="1.8" />
+                <rect x="48" y="125" width="4" height="4" />
+              </svg>
+              <span>Android</span>
+            </div>
+            <div class="platform">
+              <svg viewBox="0 0 180 140" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <rect x="14" y="14" width="152" height="92" rx="4" />
+                <line x1="14" y1="30" x2="166" y2="30" stroke-width="1" />
+                <circle cx="24" cy="22" r="1.4" fill="currentColor" stroke="none" />
+                <circle cx="30" cy="22" r="1.4" fill="currentColor" stroke="none" />
+                <circle cx="36" cy="22" r="1.4" fill="currentColor" stroke="none" />
+                <rect x="56" y="18" width="86" height="8" rx="4" stroke-width="1" />
+                <line x1="40" y1="44" x2="100" y2="44" stroke-width="0.9" />
+                <rect x="40" y="56" width="50" height="36" rx="2" stroke-width="0.9" />
+                <rect x="100" y="56" width="42" height="16" rx="2" stroke-width="0.9" />
+                <rect x="100" y="76" width="42" height="16" rx="2" stroke-width="0.9" />
+                <line x1="90" y1="106" x2="90" y2="120" stroke-width="1.4" />
+                <line x1="70" y1="126" x2="110" y2="126" stroke-width="1.6" />
+                <path d="M 80 120 L 74 126 M 100 120 L 106 126" />
+              </svg>
+              <span>Web</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chunks">
+        <div class="chunks-label">The product, in three main chunks</div>
+        <div class="chunks-list">
+          <div class="chunk">
+            <h4>Community</h4>
+            <p>How members find each other, gather, post, and discover — identity, channels, items, communication, search.</p>
+          </div>
+          <div class="chunk">
+            <h4>Commerce</h4>
+            <p>How items, events, classes, and services get bought and sold — marketplace, payments, payouts, commission.</p>
+          </div>
+          <div class="chunk">
+            <h4>Platform</h4>
+            <p>The intelligence and operations underneath — AI, safety, customer support, admin, and infrastructure.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — CARDS GROUPED BY THEME -->
+  <section class="slide all-cards-slide" data-title="Features by theme">
+    <div class="slide-header">
+      <div class="brand">galgal<span class="dot">.</span></div>
+      <div class="slide-meta">02 · Features</div>
+    </div>
+    <div class="slide-body">
+      <div class="themed-cards">
+
+        <!-- COMMUNITY -->
+        <div class="theme-section">
+          <div class="theme-label">Community</div>
+          <div class="theme-grid cols-4">
+            <div class="vision-card">
+              <div class="num">Identity &amp; Access</div>
+              <ul>
+                <li>AI-led onboarding flow</li>
+                <li>Verification questionnaire (Jewish + Israel-support)</li>
+                <li>Identity verification for extra safety</li>
+                <li>Invitation system + referral tracking</li>
+                <li>Member profiles &amp; roles</li>
+              </ul>
+            </div>
+            <div class="vision-card">
+              <div class="num">Channels &amp; Groups</div>
+              <ul>
+                <li>Containers for members &amp; content</li>
+                <li>Four access modes: open, locked, invite-only, admin-approved</li>
+                <li>Channel-level admin tools</li>
+              </ul>
+            </div>
+            <div class="vision-card">
+              <div class="num">Communication &amp; Live</div>
+              <ul>
+                <li>Public conversations on items &amp; channels</li>
+                <li>WhatsApp for personal conversations</li>
+                <li>One-button live broadcasts</li>
+                <li>Live chat during broadcasts</li>
+              </ul>
+            </div>
+            <div class="vision-card">
+              <div class="num">Search &amp; Discovery</div>
+              <ul>
+                <li>Search across items, channels, members</li>
+                <li>Personalized feed</li>
+                <li>Browse by category and tag</li>
+                <li>Featured collections</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMMERCE -->
+        <div class="theme-section">
+          <div class="theme-label">Commerce</div>
+          <div class="theme-grid cols-2">
+            <div class="vision-card">
+              <div class="num">Items &amp; Catalog</div>
+              <ul>
+                <li>Universal item primitive — events, products, services, classes, listings</li>
+                <li>Fields: title, description, media, optional price, date, location</li>
+                <li>Categories and tags</li>
+                <li>Embed Instagram and TikTok posts via shared URL</li>
+              </ul>
+            </div>
+            <div class="vision-card">
+              <div class="num">Marketplace &amp; Payments</div>
+              <ul>
+                <li>Stripe rails for any item with a price</li>
+                <li>One-time, subscription, recurring purchases</li>
+                <li>Seller payouts and marketplace commission</li>
+                <li>Advertising and sponsored placements</li>
+                <li>Shabbat and holiday transaction pause (location-aware)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- PLATFORM -->
+        <div class="theme-section">
+          <div class="theme-label">Platform</div>
+          <div class="theme-grid cols-3">
+            <div class="vision-card featured">
+              <div class="num">AI</div>
+              <ul>
+                <li>AI-led onboarding flow</li>
+                <li>AI navigation helper</li>
+                <li>AI content help (descriptions, tags)</li>
+                <li>AI conversation summaries</li>
+                <li>AI-assisted moderation</li>
+                <li>Smart discovery and recommendations</li>
+                <li>Embedded AI chat across the platform</li>
+              </ul>
+            </div>
+            <div class="vision-card">
+              <div class="num">Safety &amp; Moderation</div>
+              <ul>
+                <li>Reporting, blocking, content review</li>
+                <li>Moderation queues for admins</li>
+                <li>Member self-report tools</li>
+                <li>Harassment monitoring</li>
+              </ul>
+            </div>
+            <div class="vision-card">
+              <div class="num">Customer Support</div>
+              <ul>
+                <li>In-app help center and FAQ</li>
+                <li>Submit a request from anywhere</li>
+                <li>AI-powered first response</li>
+                <li>Human escalation and issue tracking</li>
+              </ul>
+            </div>
+            <div class="vision-card">
+              <div class="num">Admin &amp; Analytics</div>
+              <ul>
+                <li>Admin dashboard for users, posts, channels, reports</li>
+                <li>Approval queues for invite-only channels</li>
+                <li>Analytics: signups, active users, posts, transactions</li>
+                <li>Export tools and role-based access</li>
+              </ul>
+            </div>
+            <div class="vision-card">
+              <div class="num">Infrastructure</div>
+              <ul>
+                <li>Hosting, backend, deployment pipeline</li>
+                <li>Database with cultural-sensitivity safeguards</li>
+                <li>Stripe API and WhatsApp integration</li>
+                <li>Security baseline — encryption, backups, monitoring</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 — PROCESS + PHASES (COMBINED HORIZONTAL TIMELINE) -->
+  <section class="slide" data-title="Process">
+    <div class="slide-header">
+      <div class="brand">galgal<span class="dot">.</span></div>
+      <div class="slide-meta">03 · Process &amp; Phases</div>
+    </div>
+    <div class="slide-body top">
+      <div class="slide-title-row">
+        <span class="title-num">03</span>
+        <h2>How we get there, phase by phase</h2>
+      </div>
+      <p class="lead muted">Each station builds on the last. Each phase earns the next — we don't pay for features before there's usage to make them successful.</p>
+
+      <div class="phases-grid">
+
+        <div class="phase-card">
+          <div class="phase-icon">
+            <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="1.4" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="80,38 114,56 80,74 46,56" fill="rgba(70,109,86,0.08)" />
+              <polygon points="80,38 114,56 80,74 46,56" />
+              <line x1="63" y1="47" x2="97" y2="65" stroke-width="0.9" stroke-opacity=".6" />
+              <line x1="80" y1="38" x2="80" y2="74" stroke-width="0.9" stroke-opacity=".6" />
+              <line x1="97" y1="47" x2="63" y2="65" stroke-width="0.9" stroke-opacity=".6" />
+            </svg>
+          </div>
+          <div class="phase-tag">Phase 0</div>
+          <div class="phase-name">Blueprint</div>
+          <div class="phase-timing">~3 weeks</div>
+          <p class="phase-goal">De-risk before any build cost — align on what we're building and why.</p>
+          <ul class="phase-steps">
+            <li>Discovery</li>
+            <li>MVP scope, user flows</li>
+            <li>Technical architecture</li>
+            <li>Launch plan and final budget</li>
+          </ul>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-icon">
+            <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="1.4" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="80,76 96,84 96,102 80,110 64,102 64,84" fill="rgba(70,109,86,0.08)" />
+              <polygon points="80,76 96,84 80,92 64,84" />
+              <line x1="80" y1="92" x2="80" y2="110" stroke-width="1.2" />
+              <line x1="64" y1="84" x2="80" y2="92" stroke-width="1.2" />
+              <line x1="96" y1="84" x2="80" y2="92" stroke-width="1.2" />
+              <line x1="64" y1="84" x2="64" y2="102" stroke-width="1.2" />
+              <line x1="96" y1="84" x2="96" y2="102" stroke-width="1.2" />
+              <line x1="64" y1="102" x2="80" y2="110" stroke-width="1.2" />
+              <line x1="96" y1="102" x2="80" y2="110" stroke-width="1.2" />
+              <polygon points="56,52 72,60 72,78 56,86 40,78 40,60" fill="rgba(70,109,86,0.08)" />
+              <polygon points="56,52 72,60 56,68 40,60" />
+              <line x1="56" y1="68" x2="56" y2="86" stroke-width="1.2" />
+              <line x1="40" y1="60" x2="56" y2="68" stroke-width="1.2" />
+              <line x1="72" y1="60" x2="56" y2="68" stroke-width="1.2" />
+              <line x1="40" y1="60" x2="40" y2="78" stroke-width="1.2" />
+              <line x1="72" y1="60" x2="72" y2="78" stroke-width="1.2" />
+              <line x1="40" y1="78" x2="56" y2="86" stroke-width="1.2" />
+              <line x1="72" y1="78" x2="56" y2="86" stroke-width="1.2" />
+              <polygon points="104,52 120,60 120,78 104,86 88,78 88,60" fill="rgba(70,109,86,0.08)" />
+              <polygon points="104,52 120,60 104,68 88,60" />
+              <line x1="104" y1="68" x2="104" y2="86" stroke-width="1.2" />
+              <line x1="88" y1="60" x2="104" y2="68" stroke-width="1.2" />
+              <line x1="120" y1="60" x2="104" y2="68" stroke-width="1.2" />
+              <line x1="88" y1="60" x2="88" y2="78" stroke-width="1.2" />
+              <line x1="120" y1="60" x2="120" y2="78" stroke-width="1.2" />
+              <line x1="88" y1="78" x2="104" y2="86" stroke-width="1.2" />
+              <line x1="120" y1="78" x2="104" y2="86" stroke-width="1.2" />
+            </svg>
+          </div>
+          <div class="phase-tag">Phase 1</div>
+          <div class="phase-name">MVP Build</div>
+          <div class="phase-timing">14–18 weeks</div>
+          <p class="phase-goal">Ship the core loop — members join, post, browse, transact in a trusted space.</p>
+          <ul class="phase-steps">
+            <li>Platform foundations</li>
+            <li>Community &amp; commerce</li>
+            <li>AI &amp; integrations</li>
+            <li>Soft launch, iterate, ship to public</li>
+          </ul>
+        </div>
+
+        <div class="phase-card future">
+          <div class="phase-icon">
+            <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="1.4" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="80" cy="80" r="8" fill="currentColor" stroke="none" />
+              <circle cx="80" cy="80" r="20" stroke-opacity=".6" />
+              <circle cx="80" cy="80" r="34" stroke-opacity=".35" />
+              <circle cx="80" cy="80" r="48" stroke-opacity=".18" />
+            </svg>
+          </div>
+          <div class="phase-tag">Phase 2</div>
+          <div class="phase-name">Live + AI Expansion</div>
+          <div class="phase-timing">6–10 weeks · after traction</div>
+          <p class="phase-goal">Add features that need an audience — only after the MVP shows real traction.</p>
+          <ul class="phase-steps">
+            <li>One-button live streaming</li>
+            <li>Live chat during broadcasts</li>
+            <li>Advanced AI helpers</li>
+            <li>Personalized feed</li>
+          </ul>
+        </div>
+
+        <div class="phase-card future">
+          <div class="phase-icon">
+            <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="1.4" xmlns="http://www.w3.org/2000/svg">
+              <rect x="44" y="92" width="14" height="22" fill="rgba(70,109,86,0.08)" />
+              <rect x="44" y="92" width="14" height="22" />
+              <rect x="64" y="76" width="14" height="38" fill="rgba(70,109,86,0.08)" />
+              <rect x="64" y="76" width="14" height="38" />
+              <rect x="84" y="60" width="14" height="54" fill="rgba(70,109,86,0.08)" />
+              <rect x="84" y="60" width="14" height="54" />
+              <rect x="104" y="44" width="14" height="70" fill="rgba(70,109,86,0.08)" />
+              <rect x="104" y="44" width="14" height="70" />
+            </svg>
+          </div>
+          <div class="phase-tag">Phase 3</div>
+          <div class="phase-name">Marketplace Growth</div>
+          <div class="phase-timing">10–12 weeks · after learning</div>
+          <p class="phase-goal">Scale monetization and reach, once the community is proven.</p>
+          <ul class="phase-steps">
+            <li>Live auctions (Whatnot-style)</li>
+            <li>Premium tiers and memberships</li>
+            <li>Multi-language support</li>
+            <li>Advanced marketplace tools</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — MVP SCOPE -->
+  <section class="slide" data-title="The MVP">
+    <div class="slide-header">
+      <div class="brand">galgal<span class="dot">.</span></div>
+      <div class="slide-meta">04 · The MVP</div>
+    </div>
+    <div class="slide-body">
+      <div class="slide-title-row">
+        <span class="title-num">04</span>
+        <h2>What we ship for product-market fit</h2>
+      </div>
+      <p class="lead muted">PMF needs a focused first set of features. Click any feature to move it between MVP, Fast Follow, and Future. Beyond MVP features live on the next slide.</p>
+
+      <div class="mvp-board solo" id="mvpBoard">
+        <div class="feature-col" data-bucket="mvp">
+          <div class="feature-col-header">
+            <span class="feature-col-name">MVP · ship now</span>
+            <span class="feature-col-count">0</span>
+          </div>
+          <div class="feature-col-body" data-col-body="mvp"></div>
+        </div>
+      </div>
+
+      <div class="mvp-controls">
+        <div class="size-legend">
+          <span class="lbl">Size</span>
+          <span class="legend-chip" data-s="S"><span class="size">S</span>small</span>
+          <span class="legend-chip" data-s="M"><span class="size">M</span>medium</span>
+          <span class="legend-chip" data-s="L"><span class="size">L</span>large</span>
+          <span class="legend-chip" data-s="XL"><span class="size">XL</span>extra large</span>
+        </div>
+        <button class="reset-btn" id="mvpResetBtn" type="button">Reset to defaults</button>
+      </div>
+
+      <p class="rn-callout"><strong>Built with React Native.</strong> One codebase ships to iOS, Android, and Web — no separate native apps to maintain.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 5b — BEYOND MVP -->
+  <section class="slide" data-title="Beyond MVP">
+    <div class="slide-header">
+      <div class="brand">galgal<span class="dot">.</span></div>
+      <div class="slide-meta">05 · Beyond MVP</div>
+    </div>
+    <div class="slide-body top">
+      <div class="slide-title-row">
+        <span class="title-num">05</span>
+        <h2>What comes after the MVP</h2>
+      </div>
+      <p class="lead muted">Once we have traction, here's what unlocks next. Click any feature to move it between Fast Follow, Future, and back into MVP.</p>
+
+      <div class="mvp-board beyond" id="beyondBoard">
+        <div class="feature-col" data-bucket="fast">
+          <div class="feature-col-header">
+            <span class="feature-col-name">Fast follow</span>
+            <span class="feature-col-count">0</span>
+          </div>
+          <div class="feature-col-body" data-col-body="fast"></div>
+        </div>
+        <div class="feature-col" data-bucket="future">
+          <div class="feature-col-header">
+            <span class="feature-col-name">Future</span>
+            <span class="feature-col-count">0</span>
+          </div>
+          <div class="feature-col-body" data-col-body="future"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6 — AI -->
+  <section class="slide" data-title="AI">
+    <div class="slide-header">
+      <div class="brand">galgal<span class="dot">.</span></div>
+      <div class="slide-meta">06 · How we use AI</div>
+    </div>
+    <div class="slide-body">
+      <div class="slide-title-row">
+        <span class="title-num">06</span>
+        <h2>AI runs through our process, and lives in the product.</h2>
+      </div>
+      <p class="lead muted">AI is why a small senior team can ship a real platform in 6 months, and how Galgal will feel calm and easy to use, even for less tech-savvy women.</p>
+
+      <div class="ai-grid">
+        <div class="ai-card process">
+          <h3>In our process</h3>
+          <ul>
+            <li><strong>Design</strong> · AI-accelerated UI exploration, accessibility audits, Figma to code parity</li>
+            <li><strong>Engineering</strong> · AI-assisted code generation, refactoring, automated review, test coverage</li>
+            <li><strong>QA</strong> · AI-generated tests across browsers and devices</li>
+            <li><strong>Brand and content</strong> · first-draft brand exploration, naming, copy, finished by human judgment</li>
+            <li><strong>Project management</strong> · AI summaries, draft agendas, live timeline updates</li>
+          </ul>
+        </div>
+        <div class="ai-card product">
+          <h3>In the product</h3>
+          <ul>
+            <li><strong>AI-assisted moderation</strong> <em>(Phase 1)</em> · flag harassment before a human sees it</li>
+            <li><strong>Navigation helper</strong> <em>(Phase 2)</em> · "what do you want to do today?"</li>
+            <li><strong>Content help</strong> <em>(Phase 2)</em> · auto descriptions from a photo, invitations, tags</li>
+            <li><strong>Conversation summaries</strong> <em>(Phase 2)</em> · long threads condensed</li>
+            <li><strong>Smart discovery</strong> <em>(Phase 3)</em> · calm, modest recommendations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7 — PRICING -->
+  <section class="slide" data-title="Pricing">
+    <div class="slide-header">
+      <div class="brand">galgal<span class="dot">.</span></div>
+      <div class="slide-meta">07 · Pricing</div>
+    </div>
+    <div class="slide-body">
+      <div class="slide-title-row">
+        <span class="title-num">07</span>
+        <h2>How we work together</h2>
+      </div>
+      <p class="lead muted">More than just money — what you get from a small senior team that has done this before.</p>
+
+      <div class="value-section">
+        <div class="section-label">What you get</div>
+        <div class="value-grid">
+          <div class="value-item">
+            <div class="vn">01</div>
+            <h4>Senior team, no PM layer</h4>
+            <p>You work directly with the people designing, engineering, and leading. No account managers in between.</p>
+          </div>
+          <div class="value-item">
+            <div class="vn">02</div>
+            <h4>20+ years at Meta &amp; beyond</h4>
+            <p>Real experience shipping Facebook, WhatsApp, Instagram, and Messenger. We have built products like this.</p>
+          </div>
+          <div class="value-item">
+            <div class="vn">03</div>
+            <h4>AI-native development</h4>
+            <p>AI is in our design, code, QA, and project flow — so we ship faster, smarter, with fewer bugs.</p>
+          </div>
+          <div class="value-item">
+            <div class="vn">04</div>
+            <h4>End-to-end ownership</h4>
+            <p>Design, brand direction, engineering — one team, one handoff-free flow from idea to shipped code.</p>
+          </div>
+          <div class="value-item">
+            <div class="vn">05</div>
+            <h4>Weekly working rhythm</h4>
+            <p>Same day every week. Shared timeline document. Open WhatsApp line for questions between meetings.</p>
+          </div>
+          <div class="value-item">
+            <div class="vn">06</div>
+            <h4>Production-ready output</h4>
+            <p>Not a demo or a prototype. Real React Native code, ready to scale from soft launch to thousands.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label">Three ways to structure the work</div>
+      <div class="pricing">
+
+        <div class="price">
+          <span class="pill">Cost per phase</span>
+          <div class="phase-list">
+            <div class="phase-item">
+              <div class="phase-item-left">
+                <div class="phase-name">Discovery &amp; Foundation</div>
+                <div class="phase-meta">4–5 weeks · Identity, infrastructure, MVP definition</div>
+              </div>
+              <div class="phase-price">$60,000</div>
+            </div>
+            <div class="phase-item">
+              <div class="phase-item-left">
+                <div class="phase-name">Build &amp; Integrate</div>
+                <div class="phase-meta">5–6 weeks · Channels, items, marketplace, Stripe, WhatsApp</div>
+              </div>
+              <div class="phase-price">$95,000</div>
+            </div>
+            <div class="phase-item">
+              <div class="phase-item-left">
+                <div class="phase-name">AI, Polish &amp; Launch</div>
+                <div class="phase-meta">4–5 weeks · AI layer, search, moderation, soft launch</div>
+              </div>
+              <div class="phase-price">$65,000</div>
+            </div>
+          </div>
+          <div class="phase-total">
+            <div class="total-label">MVP total</div>
+            <div class="total-value">$220,000</div>
+            <div class="total-meta">14–16 weeks</div>
+          </div>
+          <div class="post-mvp-note">
+            <strong>Post-MVP, optional:</strong> Live + AI Expansion from $95,000 · Marketplace Growth from $120,000
+          </div>
+          <p class="footnote">Best when scope is locked and you want budget certainty.</p>
+        </div>
+
+        <div class="price">
+          <span class="pill">Monthly with scope</span>
+          <div class="big">$40,000<span>/mo</span></div>
+          <div class="sub">5–6 months for full MVP</div>
+          <ul>
+            <li>Written scope list each month</li>
+            <li>Predictable monthly burn</li>
+            <li>Room to evolve as we learn</li>
+            <li>Same senior team end-to-end</li>
+          </ul>
+          <p class="footnote">Best when you want monthly predictability with a clear plan.</p>
+        </div>
+
+        <div class="price">
+          <span class="pill">Monthly partnership</span>
+          <div class="big">$48,000<span>/mo</span></div>
+          <div class="sub">Min 3 months · 5–6 for full MVP</div>
+          <ul>
+            <li>Senior team capacity dedicated to Galgal</li>
+            <li>Scope flexes month to month</li>
+            <li>Best for speed and flexibility</li>
+            <li>Long-term partner posture</li>
+          </ul>
+          <p class="footnote">Best when you want us as an ongoing partner.</p>
+        </div>
+      </div>
+
+      <div class="hourly">
+        <div class="rate">$450<span>/hour</span></div>
+        <div class="note"><strong>Hourly is available for transparency.</strong> Use it for advisory work, audits, and out-of-scope requests outside an active engagement.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SLIDE 9 — TEAM -->
+  <section class="slide" data-title="Who we are">
+    <div class="slide-header">
+      <div class="brand">galgal<span class="dot">.</span></div>
+      <div class="slide-meta">08 · Who we are</div>
+    </div>
+    <div class="slide-body">
+      <div class="slide-title-row">
+        <span class="title-num">08</span>
+        <h2>A small senior team. You work directly with the builders.</h2>
+      </div>
+
+      <div class="team">
+        <div class="member">
+          <div class="member-photo">
+            <img src="team/vika.jpg" alt="Vika Finkel" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="initials" style="display:none">VF</div>
+          </div>
+          <div class="role">Product &amp; Design Lead</div>
+          <h4>Vika Finkel</h4>
+          <p>Product &amp; design are led by Vika Finkel, former Senior Product Design Manager at Meta, where she owned and delivered major initiatives across Facebook, WhatsApp, Instagram, Messenger, and Novi. She brings experience building products from zero to launch as well as evolving systems at massive scale — spanning product vision, execution, and team building.</p>
+        </div>
+
+        <div class="member">
+          <div class="member-photo">
+            <img src="team/elad.jpg" alt="Elad Daniel" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="initials" style="display:none">ED</div>
+          </div>
+          <div class="role">Engineering &amp; AI Lead</div>
+          <h4>Elad Daniel</h4>
+          <p>Engineering, AI, and R&amp;D are led by Elad Daniel. He owns technical architecture, AI integration across the stack, and engineering quality — driving how the team uses AI in design tooling, code generation, QA, and operations.</p>
+        </div>
+
+        <div class="member">
+          <div class="member-photo">
+            <img src="team/rnd.jpg" alt="Core R&amp;D Team" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="initials" style="display:none">R&amp;D</div>
+          </div>
+          <div class="role">Core R&amp;D Team</div>
+          <h4>R&amp;D</h4>
+          <p>The core R&amp;D team has worked together with Elad for over a decade, delivering complex, production-grade systems across multiple domains. A highly experienced, end-to-end team covering frontend and backend engineering, infrastructure and operations, AI and data systems. Used to building reliable, scalable products, working closely across disciplines, and taking ownership from architecture through deployment and iteration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE — INDEX (appendix notes) -->
+  <section class="slide" data-title="Index">
+    <div class="slide-header">
+      <div class="brand">galgal<span class="dot">.</span></div>
+      <div class="slide-meta">09 · Index</div>
+    </div>
+    <div class="slide-body">
+      <div class="slide-title-row">
+        <span class="title-num">09</span>
+        <h2>Index</h2>
+      </div>
+      <p class="lead muted">Notes, optional add-ons, and details that didn't fit in the main flow.</p>
+
+      <div class="index-list">
+        <div class="index-item">
+          <div class="ix-letter">A · Optional add-on</div>
+          <h4>Quick branding loop (1–2 weeks)</h4>
+          <p>By default we ship with a clean, modest visual identity that fits the brief. If you want to go deeper on brand — name treatment, logo refinement, full identity system — we can add a focused brand sprint before Phase 1.</p>
+        </div>
+
+        <div class="index-item">
+          <div class="ix-letter">B · Content from social platforms</div>
+          <h4>Instagram &amp; TikTok embeds (not scraping)</h4>
+          <p>Scraping third-party social platforms is against their ToS and brittle to maintain. Instead, we use the official oEmbed flow — creators paste a URL, we render an embed. Lightweight, legal, works for any public post.</p>
+        </div>
+
+        <div class="index-item">
+          <div class="ix-letter">C · Religious schedule logic</div>
+          <h4>Shabbat &amp; holiday transaction pause</h4>
+          <p>Location-aware pausing of marketplace transactions on Shabbat and Jewish holidays. Complex edge cases (time zones, daylight saving, in-flight transactions) handled in Phase 1. May warrant a rabbinic review before launch.</p>
+        </div>
+
+        <div class="index-item">
+          <div class="ix-letter">D · One codebase, three platforms</div>
+          <h4>React Native</h4>
+          <p>iOS, Android, and Web all ship from one React Native codebase. That's why native iOS and Android apps don't appear as a separate phase — they're built from day one alongside web.</p>
+        </div>
+
+        <div class="index-item">
+          <div class="ix-letter">E · What's not included</div>
+          <h4>Outside our scope</h4>
+          <p>We provide end-to-end design, brand, and code for product readiness. Not included: go-to-market, marketing, paid ads, influencer outreach, content moderation staffing, legal counsel, accounting, customer support staffing, and ongoing post-launch operations.</p>
+        </div>
+
+        <div class="index-item">
+          <div class="ix-letter">F · Working relationship</div>
+          <h4>How we collaborate</h4>
+          <p>Weekly working session (same day each week). Shared timeline document Alana can see at any time. Open WhatsApp line for quick questions. Final product decisions: Alana and her husband. We advise on product and technology.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE — THANK YOU -->
+  <section class="slide thanks" data-title="Thank you">
+    <div class="thanks-body">
+      <div class="thanks-collage">
+        <div class="thanks-photo p1">
+          <img src="banner5.png" alt="" />
+        </div>
+        <div class="thanks-photo p2">
+          <img src="banner2.png" alt="" />
+          <span class="thanks-text">Toda Raba</span>
+        </div>
+        <div class="thanks-photo p3">
+          <img src="banner4.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<!-- DECK NAV -->
+<div class="deck-nav">
+  <button class="nav-btn" id="prevBtn" aria-label="Previous slide">←</button>
+  <div class="nav-counter"><strong id="navCurrent">01</strong> / <span id="navTotal">10</span></div>
+  <button class="nav-btn" id="nextBtn" aria-label="Next slide">→</button>
+</div>
+
+<script>
+// MVP BOARD — feature list with click-to-cycle buckets
+const FEATURES = [
+  // MVP (now) — the focused first set for PMF
+  { name: "React Native app (iOS, Android, Web)", size: "L", bucket: "mvp" },
+  { name: "Member verification (Jewish + Israel-support questionnaire)", size: "M", bucket: "mvp" },
+  { name: "Invitation system + referral tracking", size: "M", bucket: "mvp" },
+  { name: "Profiles & roles (member, seller, channel admin)", size: "M", bucket: "mvp" },
+  { name: "Email + password recovery", size: "S", bucket: "mvp" },
+  { name: "Channels & groups (4 access modes)", size: "L", bucket: "mvp" },
+  { name: "Channel admin tools", size: "M", bucket: "mvp" },
+  { name: "Universal item primitive (events, products, services, classes)", size: "L", bucket: "mvp" },
+  { name: "Categories & tags", size: "S", bucket: "mvp" },
+  { name: "Stripe payments (one-time + subscription)", size: "L", bucket: "mvp" },
+  { name: "Seller payouts & marketplace commission", size: "M", bucket: "mvp" },
+  { name: "Shabbat & holiday transaction pause (location-aware)", size: "M", bucket: "mvp" },
+  { name: "WhatsApp integration", size: "M", bucket: "mvp" },
+  { name: "Public conversations on items & channels", size: "M", bucket: "mvp" },
+  { name: "Safety: reporting, blocking, moderation queue", size: "M", bucket: "mvp" },
+  { name: "Search across items, channels, members", size: "M", bucket: "mvp" },
+  { name: "Browse by category & tag", size: "S", bucket: "mvp" },
+  { name: "AI-led onboarding", size: "M", bucket: "mvp" },
+  { name: "AI content help (photo descriptions)", size: "M", bucket: "mvp" },
+  { name: "Admin dashboard", size: "M", bucket: "mvp" },
+  { name: "Basic analytics (signups, posts, transactions)", size: "M", bucket: "mvp" },
+  { name: "Customer support: help center + request submission", size: "M", bucket: "mvp" },
+  { name: "Hosting, backend, security baseline", size: "L", bucket: "mvp" },
+  { name: "Embed Instagram & TikTok posts via shared URL (oEmbed)", size: "S", bucket: "mvp" },
+
+  // FAST FOLLOW — soon after launch
+  { name: "One-button live streaming", size: "XL", bucket: "fast" },
+  { name: "Live chat during broadcasts", size: "M", bucket: "fast" },
+  { name: "AI navigation helper", size: "L", bucket: "fast" },
+  { name: "AI conversation summaries", size: "M", bucket: "fast" },
+  { name: "Personalized feed", size: "L", bucket: "fast" },
+  { name: "ID verification (admin-reviewed, optional document)", size: "L", bucket: "fast" },
+  { name: "AI-assisted moderation flagging", size: "M", bucket: "fast" },
+  { name: "Advertising & sponsored placements", size: "L", bucket: "fast" },
+  { name: "AI-powered first response in customer support", size: "M", bucket: "fast" },
+
+  // FUTURE — Phase 3+
+  { name: "Live auctions (Whatnot-style)", size: "XL", bucket: "future" },
+  { name: "Embedded AI chat across the platform", size: "L", bucket: "future" },
+  { name: "Premium tiers & memberships", size: "M", bucket: "future" },
+  { name: "Multi-language support (Hebrew, Russian, Spanish)", size: "L", bucket: "future" },
+  { name: "Smart discovery & AI recommendations", size: "L", bucket: "future" },
+  { name: "Professional services directory (lawyers, doctors, CPAs, nannies)", size: "M", bucket: "future" },
+  { name: "Advanced analytics & export tools", size: "M", bucket: "future" },
+  { name: "Featured collections", size: "S", bucket: "future" },
+];
+
+const mvpBoard = document.getElementById('mvpBoard');
+const beyondBoard = document.getElementById('beyondBoard');
+const BUCKETS = ['mvp', 'fast', 'future'];
+
+function makeChip(f){
+  const chip = document.createElement('button');
+  chip.className = 'feature-chip';
+  chip.type = 'button';
+  chip.dataset.bucket = f.bucket;
+  chip.dataset.size = f.size;
+  chip.innerHTML = `<span class="name">${f.name}</span><span class="size">${f.size}</span>`;
+  chip.addEventListener('click', () => {
+    const next = BUCKETS[(BUCKETS.indexOf(f.bucket) + 1) % BUCKETS.length];
+    f.bucket = next;
+    renderBoards();
+  });
+  return chip;
+}
+
+function renderBoards(){
+  // Clear all buckets on both boards
+  [mvpBoard, beyondBoard].forEach(board => {
+    if(!board) return;
+    board.querySelectorAll('[data-col-body]').forEach(c => c.innerHTML = '');
+  });
+  // Place each feature in the appropriate bucket on whichever board has that column
+  FEATURES.forEach(f => {
+    [mvpBoard, beyondBoard].forEach(board => {
+      if(!board) return;
+      const col = board.querySelector(`[data-col-body="${f.bucket}"]`);
+      if(col) col.appendChild(makeChip(f));
+    });
+  });
+  updateCounts();
+}
+
+function updateCounts(){
+  [mvpBoard, beyondBoard].forEach(board => {
+    if(!board) return;
+    BUCKETS.forEach(b => {
+      const colHeader = board.querySelector(`.feature-col[data-bucket="${b}"] .feature-col-count`);
+      if(!colHeader) return;
+      colHeader.textContent = board.querySelectorAll(`[data-col-body="${b}"] .feature-chip`).length;
+    });
+  });
+}
+
+// Snapshot defaults for reset
+const FEATURE_DEFAULTS = FEATURES.map(f => f.bucket);
+const resetBtn = document.getElementById('mvpResetBtn');
+if(resetBtn){
+  resetBtn.addEventListener('click', () => {
+    FEATURES.forEach((f, i) => { f.bucket = FEATURE_DEFAULTS[i]; });
+    renderBoards();
+  });
+}
+renderBoards();
+
+// DECK NAVIGATION
+const deck = document.getElementById('deck');
+const slides = deck.querySelectorAll('.slide');
+const total = slides.length;
+const navCurrent = document.getElementById('navCurrent');
+const navTotal = document.getElementById('navTotal');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+navTotal.textContent = String(total).padStart(2,'0');
+
+let current = 0;
+function setActive(i){
+  slides.forEach((s, idx) => {
+    s.classList.remove('active','leaving');
+    if(idx === i) s.classList.add('active');
+    else if(idx === current) s.classList.add('leaving');
+  });
+}
+function goTo(i){
+  const next = Math.max(0, Math.min(total-1, i));
+  if(next === current) return;
+  setActive(next);
+  current = next;
+  updateNav();
+}
+function updateNav(){
+  navCurrent.textContent = String(current+1).padStart(2,'0');
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === total - 1;
+}
+// Initialize first slide as active
+slides[0].classList.add('active');
+prevBtn.addEventListener('click', () => goTo(current - 1));
+nextBtn.addEventListener('click', () => goTo(current + 1));
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ goTo(current+1); e.preventDefault(); }
+  if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ goTo(current-1); e.preventDefault(); }
+  if(e.key === 'Home'){ goTo(0); e.preventDefault(); }
+  if(e.key === 'End'){ goTo(total-1); e.preventDefault(); }
+});
+
+updateNav();
+</script>
+</body>
+</html>
