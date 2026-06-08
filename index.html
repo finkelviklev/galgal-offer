@@ -494,30 +494,48 @@
   .timeline-step .phase-row .txt{font-size:15px;color:var(--text);line-height:1.45}
   .timeline-step .phase-row .txt.muted{color:var(--muted)}
 
-  /* SHIP — what members can do, day one & later */
+  /* SHIP — what members can do, day one & later, with flip cards */
   .ship-grid{
     display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px;
   }
   .ship-col{
-    padding:32px 30px;border-radius:20px;
+    position:relative;perspective:1600px;
+    min-height:520px;
   }
-  .ship-col.launch{
+  .ship-flip{
+    position:relative;width:100%;height:100%;min-height:520px;
+    transform-style:preserve-3d;
+    transition:transform .8s cubic-bezier(.4,0,.2,1);
+  }
+  .ship-col.flipped .ship-flip{transform:rotateY(180deg)}
+  .ship-face{
+    padding:32px 30px;border-radius:20px;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    display:flex;flex-direction:column;
+  }
+  .ship-face.front{position:relative;min-height:520px}
+  .ship-face.back{
+    position:absolute;top:0;left:0;right:0;bottom:0;
+    transform:rotateY(180deg);
+  }
+  /* Theme colors apply to both faces */
+  .ship-col.launch .ship-face{
     background:linear-gradient(135deg,#466d56 0%,#6b8e74 55%,#9bca80 100%);
     color:#fff;box-shadow:0 14px 40px rgba(70,109,86,.22);
   }
-  .ship-col.after{
+  .ship-col.after .ship-face{
     background:linear-gradient(180deg, #f6faf3 0%, #fafcf8 100%);
   }
-  .ship-col .ship-eyebrow{
+  .ship-eyebrow{
     font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
     margin-bottom:8px;opacity:.78;
   }
-  .ship-col h3{
+  .ship-face h3{
     font-size:26px;font-weight:700;margin:0 0 24px;letter-spacing:-.018em;line-height:1.1;
   }
-  .ship-col.after h3{color:var(--ink)}
+  .ship-col.after .ship-face h3{color:var(--ink)}
   .ship-list{
-    list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;
+    list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;flex:1;
   }
   .ship-list li{
     font-size:15px;line-height:1.45;display:flex;gap:12px;align-items:flex-start;
@@ -528,16 +546,46 @@
     border-radius:50%;font-size:11px;font-weight:700;
   }
   .ship-col.launch .ship-list li{color:rgba(255,255,255,.97)}
-  .ship-col.launch .ship-list li .icon{
-    background:rgba(255,255,255,.22);color:#fff;
-  }
+  .ship-col.launch .ship-list li .icon{background:rgba(255,255,255,.22);color:#fff}
   .ship-col.after .ship-list li{color:var(--text)}
-  .ship-col.after .ship-list li .icon{
-    background:rgba(70,109,86,.16);color:var(--accent);
+  .ship-col.after .ship-list li .icon{background:rgba(70,109,86,.16);color:var(--accent)}
+
+  /* Flip button */
+  .flip-btn{
+    margin-top:22px;align-self:flex-start;font-family:inherit;
+    background:transparent;border:none;cursor:pointer;
+    font-size:13px;font-weight:600;letter-spacing:.02em;
+    padding:10px 18px;border-radius:100px;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:background .2s, transform .2s;
   }
+  .ship-col.launch .flip-btn{background:rgba(255,255,255,.18);color:#fff}
+  .ship-col.launch .flip-btn:hover{background:rgba(255,255,255,.28);transform:translateY(-1px)}
+  .ship-col.after .flip-btn{background:rgba(70,109,86,.14);color:var(--accent)}
+  .ship-col.after .flip-btn:hover{background:rgba(70,109,86,.2);transform:translateY(-1px)}
+
+  /* Back-face feature list — compact 2-col */
+  .feat-list{
+    list-style:none;padding:0;margin:0;
+    display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;flex:1;
+    overflow-y:auto;
+  }
+  .feat-list li{
+    font-size:12px;line-height:1.35;
+    display:flex;gap:6px;align-items:flex-start;
+  }
+  .feat-list li::before{
+    content:"·";font-weight:700;flex-shrink:0;
+  }
+  .ship-col.launch .feat-list li{color:rgba(255,255,255,.95)}
+  .ship-col.launch .feat-list li::before{color:rgba(255,255,255,.7)}
+  .ship-col.after .feat-list li{color:var(--text)}
+  .ship-col.after .feat-list li::before{color:var(--accent)}
+
   @media (max-width:880px){
     .ship-grid{grid-template-columns:1fr;gap:14px}
-    .ship-col{padding:24px}
+    .ship-face{padding:24px}
+    .feat-list{grid-template-columns:1fr}
   }
 
   /* MVP BOARDS — interactive feature buckets (split across two slides) */
@@ -1298,36 +1346,103 @@
       <p class="lead muted">Here's what Galgal feels like at launch — and what comes after.</p>
 
       <div class="ship-grid">
+
         <div class="ship-col launch">
-          <div class="ship-eyebrow">Day one</div>
-          <h3>When we launch</h3>
-          <ul class="ship-list">
-            <li><span class="icon">✓</span><span>Join an inner circle of trusted Jewish women</span></li>
-            <li><span class="icon">✓</span><span>Find your tribe in channels you join or get invited to</span></li>
-            <li><span class="icon">✓</span><span>Post anything — events, classes, products, services</span></li>
-            <li><span class="icon">✓</span><span>Browse and search the community</span></li>
-            <li><span class="icon">✓</span><span>Buy and sell safely with Stripe</span></li>
-            <li><span class="icon">✓</span><span>Chat openly with members on items and channels</span></li>
-            <li><span class="icon">✓</span><span>Reach out one-on-one via WhatsApp</span></li>
-            <li><span class="icon">✓</span><span>Get AI help onboarding and writing posts</span></li>
-            <li><span class="icon">✓</span><span>Trust the rules — Shabbat &amp; holiday transaction lock built in</span></li>
-          </ul>
+          <div class="ship-flip">
+            <div class="ship-face front">
+              <div class="ship-eyebrow">Day one</div>
+              <h3>When we launch</h3>
+              <ul class="ship-list">
+                <li><span class="icon">✓</span><span>Join an inner circle of trusted Jewish women</span></li>
+                <li><span class="icon">✓</span><span>Find your tribe in channels you join or get invited to</span></li>
+                <li><span class="icon">✓</span><span>Post anything — events, classes, products, services</span></li>
+                <li><span class="icon">✓</span><span>Browse and search the community</span></li>
+                <li><span class="icon">✓</span><span>Buy and sell safely with Stripe</span></li>
+                <li><span class="icon">✓</span><span>Chat openly with members on items and channels</span></li>
+                <li><span class="icon">✓</span><span>Reach out one-on-one via WhatsApp</span></li>
+                <li><span class="icon">✓</span><span>Get AI help onboarding and writing posts</span></li>
+                <li><span class="icon">✓</span><span>Trust the rules — Shabbat &amp; holiday lock built in</span></li>
+              </ul>
+              <button type="button" class="flip-btn" data-flip>See all features →</button>
+            </div>
+            <div class="ship-face back">
+              <div class="ship-eyebrow">All features · Day one</div>
+              <h3>What we build for MVP</h3>
+              <ul class="feat-list">
+                <li>React Native app (iOS, Android, Web)</li>
+                <li>Member verification (Jewish + Israel-support)</li>
+                <li>Invitation system + referral tracking</li>
+                <li>Profiles &amp; roles</li>
+                <li>Email + password recovery</li>
+                <li>Channels &amp; groups (4 access modes)</li>
+                <li>Channel admin tools</li>
+                <li>Universal item primitive</li>
+                <li>Categories &amp; tags</li>
+                <li>Stripe payments (one-time + subscription)</li>
+                <li>Seller payouts &amp; commission</li>
+                <li>Shabbat &amp; holiday transaction pause</li>
+                <li>WhatsApp integration</li>
+                <li>Public conversations on items &amp; channels</li>
+                <li>Safety: report, block, moderation queue</li>
+                <li>Search across items, channels, members</li>
+                <li>Browse by category &amp; tag</li>
+                <li>AI-led onboarding</li>
+                <li>AI content help (photo descriptions)</li>
+                <li>Admin dashboard</li>
+                <li>Basic analytics</li>
+                <li>Customer support: help center + requests</li>
+                <li>Hosting, backend, security baseline</li>
+                <li>Instagram &amp; TikTok embeds (oEmbed)</li>
+              </ul>
+              <button type="button" class="flip-btn" data-flip>← Back to overview</button>
+            </div>
+          </div>
         </div>
 
         <div class="ship-col after">
-          <div class="ship-eyebrow">Coming next</div>
-          <h3>After launch</h3>
-          <ul class="ship-list">
-            <li><span class="icon">+</span><span>Go live in one tap — host classes, Q&amp;A, sessions</span></li>
-            <li><span class="icon">+</span><span>Watch live broadcasts and chat in real time</span></li>
-            <li><span class="icon">+</span><span>Run live auctions and sell in the moment</span></li>
-            <li><span class="icon">+</span><span>Get an AI assistant — "what do you want to do today?"</span></li>
-            <li><span class="icon">+</span><span>See a feed personalized to your interests</span></li>
-            <li><span class="icon">+</span><span>Subscribe to premium creators and content</span></li>
-            <li><span class="icon">+</span><span>Find professional services (lawyers, doctors, CPAs, nannies)</span></li>
-            <li><span class="icon">+</span><span>Use Galgal in Hebrew, Russian, and Spanish</span></li>
-          </ul>
+          <div class="ship-flip">
+            <div class="ship-face front">
+              <div class="ship-eyebrow">Coming next</div>
+              <h3>After launch</h3>
+              <ul class="ship-list">
+                <li><span class="icon">+</span><span>Go live in one tap — host classes, Q&amp;A, sessions</span></li>
+                <li><span class="icon">+</span><span>Watch live broadcasts and chat in real time</span></li>
+                <li><span class="icon">+</span><span>Run live auctions and sell in the moment</span></li>
+                <li><span class="icon">+</span><span>Get an AI assistant — "what do you want to do today?"</span></li>
+                <li><span class="icon">+</span><span>See a feed personalized to your interests</span></li>
+                <li><span class="icon">+</span><span>Subscribe to premium creators and content</span></li>
+                <li><span class="icon">+</span><span>Find professional services (lawyers, doctors, CPAs, nannies)</span></li>
+                <li><span class="icon">+</span><span>Use Galgal in Hebrew, Russian, and Spanish</span></li>
+              </ul>
+              <button type="button" class="flip-btn" data-flip>See all features →</button>
+            </div>
+            <div class="ship-face back">
+              <div class="ship-eyebrow">All features · Coming next</div>
+              <h3>What unlocks after MVP</h3>
+              <ul class="feat-list">
+                <li>One-button live streaming</li>
+                <li>Live chat during broadcasts</li>
+                <li>AI navigation helper</li>
+                <li>AI conversation summaries</li>
+                <li>Personalized feed</li>
+                <li>ID verification (admin-reviewed)</li>
+                <li>AI-assisted moderation flagging</li>
+                <li>Advertising &amp; sponsored placements</li>
+                <li>AI-powered first response in support</li>
+                <li>Live auctions (Whatnot-style)</li>
+                <li>Embedded AI chat across the platform</li>
+                <li>Premium tiers &amp; memberships</li>
+                <li>Multi-language: Hebrew, Russian, Spanish</li>
+                <li>Smart discovery &amp; AI recommendations</li>
+                <li>Professional services directory</li>
+                <li>Advanced analytics &amp; exports</li>
+                <li>Featured collections</li>
+              </ul>
+              <button type="button" class="flip-btn" data-flip>← Back to overview</button>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -1642,6 +1757,13 @@
   input.addEventListener('input',function(){error.style.display='none'});
   setTimeout(()=>input.focus(),100);
 })();
+
+// SHIP CARDS — flip between overview and full feature list
+document.querySelectorAll('[data-flip]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.closest('.ship-col').classList.toggle('flipped');
+  });
+});
 
 // MVP BOARD — feature list with click-to-cycle buckets
 const FEATURES = [
