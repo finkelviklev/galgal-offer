@@ -494,6 +494,52 @@
   .timeline-step .phase-row .txt{font-size:13.5px;color:var(--text);line-height:1.45}
   .timeline-step .phase-row .txt.muted{color:var(--muted)}
 
+  /* SHIP — what members can do, day one & later */
+  .ship-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px;
+  }
+  .ship-col{
+    padding:32px 30px;border-radius:20px;
+  }
+  .ship-col.launch{
+    background:linear-gradient(135deg,#466d56 0%,#6b8e74 55%,#9bca80 100%);
+    color:#fff;box-shadow:0 14px 40px rgba(70,109,86,.22);
+  }
+  .ship-col.after{
+    background:linear-gradient(180deg, #f6faf3 0%, #fafcf8 100%);
+  }
+  .ship-col .ship-eyebrow{
+    font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    margin-bottom:8px;opacity:.78;
+  }
+  .ship-col h3{
+    font-size:26px;font-weight:700;margin:0 0 24px;letter-spacing:-.018em;line-height:1.1;
+  }
+  .ship-col.after h3{color:var(--ink)}
+  .ship-list{
+    list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;
+  }
+  .ship-list li{
+    font-size:15px;line-height:1.45;display:flex;gap:12px;align-items:flex-start;
+  }
+  .ship-list li .icon{
+    flex-shrink:0;width:20px;height:20px;margin-top:1px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;font-size:11px;font-weight:700;
+  }
+  .ship-col.launch .ship-list li{color:rgba(255,255,255,.97)}
+  .ship-col.launch .ship-list li .icon{
+    background:rgba(255,255,255,.22);color:#fff;
+  }
+  .ship-col.after .ship-list li{color:var(--text)}
+  .ship-col.after .ship-list li .icon{
+    background:rgba(70,109,86,.16);color:var(--accent);
+  }
+  @media (max-width:880px){
+    .ship-grid{grid-template-columns:1fr;gap:14px}
+    .ship-col{padding:24px}
+  }
+
   /* MVP BOARDS — interactive feature buckets (split across two slides) */
   .mvp-board{
     display:grid;gap:18px;margin-top:24px;align-items:stretch;
@@ -1237,71 +1283,49 @@
     </div>
   </section>
 
-  <!-- SLIDE 4 — MVP SCOPE -->
-  <section class="slide" data-title="The MVP">
+  <!-- SLIDE 4 — WHAT YOU CAN DO (MVP + Beyond, friendly) -->
+  <section class="slide" data-title="What members can do">
     <div class="slide-header">
       <div class="brand">galgal<span class="dot">.</span></div>
-      <div class="slide-meta">04 · The MVP</div>
+      <div class="slide-meta">04 · What members can do</div>
     </div>
     <div class="slide-body">
       <div class="slide-title-row">
         <span class="title-num">04</span>
-        <h2>What we ship for product-market fit</h2>
+        <h2>What members can do, day one</h2>
       </div>
-      <p class="lead muted">PMF needs a focused first set of features. Click any feature to move it between MVP, Fast Follow, and Future. Beyond MVP features live on the next slide.</p>
+      <p class="lead muted">Here's what Galgal feels like at launch — and what comes after.</p>
 
-      <div class="mvp-board solo" id="mvpBoard">
-        <div class="feature-col" data-bucket="mvp">
-          <div class="feature-col-header">
-            <span class="feature-col-name">MVP · ship now</span>
-            <span class="feature-col-count">0</span>
-          </div>
-          <div class="feature-col-body" data-col-body="mvp"></div>
+      <div class="ship-grid">
+        <div class="ship-col launch">
+          <div class="ship-eyebrow">Day one</div>
+          <h3>When we launch</h3>
+          <ul class="ship-list">
+            <li><span class="icon">✓</span><span>Join an inner circle of trusted Jewish women</span></li>
+            <li><span class="icon">✓</span><span>Find your tribe in channels you join or get invited to</span></li>
+            <li><span class="icon">✓</span><span>Post anything — events, classes, products, services</span></li>
+            <li><span class="icon">✓</span><span>Browse and search the community</span></li>
+            <li><span class="icon">✓</span><span>Buy and sell safely with Stripe</span></li>
+            <li><span class="icon">✓</span><span>Chat openly with members on items and channels</span></li>
+            <li><span class="icon">✓</span><span>Reach out one-on-one via WhatsApp</span></li>
+            <li><span class="icon">✓</span><span>Get AI help onboarding and writing posts</span></li>
+            <li><span class="icon">✓</span><span>Trust the rules — Shabbat &amp; holiday transaction lock built in</span></li>
+          </ul>
         </div>
-      </div>
 
-      <div class="mvp-controls">
-        <div class="size-legend">
-          <span class="lbl">Size</span>
-          <span class="legend-chip" data-s="S"><span class="size">S</span>small</span>
-          <span class="legend-chip" data-s="M"><span class="size">M</span>medium</span>
-          <span class="legend-chip" data-s="L"><span class="size">L</span>large</span>
-          <span class="legend-chip" data-s="XL"><span class="size">XL</span>extra large</span>
-        </div>
-        <button class="reset-btn" id="mvpResetBtn" type="button">Reset to defaults</button>
-      </div>
-
-      <p class="rn-callout"><strong>Built with React Native.</strong> One codebase ships to iOS, Android, and Web — no separate native apps to maintain.</p>
-    </div>
-  </section>
-
-  <!-- SLIDE 5b — BEYOND MVP -->
-  <section class="slide" data-title="Beyond MVP">
-    <div class="slide-header">
-      <div class="brand">galgal<span class="dot">.</span></div>
-      <div class="slide-meta">05 · Beyond MVP</div>
-    </div>
-    <div class="slide-body top">
-      <div class="slide-title-row">
-        <span class="title-num">05</span>
-        <h2>What comes after the MVP</h2>
-      </div>
-      <p class="lead muted">Once we have traction, here's what unlocks next. Click any feature to move it between Fast Follow, Future, and back into MVP.</p>
-
-      <div class="mvp-board beyond" id="beyondBoard">
-        <div class="feature-col" data-bucket="fast">
-          <div class="feature-col-header">
-            <span class="feature-col-name">Fast follow</span>
-            <span class="feature-col-count">0</span>
-          </div>
-          <div class="feature-col-body" data-col-body="fast"></div>
-        </div>
-        <div class="feature-col" data-bucket="future">
-          <div class="feature-col-header">
-            <span class="feature-col-name">Future</span>
-            <span class="feature-col-count">0</span>
-          </div>
-          <div class="feature-col-body" data-col-body="future"></div>
+        <div class="ship-col after">
+          <div class="ship-eyebrow">Coming next</div>
+          <h3>After launch</h3>
+          <ul class="ship-list">
+            <li><span class="icon">+</span><span>Go live in one tap — host classes, Q&amp;A, sessions</span></li>
+            <li><span class="icon">+</span><span>Watch live broadcasts and chat in real time</span></li>
+            <li><span class="icon">+</span><span>Run live auctions and sell in the moment</span></li>
+            <li><span class="icon">+</span><span>Get an AI assistant — "what do you want to do today?"</span></li>
+            <li><span class="icon">+</span><span>See a feed personalized to your interests</span></li>
+            <li><span class="icon">+</span><span>Subscribe to premium creators and content</span></li>
+            <li><span class="icon">+</span><span>Find professional services (lawyers, doctors, CPAs, nannies)</span></li>
+            <li><span class="icon">+</span><span>Use Galgal in Hebrew, Russian, and Spanish</span></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1311,11 +1335,11 @@
   <section class="slide" data-title="AI">
     <div class="slide-header">
       <div class="brand">galgal<span class="dot">.</span></div>
-      <div class="slide-meta">06 · How we use AI</div>
+      <div class="slide-meta">05 · How we use AI</div>
     </div>
     <div class="slide-body">
       <div class="slide-title-row">
-        <span class="title-num">06</span>
+        <span class="title-num">05</span>
         <h2>AI runs through our process, and lives in the product.</h2>
       </div>
       <p class="lead muted">AI is why a small senior team can ship a real platform in 6 months, and how Galgal will feel calm and easy to use, even for less tech-savvy women.</p>
@@ -1349,11 +1373,11 @@
   <section class="slide" data-title="Pricing">
     <div class="slide-header">
       <div class="brand">galgal<span class="dot">.</span></div>
-      <div class="slide-meta">07 · Pricing</div>
+      <div class="slide-meta">06 · Pricing</div>
     </div>
     <div class="slide-body">
       <div class="slide-title-row">
-        <span class="title-num">07</span>
+        <span class="title-num">06</span>
         <h2>How we work together</h2>
       </div>
       <p class="lead muted">More than just money — what you get from a small senior team that has done this before.</p>
@@ -1472,11 +1496,11 @@
   <section class="slide" data-title="Who we are">
     <div class="slide-header">
       <div class="brand">galgal<span class="dot">.</span></div>
-      <div class="slide-meta">08 · Who we are</div>
+      <div class="slide-meta">07 · Who we are</div>
     </div>
     <div class="slide-body">
       <div class="slide-title-row">
-        <span class="title-num">08</span>
+        <span class="title-num">07</span>
         <h2>A small senior team. You work directly with the builders.</h2>
       </div>
 
@@ -1518,11 +1542,11 @@
   <section class="slide" data-title="Index">
     <div class="slide-header">
       <div class="brand">galgal<span class="dot">.</span></div>
-      <div class="slide-meta">09 · Index</div>
+      <div class="slide-meta">08 · Index</div>
     </div>
     <div class="slide-body">
       <div class="slide-title-row">
-        <span class="title-num">09</span>
+        <span class="title-num">08</span>
         <h2>Index</h2>
       </div>
       <p class="lead muted">Notes, optional add-ons, and details that didn't fit in the main flow.</p>
