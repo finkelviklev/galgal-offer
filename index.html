@@ -630,14 +630,47 @@
   }
   .post-mvp-note strong{color:var(--text);font-weight:600}
 
-  /* PRICING 3-card */
+  /* PRICING 3-card — colored hierarchy */
   .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
   .price{
-    padding:26px 24px;border-radius:18px;
-    background:linear-gradient(180deg, #f6faf3 0%, #fafcf8 100%);
+    padding:28px 26px;border-radius:18px;
     display:flex;flex-direction:column;gap:6px;position:relative;
+    transition:transform .25s, box-shadow .25s;
   }
-  .price.recommended{background:linear-gradient(180deg,#e9f3e2 0%, #f6faf3 100%)}
+  .price:hover{transform:translateY(-4px)}
+  /* Option 1 — bold green gradient, primary visual weight */
+  .price:nth-child(1){
+    background:linear-gradient(160deg, #466d56 0%, #5b8870 50%, #7aa884 100%);
+    color:#fff;
+    box-shadow:0 14px 40px rgba(70,109,86,.28);
+  }
+  .price:nth-child(1) .pill{background:rgba(255,255,255,.22);color:#fff}
+  .price:nth-child(1) .phase-item{background:rgba(255,255,255,.16);color:#fff}
+  .price:nth-child(1) .phase-name{color:#fff}
+  .price:nth-child(1) .phase-meta{color:rgba(255,255,255,.78)}
+  .price:nth-child(1) .phase-price{color:#fff}
+  .price:nth-child(1) .phase-total{background:#fff;color:var(--accent)}
+  .price:nth-child(1) .phase-total .total-label{color:var(--accent);opacity:.85}
+  .price:nth-child(1) .phase-total .total-value{color:var(--accent)}
+  .price:nth-child(1) .phase-total .total-meta{color:var(--accent);opacity:.85}
+  .price:nth-child(1) .post-mvp-note{color:rgba(255,255,255,.92);border-top-color:rgba(255,255,255,.22)}
+  .price:nth-child(1) .post-mvp-note strong{color:#fff}
+  .price:nth-child(1) .footnote{color:rgba(255,255,255,.85)}
+  /* Option 2 — light green tint */
+  .price:nth-child(2){
+    background:linear-gradient(180deg, #e6f0df 0%, #f3f9ee 100%);
+    box-shadow:0 6px 20px rgba(70,109,86,.08);
+  }
+  .price:nth-child(2) .pill{background:rgba(70,109,86,.14);color:var(--accent)}
+  .price:nth-child(2) .big{color:var(--accent)}
+  /* Option 3 — cream/neutral tint with subtle green accent */
+  .price:nth-child(3){
+    background:linear-gradient(180deg, #faf8ef 0%, #fdfcf6 100%);
+    box-shadow:0 6px 20px rgba(155,202,128,.12);
+  }
+  .price:nth-child(3) .pill{background:rgba(155,202,128,.18);color:#5a7a4a}
+  .price:nth-child(3) .big{color:#5a7a4a}
+  .price.recommended{}
   .price .pill{display:inline-block;background:var(--pill);padding:5px 12px;border-radius:100px;font-size:12px;font-weight:500;width:fit-content;color:var(--text)}
   .price.recommended .pill{background:rgba(70,109,86,.1);color:var(--accent)}
   .price .big{font-size:36px;font-weight:600;letter-spacing:-.025em;color:var(--ink);margin:14px 0 2px;line-height:1}
@@ -738,6 +771,38 @@
   }
   .nav-counter strong{color:var(--ink);font-weight:600}
 
+  /* PASSWORD GATE */
+  .pw-gate{
+    position:fixed;inset:0;background:#fff;z-index:9999;
+    display:flex;align-items:center;justify-content:center;padding:24px;
+    font-family:'Inter',-apple-system,sans-serif;
+  }
+  .pw-gate.unlocked{display:none}
+  .pw-card{
+    text-align:center;padding:48px 40px;max-width:380px;width:100%;
+    background:linear-gradient(180deg,#f6faf3 0%,#fafcf8 100%);
+    border-radius:20px;
+  }
+  .pw-brand{font-size:32px;font-weight:600;margin-bottom:28px;color:var(--ink);letter-spacing:-.02em}
+  .pw-brand .pw-dot{color:var(--accent)}
+  .pw-msg{color:var(--muted);margin:0 0 24px;font-size:14.5px;line-height:1.5}
+  .pw-input{
+    width:100%;padding:14px 18px;font-size:16px;
+    border:1px solid #e0e0e0;border-radius:12px;
+    font-family:inherit;outline:none;background:#fff;
+    transition:border-color .2s;box-sizing:border-box;
+  }
+  .pw-input:focus{border-color:var(--accent)}
+  .pw-submit{
+    width:100%;margin-top:12px;padding:14px;
+    background:var(--accent);color:#fff;border:none;
+    border-radius:12px;font-size:15px;font-weight:600;
+    cursor:pointer;font-family:inherit;letter-spacing:.02em;
+    transition:opacity .2s;box-sizing:border-box;
+  }
+  .pw-submit:hover{opacity:.9}
+  .pw-error{color:#c33;font-size:13px;margin-top:10px;display:none}
+
   /* PRINT — one slide per landscape page */
   @page{size:landscape;margin:0}
   @media print{
@@ -782,6 +847,17 @@
 </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE — change the PASSWORD value in the script below to update -->
+<div class="pw-gate" id="pwGate">
+  <div class="pw-card">
+    <div class="pw-brand">galgal<span class="pw-dot">.</span></div>
+    <p class="pw-msg">This offer is private. Enter the password to view.</p>
+    <input type="password" class="pw-input" id="pwInput" placeholder="Password" autocomplete="off" />
+    <button type="button" class="pw-submit" id="pwSubmit">Enter</button>
+    <div class="pw-error" id="pwError">Incorrect password</div>
+  </div>
+</div>
 
 <div class="deck-viewport">
 <div class="deck" id="deck">
@@ -1521,6 +1597,28 @@
 </div>
 
 <script>
+// PASSWORD GATE — change this value to update the password
+(function(){
+  const PASSWORD = "innercircle";
+  const gate = document.getElementById('pwGate');
+  const input = document.getElementById('pwInput');
+  const submit = document.getElementById('pwSubmit');
+  const error = document.getElementById('pwError');
+  if(sessionStorage.getItem('galgal_unlocked')==='1'){gate.style.display='none'}
+  function tryUnlock(){
+    if(input.value===PASSWORD){
+      sessionStorage.setItem('galgal_unlocked','1');
+      gate.style.display='none';error.style.display='none';
+    } else {
+      error.style.display='block';input.value='';input.focus();
+    }
+  }
+  submit.addEventListener('click',tryUnlock);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')tryUnlock()});
+  input.addEventListener('input',function(){error.style.display='none'});
+  setTimeout(()=>input.focus(),100);
+})();
+
 // MVP BOARD — feature list with click-to-cycle buckets
 const FEATURES = [
   // MVP (now) — the focused first set for PMF
