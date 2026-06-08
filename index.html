@@ -700,6 +700,33 @@
   }
   .value-item p{font-size:15px;color:var(--muted);margin:0;line-height:1.5}
 
+  /* VISION-PHASE blocks inside Cost per phase card */
+  .vision-phase{
+    background:rgba(255,255,255,.18);
+    border-radius:14px;padding:20px 22px;margin-bottom:10px;
+  }
+  .vp-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:12px;margin-bottom:6px;
+  }
+  .vp-name{font-size:18px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+  .vp-time{font-size:13px;opacity:.78;font-weight:500;white-space:nowrap}
+  .vp-desc{font-size:14px;opacity:.88;margin-bottom:14px;line-height:1.4}
+  .vp-price{font-size:30px;font-weight:700;letter-spacing:-.025em;line-height:1}
+
+  .vision-total{
+    margin-top:6px;background:#fff;border-radius:14px;
+    padding:18px 22px;display:flex;justify-content:space-between;align-items:center;
+    gap:14px;
+  }
+  .vt-label{
+    font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    opacity:.85;
+  }
+  .vt-amount{
+    font-size:30px;font-weight:700;letter-spacing:-.025em;line-height:1;
+  }
+
   /* PHASE LIST in pricing card */
   .phase-list{display:flex;flex-direction:column;gap:8px;margin:10px 0 6px}
   .phase-item{
@@ -750,6 +777,11 @@
   .price:nth-child(1) .post-mvp-note{color:rgba(255,255,255,.92);border-top-color:rgba(255,255,255,.22)}
   .price:nth-child(1) .post-mvp-note strong{color:#fff}
   .price:nth-child(1) .footnote{color:rgba(255,255,255,.85)}
+  /* Vision-phase block on green card */
+  .price:nth-child(1) .vision-phase{color:#fff}
+  .price:nth-child(1) .vision-total{background:#fff}
+  .price:nth-child(1) .vt-label{color:var(--accent)}
+  .price:nth-child(1) .vt-amount{color:var(--accent)}
   /* Option 2 — light green tint */
   .price:nth-child(2){
     background:linear-gradient(180deg, #e6f0df 0%, #f3f9ee 100%);
@@ -1538,38 +1570,31 @@
 
         <div class="price">
           <span class="pill">Cost per phase</span>
-          <div class="phase-list">
-            <div class="phase-item">
-              <div class="phase-item-left">
-                <div class="phase-name">Discovery &amp; Foundation</div>
-                <div class="phase-meta">4–5 weeks · Identity, infrastructure, MVP definition</div>
-              </div>
-              <div class="phase-price">$60,000</div>
+
+          <div class="vision-phase">
+            <div class="vp-head">
+              <div class="vp-name">Phase 1 — MVP</div>
+              <div class="vp-time">14–16 weeks</div>
             </div>
-            <div class="phase-item">
-              <div class="phase-item-left">
-                <div class="phase-name">Build &amp; Integrate</div>
-                <div class="phase-meta">5–6 weeks · Channels, items, marketplace, Stripe, WhatsApp</div>
-              </div>
-              <div class="phase-price">$95,000</div>
+            <div class="vp-desc">What we need to build first. Everything members can do on day one.</div>
+            <div class="vp-price">$220,000</div>
+          </div>
+
+          <div class="vision-phase">
+            <div class="vp-head">
+              <div class="vp-name">Phase 2 — Fast follow</div>
+              <div class="vp-time">After MVP traction</div>
             </div>
-            <div class="phase-item">
-              <div class="phase-item-left">
-                <div class="phase-name">AI, Polish &amp; Launch</div>
-                <div class="phase-meta">4–5 weeks · AI layer, search, moderation, soft launch</div>
-              </div>
-              <div class="phase-price">$65,000</div>
-            </div>
+            <div class="vp-desc">Everything after MVP. Live streaming, advanced AI, auctions, premium, multi-language.</div>
+            <div class="vp-price">from $215,000</div>
           </div>
-          <div class="phase-total">
-            <div class="total-label">MVP total</div>
-            <div class="total-value">$220,000</div>
-            <div class="total-meta">14–16 weeks</div>
+
+          <div class="vision-total">
+            <div class="vt-label">Full vision</div>
+            <div class="vt-amount">$435,000+</div>
           </div>
-          <div class="post-mvp-note">
-            <strong>Post-MVP, optional:</strong> Live + AI Expansion from $95,000 · Marketplace Growth from $120,000
-          </div>
-          <p class="footnote">Best when scope is locked and you want budget certainty.</p>
+
+          <p class="footnote">Best when scope is locked and you want budget certainty for the full journey.</p>
         </div>
 
         <div class="price">
