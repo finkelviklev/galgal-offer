@@ -801,20 +801,21 @@
   }
   .deck-nav > *{pointer-events:auto}
   .nav-btn{
-    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
-    background:var(--bg);color:var(--ink);cursor:pointer;
-    display:flex;align-items:center;justify-content:center;font-size:16px;
-    transition:background .2s, border-color .2s;
-    font-family:inherit;
+    width:46px;height:46px;border-radius:50%;border:none;
+    background:var(--accent);color:#fff;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:20px;
+    transition:transform .2s, background .2s, box-shadow .2s;
+    font-family:inherit;font-weight:600;
+    box-shadow:0 4px 14px rgba(70,109,86,.32);
   }
-  .nav-btn:hover{background:var(--pill);border-color:var(--ink)}
-  .nav-btn:disabled{opacity:.3;cursor:not-allowed}
+  .nav-btn:hover{background:#3a5a47;transform:scale(1.08);box-shadow:0 6px 18px rgba(70,109,86,.4)}
+  .nav-btn:disabled{opacity:.32;cursor:not-allowed;box-shadow:none}
   .nav-counter{
-    font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;
-    font-variant-numeric:tabular-nums;min-width:80px;text-align:center;
-    background:var(--bg);border:1px solid var(--line);padding:8px 14px;border-radius:100px;
+    font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;
+    font-variant-numeric:tabular-nums;min-width:88px;text-align:center;
+    background:rgba(70,109,86,.1);border:none;padding:10px 16px;border-radius:100px;
   }
-  .nav-counter strong{color:var(--ink);font-weight:600}
+  .nav-counter strong{color:var(--accent);font-weight:700}
 
   /* PASSWORD GATE */
   .pw-gate{
@@ -932,7 +933,7 @@
         </div>
         <div class="idea-text">
           <h1 class="hero-title">An inner circle for Jewish women to connect, create, and grow.</h1>
-          <p class="lead muted">A private, trusted digital home to learn, sell, and discover opportunities, all in one place.</p>
+          <p class="lead muted">Galgal is a private, trusted digital home to learn, shop, sell, and discover opportunities, all in one place.</p>
         </div>
       </div>
     </div>
