@@ -1141,9 +1141,17 @@
 
   /* MOBILE, fallback to vertical */
   @media (max-width:760px){
-    html, body{overflow:auto;height:auto}
-    .deck{display:block;width:100%;height:auto;overflow:visible}
-    .slide{width:100%;height:auto;min-height:auto;padding:32px 18px 64px;page-break-after:always}
+    html, body{overflow:auto;height:auto;width:auto;-webkit-text-size-adjust:100%}
+    .deck-viewport{width:100%;height:auto;overflow:visible;position:static}
+    .deck{display:block;width:100%;height:auto;overflow:visible;position:static}
+    .slide{
+      position:static !important;inset:auto !important;
+      width:100%;height:auto;min-height:auto;
+      padding:32px 18px 64px;page-break-after:always;
+      opacity:1 !important;transform:none !important;pointer-events:auto !important;
+      transition:none !important;overflow:visible !important;
+    }
+    .slide.leaving{opacity:1 !important;transform:none !important}
     .slide.cover{height:auto;min-height:60vh}
     .slide.cover .cover-overlay{padding:24px 22px}
     .layers-grid,.vision-grid,.process-grid{grid-template-columns:1fr;gap:16px}
