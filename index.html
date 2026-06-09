@@ -861,6 +861,17 @@
   .hourbank-card .hb-row.total .value{
     font-size:30px;color:var(--accent);letter-spacing:-.02em;
   }
+  .hourbank-card .hb-includes{
+    list-style:none;padding:0;margin:22px 0 0;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .hourbank-card .hb-includes li{
+    font-size:14px;color:var(--text);line-height:1.5;
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .hourbank-card .hb-includes li::before{
+    content:"✓";color:var(--accent);font-weight:700;flex-shrink:0;line-height:1.5;
+  }
   @media (max-width:760px){
     .hourbank-grid{grid-template-columns:1fr;gap:14px}
     .hourbank-card{padding:24px 24px 22px}
@@ -1894,8 +1905,6 @@
 
       <!-- HOUR BANK -->
       <div class="pricing-view" data-view="hourbank">
-        <p style="font-size:15px;color:var(--text);line-height:1.55;margin:0 0 18px;max-width:780px">A block of senior team hours you can draw down as needed. Best for flexible projects where pace varies, mixed advisory + execution work, or when you want a fixed budget cap without a monthly commitment. Studio hourly rate is <strong>$350/hour</strong>.</p>
-
         <div class="hourbank-grid">
           <div class="hourbank-card">
             <h3>200 hours</h3>
@@ -1913,6 +1922,12 @@
               <span class="label">Total</span>
               <span class="value">$70,000</span>
             </div>
+            <ul class="hb-includes">
+              <li>Block of senior team hours, drawn down as needed</li>
+              <li>No monthly commitment, fixed budget cap</li>
+              <li>Mixed advisory + execution work</li>
+              <li>Unused hours roll over · top-up at any time</li>
+            </ul>
           </div>
           <div class="hourbank-card">
             <h3>400 hours</h3>
@@ -1930,11 +1945,13 @@
               <span class="label">Total</span>
               <span class="value">$140,000</span>
             </div>
+            <ul class="hb-includes">
+              <li>Block of senior team hours, drawn down as needed</li>
+              <li>No monthly commitment, fixed budget cap</li>
+              <li>Mixed advisory + execution work</li>
+              <li>Unused hours roll over · top-up at any time</li>
+            </ul>
           </div>
-        </div>
-
-        <div class="pricing-disclaimer">
-          Hours are drawn down against actual senior team time. Unused hours roll over. Top-up at any time.
         </div>
       </div>
 
