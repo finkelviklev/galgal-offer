@@ -339,14 +339,20 @@
     padding-bottom:14px;border-bottom:1px solid rgba(70,109,86,.16);
   }
   .phase-card .phase-steps{
-    list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px;
+    list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;
   }
   .phase-card .phase-steps li{
-    font-size:14px;color:var(--muted);line-height:1.45;
-    display:flex;gap:8px;align-items:flex-start;
+    font-size:14px;color:var(--text);line-height:1.4;
+    display:flex;gap:10px;align-items:flex-start;
   }
-  .phase-card .phase-steps li::before{
-    content:"·";color:var(--accent);font-weight:700;flex-shrink:0;
+  .phase-card .phase-steps li .step-num{
+    font-size:11px;font-weight:700;color:var(--accent);
+    background:rgba(70,109,86,.12);padding:3px 8px;border-radius:100px;
+    letter-spacing:.06em;font-variant-numeric:tabular-nums;
+    flex-shrink:0;margin-top:1px;
+  }
+  .phase-card.future .phase-steps li .step-num{
+    background:rgba(70,109,86,.08);color:var(--muted);
   }
   .phase-card.future{opacity:.88}
   .phase-card.future .phase-tag{color:var(--muted)}
@@ -1319,15 +1325,14 @@
               <line x1="97" y1="47" x2="63" y2="65" stroke-width="0.9" stroke-opacity=".6" />
             </svg>
           </div>
-          <div class="phase-tag">Phase 0</div>
-          <div class="phase-name">Blueprint</div>
+          <div class="phase-tag">Phase 1</div>
+          <div class="phase-name">Align &amp; Design</div>
           <div class="phase-timing">~3 weeks</div>
-          <p class="phase-goal">De-risk before any build cost — align on what we're building and why.</p>
+          <p class="phase-goal">Lock the scope, build the roadmap, and design the core experience together.</p>
           <ul class="phase-steps">
-            <li>Discovery</li>
-            <li>MVP scope, user flows</li>
-            <li>Technical architecture</li>
-            <li>Launch plan and final budget</li>
+            <li><span class="step-num">01</span><span>Align on scope &amp; roadmap</span></li>
+            <li><span class="step-num">02</span><span>Quick brand direction (colors, logo, illustration style — light pass)</span></li>
+            <li><span class="step-num">03</span><span>Design core app flows &amp; onboarding — approve with you</span></li>
           </ul>
         </div>
 
@@ -1363,15 +1368,35 @@
               <line x1="120" y1="78" x2="104" y2="86" stroke-width="1.2" />
             </svg>
           </div>
-          <div class="phase-tag">Phase 1</div>
-          <div class="phase-name">MVP Build</div>
-          <div class="phase-timing">14–18 weeks</div>
-          <p class="phase-goal">Ship the core loop — members join, post, browse, transact in a trusted space.</p>
+          <div class="phase-tag">Phase 2</div>
+          <div class="phase-name">Build</div>
+          <div class="phase-timing">8–10 weeks</div>
+          <p class="phase-goal">Develop the platform end-to-end — iOS, Android, and web from one codebase.</p>
           <ul class="phase-steps">
-            <li>Platform foundations</li>
-            <li>Community &amp; commerce</li>
-            <li>AI &amp; integrations</li>
-            <li>Soft launch, iterate, ship to public</li>
+            <li><span class="step-num">04</span><span>Develop the platform (React Native: iOS + Android + Web)</span></li>
+            <li><span class="step-num">05</span><span>Add Stripe payments — buying, selling, payouts, Shabbat lock</span></li>
+          </ul>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-icon">
+            <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="1.4" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="80,110 118,128 80,146 42,128" stroke-opacity=".55" />
+              <path d="M 80 30 L 96 60 L 88 60 L 88 82 L 72 82 L 72 60 L 64 60 Z" fill="rgba(70,109,86,0.08)" />
+              <path d="M 80 30 L 96 60 L 88 60 L 88 82 L 72 82 L 72 60 L 64 60 Z" stroke-linejoin="round" />
+              <line x1="72" y1="92" x2="72" y2="100" stroke-linecap="round" />
+              <line x1="80" y1="92" x2="80" y2="104" stroke-linecap="round" />
+              <line x1="88" y1="92" x2="88" y2="100" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="phase-tag">Phase 3</div>
+          <div class="phase-name">Test &amp; Ship</div>
+          <div class="phase-timing">3–4 weeks</div>
+          <p class="phase-goal">Validate with real users, prepare for launch, ship to the public.</p>
+          <ul class="phase-steps">
+            <li><span class="step-num">06</span><span>Test with you and your early community</span></li>
+            <li><span class="step-num">07</span><span>Prepare intro website + iOS/Android store materials</span></li>
+            <li><span class="step-num">08</span><span>Ship to public</span></li>
           </ul>
         </div>
 
@@ -1384,40 +1409,15 @@
               <circle cx="80" cy="80" r="48" stroke-opacity=".18" />
             </svg>
           </div>
-          <div class="phase-tag">Phase 2</div>
-          <div class="phase-name">Live + AI Expansion</div>
-          <div class="phase-timing">6–10 weeks · after traction</div>
-          <p class="phase-goal">Add features that need an audience — only after the MVP shows real traction.</p>
+          <div class="phase-tag">Phase 4</div>
+          <div class="phase-name">Fast Follow</div>
+          <div class="phase-timing">After traction</div>
+          <p class="phase-goal">Add the features that need a real audience — only once the MVP proves the loop works.</p>
           <ul class="phase-steps">
-            <li>One-button live streaming</li>
-            <li>Live chat during broadcasts</li>
-            <li>Advanced AI helpers</li>
-            <li>Personalized feed</li>
-          </ul>
-        </div>
-
-        <div class="phase-card future">
-          <div class="phase-icon">
-            <svg viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="1.4" xmlns="http://www.w3.org/2000/svg">
-              <rect x="44" y="92" width="14" height="22" fill="rgba(70,109,86,0.08)" />
-              <rect x="44" y="92" width="14" height="22" />
-              <rect x="64" y="76" width="14" height="38" fill="rgba(70,109,86,0.08)" />
-              <rect x="64" y="76" width="14" height="38" />
-              <rect x="84" y="60" width="14" height="54" fill="rgba(70,109,86,0.08)" />
-              <rect x="84" y="60" width="14" height="54" />
-              <rect x="104" y="44" width="14" height="70" fill="rgba(70,109,86,0.08)" />
-              <rect x="104" y="44" width="14" height="70" />
-            </svg>
-          </div>
-          <div class="phase-tag">Phase 3</div>
-          <div class="phase-name">Marketplace Growth</div>
-          <div class="phase-timing">10–12 weeks · after learning</div>
-          <p class="phase-goal">Scale monetization and reach, once the community is proven.</p>
-          <ul class="phase-steps">
-            <li>Live auctions (Whatnot-style)</li>
-            <li>Premium tiers and memberships</li>
-            <li>Multi-language support</li>
-            <li>Advanced marketplace tools</li>
+            <li><span class="step-num">09</span><span>Live streaming</span></li>
+            <li><span class="step-num">10</span><span>AI chat assistant</span></li>
+            <li><span class="step-num">11</span><span>Website expansion (public marketing site)</span></li>
+            <li><span class="step-num">12</span><span>Live auctions, premium tiers, multi-language</span></li>
           </ul>
         </div>
 
