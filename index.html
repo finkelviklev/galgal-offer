@@ -763,20 +763,23 @@
   .faq-a strong{color:var(--text);font-weight:600}
   @media (max-width:880px){.faq-grid{grid-template-columns:1fr;gap:14px}}
 
-  /* PRICING TOGGLE, Monthly / Per phase */
+  /* PRICING TOGGLE, centered pill */
+  .pricing-toggle-wrap{
+    display:flex;justify-content:center;margin:0 0 28px;
+  }
   .pricing-toggle{
-    display:inline-flex;background:rgba(70,109,86,.1);
-    border-radius:100px;padding:5px;margin:0 0 22px;gap:2px;
+    display:inline-flex;background:#eeece5;
+    border-radius:100px;padding:6px;gap:4px;
   }
   .pricing-toggle button{
-    font-family:inherit;font-size:14px;font-weight:600;letter-spacing:.02em;
+    font-family:inherit;font-size:15px;font-weight:500;letter-spacing:.005em;
     background:transparent;border:none;cursor:pointer;
-    padding:10px 22px;border-radius:100px;color:var(--muted);
+    padding:11px 28px;border-radius:100px;color:var(--text);
     transition:all .2s;
   }
   .pricing-toggle button.active{
-    background:#fff;color:var(--accent);
-    box-shadow:0 2px 10px rgba(70,109,86,.18);
+    background:#fff;color:var(--ink);
+    box-shadow:0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
   }
 
   /* Per-phase pricing list */
@@ -823,43 +826,34 @@
     color:var(--accent);
   }
 
-  /* HOUR BANK cards, 2-column */
+  /* HOUR BANK cards, simple white + 4px green border */
   .hourbank-grid{
     display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;
   }
   .hourbank-card{
     padding:28px 28px 26px;border-radius:18px;
-    background:linear-gradient(180deg,#f6faf3 0%,#fafcf8 100%);
-    box-shadow:0 6px 20px rgba(70,109,86,.08);
+    background:#fff;border:4px solid var(--accent);
     display:flex;flex-direction:column;gap:6px;
-  }
-  .hourbank-card.featured{
-    background:linear-gradient(135deg,#466d56 0%,#6b8e74 55%,#9bca80 100%);
-    color:#fff;box-shadow:0 14px 40px rgba(70,109,86,.22);
   }
   .hourbank-card .hb-tag{
     font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
     color:var(--accent);margin-bottom:2px;
   }
-  .hourbank-card.featured .hb-tag{color:rgba(255,255,255,.85)}
   .hourbank-card h3{
     font-size:28px;font-weight:700;letter-spacing:-.02em;margin:0 0 4px;line-height:1.1;color:var(--ink);
   }
-  .hourbank-card.featured h3{color:#fff}
-  .hourbank-card p{font-size:14px;color:var(--muted);margin:0;line-height:1.5}
-  .hourbank-card.featured p{color:rgba(255,255,255,.9)}
+  .hourbank-card .hb-rate{font-size:14px;color:var(--muted);margin:0 0 8px;line-height:1.5}
   .hourbank-card .hb-price{
-    font-size:34px;font-weight:700;letter-spacing:-.025em;line-height:1;
-    margin:10px 0 6px;color:var(--accent);
+    font-size:38px;font-weight:700;letter-spacing:-.025em;line-height:1;
+    margin:6px 0 10px;color:var(--ink);
   }
-  .hourbank-card.featured .hb-price{color:#fff}
   .hourbank-card .hb-meta{
-    font-size:13.5px;margin-top:6px;line-height:1.5;
+    font-size:14px;color:var(--text);margin:0;line-height:1.55;
   }
   @media (max-width:760px){
     .hourbank-grid{grid-template-columns:1fr;gap:14px}
     .hourbank-card{padding:22px 22px 20px}
-    .hourbank-card .hb-price{font-size:28px}
+    .hourbank-card .hb-price{font-size:30px}
   }
 
   /* Monthly card, horizontal */
@@ -1880,9 +1874,11 @@
       <p style="font-size:14.5px;color:var(--muted);line-height:1.55;margin:0 0 22px;max-width:780px">The Blueprint is a necessary step to get into the details of each feature, size it, prioritize it, and plan the team's resources. Without it, neither pricing option below can begin.</p>
 
       <!-- TOP-LEVEL TOGGLE: Hour Bank / Retainer -->
-      <div class="pricing-toggle">
-        <button type="button" class="active" data-target="hourbank">Hour Bank</button>
-        <button type="button" data-target="retainer">Retainer</button>
+      <div class="pricing-toggle-wrap">
+        <div class="pricing-toggle">
+          <button type="button" class="active" data-target="hourbank">Hour Bank</button>
+          <button type="button" data-target="retainer">Retainer</button>
+        </div>
       </div>
 
       <!-- HOUR BANK -->
@@ -1891,18 +1887,16 @@
 
         <div class="hourbank-grid">
           <div class="hourbank-card">
-            <div class="hb-tag">Smaller block</div>
             <h3>200 hours</h3>
-            <p>200 × $350/hour</p>
+            <p class="hb-rate">$350 / hour</p>
             <div class="hb-price">$70,000</div>
-            <p class="hb-meta">Good for an initial sprint, a focused workstream, or advisory + spot execution.</p>
+            <p class="hb-meta">Good for an initial sprint or a focused workstream.</p>
           </div>
-          <div class="hourbank-card featured">
-            <div class="hb-tag">Larger block</div>
+          <div class="hourbank-card">
             <h3>400 hours</h3>
-            <p>400 × $350/hour</p>
+            <p class="hb-rate">$350 / hour</p>
             <div class="hb-price">$140,000</div>
-            <p class="hb-meta">Roughly a full phase of focused build at senior pace. Most cost-effective per hour.</p>
+            <p class="hb-meta">Roughly a full phase of focused build at senior pace.</p>
           </div>
         </div>
 
