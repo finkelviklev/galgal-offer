@@ -1139,48 +1139,77 @@
     .slide.all-cards-slide .slide-title-row h2{font-size:clamp(28px,5vw,40px)}
   }
 
-  /* MOBILE, fallback to vertical */
+  /* MOBILE, keep slide-deck behavior, one slide at a time */
   @media (max-width:760px){
-    html, body{overflow:auto;height:auto;width:auto;-webkit-text-size-adjust:100%}
-    .deck-viewport{width:100%;height:auto;overflow:visible;position:static}
-    .deck{display:block;width:100%;height:auto;overflow:visible;position:static}
-    .slide{
-      position:static !important;inset:auto !important;
-      width:100%;height:auto;min-height:auto;
-      padding:32px 18px 64px;page-break-after:always;
-      opacity:1 !important;transform:none !important;pointer-events:auto !important;
-      transition:none !important;overflow:visible !important;
-    }
-    .slide.leaving{opacity:1 !important;transform:none !important}
-    .slide.cover{height:auto;min-height:60vh}
+    html, body{height:100%;width:100%;overflow:hidden;-webkit-text-size-adjust:100%}
+    .deck-viewport{width:100vw;height:100dvh;height:100vh;overflow:hidden;position:relative}
+    .deck{width:100vw;height:100dvh;height:100vh;position:relative}
+    .slide{padding:28px 18px 88px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+    .slide.cover{height:100vh;min-height:auto}
     .slide.cover .cover-overlay{padding:24px 22px}
     .layers-grid,.vision-grid,.process-grid{grid-template-columns:1fr;gap:16px}
     .vision-card.featured{grid-column:span 1}
     .vision-header{grid-template-columns:1fr;gap:24px}
-    .platforms-band-grid{grid-template-columns:1fr;gap:24px}
-    .platform svg{height:90px}
+    .platforms-band-grid{grid-template-columns:1fr;gap:18px}
+    .platform svg{height:72px}
     .process-step .step-icon{width:100px;height:100px}
     .timeline-dur,.timeline-dots,.timeline-labels{grid-template-columns:1fr 1fr}
     .timeline-line{display:none}
-    .timeline-labels{gap:32px}
-    .scope,.ai-grid,.pricing,.team,.mvp-board,.value-grid,.faq-grid,.ship-grid,.chunks-list,.phases-grid{grid-template-columns:1fr;gap:16px}
+    .timeline-labels{gap:24px}
+    .scope,.ai-grid,.pricing,.team,.mvp-board,.value-grid,.faq-grid,.ship-grid,.chunks-list,.phases-grid,.idea-grid{grid-template-columns:1fr;gap:16px}
     .feature-col{min-height:auto}
-    .deck-nav{display:none}
-    h1.hero-title, h2.slide-title{font-size:clamp(32px,8vw,48px)}
-    .slide.all-cards-slide .slide-title-row h2{font-size:clamp(28px,7vw,40px)}
-    .slide.all-cards-slide .themed-cards .vision-card li{font-size:15px}
-    .ship-col,.ship-flip,.ship-face.front,.ship-face.back{min-height:auto}
-    .ship-face.back{position:relative}
+    /* Deck nav stays visible, floating bottom over content */
+    .deck-nav{
+      position:fixed;left:0;right:0;bottom:0;
+      padding:10px 14px;background:linear-gradient(to top,rgba(255,255,255,.96) 50%,rgba(255,255,255,0));
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+      z-index:60;
+    }
+    .nav-btn{width:42px;height:42px;font-size:18px}
+    .nav-counter{font-size:13px;min-width:78px;padding:8px 12px}
+    /* Hide hover-only interactions */
+    .themed-cards .vision-card:hover{transform:none !important;box-shadow:none !important;z-index:auto !important}
+    h1.hero-title, h2.slide-title{font-size:clamp(28px,7.5vw,42px)}
+    .slide-title-row h2{font-size:clamp(22px,5.5vw,30px)}
+    .slide.all-cards-slide .slide-title-row h2{font-size:clamp(24px,6.5vw,34px)}
+    .slide.all-cards-slide .themed-cards .vision-card li{font-size:14px}
+    .slide.all-cards-slide .themed-cards .vision-card{padding:12px 14px}
+    p.lead, .slide-body > .lead{font-size:15px;max-width:100%}
+    .ship-col,.ship-flip{min-height:auto}
+    .ship-face{padding:22px 20px;position:relative;min-height:auto}
+    .ship-face.front,.ship-face.back{position:relative;min-height:auto}
     .ship-col.flipped .ship-flip{transform:none}
     .feat-list{grid-template-columns:1fr}
     .horizon-wrap{margin-right:-18px}
     .station{flex-basis:230px}
-    .monthly-card{grid-template-columns:1fr;gap:18px}
+    .monthly-card{grid-template-columns:1fr;gap:18px;padding:24px 22px}
     .monthly-right{align-items:flex-start;text-align:left}
-    .phase-row{grid-template-columns:1fr;gap:8px}
-    .intro-overlay .meta-right{font-size:12px}
+    .monthly-price{font-size:38px}
+    .phase-row{grid-template-columns:1fr;gap:6px;padding:16px 18px}
+    .phase-row-price{font-size:18px}
+    .pricing-total{flex-direction:column;align-items:flex-start;gap:6px;padding:16px 20px}
+    .pt-amount{font-size:24px}
+    .intro-banner img{max-height:32vh}
+    .intro-overlay{padding:18px 18px}
+    .intro-overlay .meta-right{font-size:11px;top:18px;right:18px}
     .intro-overlay .brand-logo{font-size:clamp(26px,7vw,42px)}
-    .cover-meta-below{font-size:clamp(26px,6vw,38px)}
+    .cover-meta-below{font-size:clamp(24px,5.5vw,36px)}
+    .team{gap:24px}
+    .companies-bar{margin-top:24px;padding-top:16px}
+    .cb-row{gap:8px 16px}
+    .cb-row .company{font-size:16px}
+    .thanks-collage{height:auto}
+    .thanks-photo.p2{max-width:90%}
+    .thanks-photo.p2 .thanks-text{font-size:clamp(22px,7vw,34px)}
+    .pw-card{padding:36px 28px;max-width:340px}
+  }
+
+  /* PHONE, very tight viewports */
+  @media (max-width:420px){
+    .slide{padding:24px 14px 88px}
+    .slide-title-row h2{font-size:22px}
+    .nav-counter{min-width:64px;font-size:12px;padding:7px 10px}
+    .nav-btn{width:38px;height:38px;font-size:16px}
   }
 
   /* PHONE, tighter spacing */
@@ -2258,6 +2287,26 @@ function updateNav(){
 slides[0].classList.add('active');
 prevBtn.addEventListener('click', () => goTo(current - 1));
 nextBtn.addEventListener('click', () => goTo(current + 1));
+
+// TOUCH SWIPE, horizontal swipe to advance slides on mobile
+(function(){
+  let startX=0,startY=0,startT=0,tracking=false;
+  const THRESH=50, MAX_ANGLE=0.6;
+  deck.addEventListener('touchstart',e=>{
+    if(e.touches.length!==1)return;
+    const t=e.touches[0];
+    startX=t.clientX;startY=t.clientY;startT=Date.now();tracking=true;
+  },{passive:true});
+  deck.addEventListener('touchend',e=>{
+    if(!tracking)return;tracking=false;
+    const t=e.changedTouches[0];
+    const dx=t.clientX-startX, dy=t.clientY-startY, dt=Date.now()-startT;
+    if(dt>600)return;
+    if(Math.abs(dx)<THRESH)return;
+    if(Math.abs(dy)/Math.abs(dx)>MAX_ANGLE)return; // mostly vertical, ignore
+    if(dx<0)goTo(current+1); else goTo(current-1);
+  },{passive:true});
+})();
 
 document.addEventListener('keydown', e => {
   if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ goTo(current+1); e.preventDefault(); }
