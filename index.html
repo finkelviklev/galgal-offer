@@ -919,22 +919,14 @@
     margin:0 auto;
   }
   .thanks-photo{position:absolute}
-  .thanks-photo img{width:100%;height:100%;object-fit:cover;display:block}
-  /* Top-right square — banner5 has baked-in rounded corners */
-  .thanks-photo.p1{
-    width:26%;aspect-ratio:1/1;
-    top:4%;right:2%;
-  }
-  /* Middle wide banner — banner2 has rounded corners baked in */
-  .thanks-photo.p2{
-    width:88%;aspect-ratio:3.1/1;
-    top:38%;left:1%;
-  }
-  /* Bottom-left landscape — banner4 has baked-in rounded corners */
-  .thanks-photo.p3{
-    width:38%;aspect-ratio:4/3;
-    top:74%;left:5%;
-  }
+  /* Photos show at their natural size — no cropping */
+  .thanks-photo img{width:100%;height:auto;display:block}
+  /* Top-right square */
+  .thanks-photo.p1{width:24%;top:4%;right:2%}
+  /* Middle wide banner */
+  .thanks-photo.p2{width:88%;top:34%;left:1%}
+  /* Bottom-left landscape */
+  .thanks-photo.p3{width:38%;bottom:2%;left:5%}
   .thanks-photo.p2 .thanks-text{
     position:absolute;right:6%;top:50%;transform:translateY(-50%);
     color:#fff;font-size:clamp(28px,3.4vw,42px);font-weight:700;letter-spacing:-.01em;
