@@ -1023,6 +1023,25 @@
   .member h4{font-size:22px;font-weight:600;letter-spacing:-.01em;margin:0 0 12px;color:var(--ink)}
   .member p{font-size:15px;color:var(--text);line-height:1.55;margin:0}
 
+  /* COMPANIES bar (Who we are slide) */
+  .companies-bar{
+    margin-top:44px;padding-top:28px;border-top:1px solid var(--line);
+  }
+  .cb-label{
+    font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:20px;
+  }
+  .cb-row{
+    display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;
+  }
+  .cb-row .company{
+    font-size:20px;font-weight:600;color:var(--text);
+    letter-spacing:-.018em;line-height:1;
+    transition:color .2s;
+  }
+  .cb-row .company:hover{color:var(--accent)}
+  .cb-row .dot{color:var(--accent);opacity:.5;font-size:18px}
+
   /* THANK YOU slide — three-photo cascade layout */
   .slide.thanks .thanks-body{
     flex:1;display:flex;align-items:center;justify-content:center;
@@ -1966,7 +1985,7 @@
           </div>
           <div class="role">Engineering &amp; AI Lead</div>
           <h4>Elad Daniel</h4>
-          <p>Engineering, AI, and R&amp;D are led by Elad Daniel. He owns technical architecture, AI integration across the stack, and engineering quality — driving how the team uses AI in design tooling, code generation, QA, and operations.</p>
+          <p>Engineering, AI, and R&amp;D are led by Elad Daniel — a tech veteran with deep experience building large-scale platforms for millions of users. Architect of data and technology systems, expert in payment infrastructure, and proven across social and marketing platforms. Equally fluent in 0-to-1 product building and leading large technical teams. Advises on the business side of the companies he partners with.</p>
         </div>
 
         <div class="member">
@@ -1977,6 +1996,27 @@
           <div class="role">Core R&amp;D Team</div>
           <h4>R&amp;D</h4>
           <p>The core R&amp;D team has worked together with Elad for over a decade, delivering complex, production-grade systems across multiple domains. A highly experienced, end-to-end team covering frontend and backend engineering, infrastructure and operations, AI and data systems. Used to building reliable, scalable products, working closely across disciplines, and taking ownership from architecture through deployment and iteration.</p>
+        </div>
+      </div>
+
+      <div class="companies-bar">
+        <div class="cb-label">Where we've built and shipped</div>
+        <div class="cb-row">
+          <span class="company">Meta</span>
+          <span class="dot">·</span>
+          <span class="company">WhatsApp</span>
+          <span class="dot">·</span>
+          <span class="company">Instagram</span>
+          <span class="dot">·</span>
+          <span class="company">Messenger</span>
+          <span class="dot">·</span>
+          <span class="company">Novi</span>
+          <span class="dot">·</span>
+          <span class="company">Gett</span>
+          <span class="dot">·</span>
+          <span class="company">Gefen</span>
+          <span class="dot">·</span>
+          <span class="company">Ottavia</span>
         </div>
       </div>
     </div>
