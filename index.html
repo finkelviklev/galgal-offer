@@ -823,6 +823,45 @@
     color:var(--accent);
   }
 
+  /* HOUR BANK cards, 2-column */
+  .hourbank-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;
+  }
+  .hourbank-card{
+    padding:28px 28px 26px;border-radius:18px;
+    background:linear-gradient(180deg,#f6faf3 0%,#fafcf8 100%);
+    box-shadow:0 6px 20px rgba(70,109,86,.08);
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .hourbank-card.featured{
+    background:linear-gradient(135deg,#466d56 0%,#6b8e74 55%,#9bca80 100%);
+    color:#fff;box-shadow:0 14px 40px rgba(70,109,86,.22);
+  }
+  .hourbank-card .hb-tag{
+    font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:2px;
+  }
+  .hourbank-card.featured .hb-tag{color:rgba(255,255,255,.85)}
+  .hourbank-card h3{
+    font-size:28px;font-weight:700;letter-spacing:-.02em;margin:0 0 4px;line-height:1.1;color:var(--ink);
+  }
+  .hourbank-card.featured h3{color:#fff}
+  .hourbank-card p{font-size:14px;color:var(--muted);margin:0;line-height:1.5}
+  .hourbank-card.featured p{color:rgba(255,255,255,.9)}
+  .hourbank-card .hb-price{
+    font-size:34px;font-weight:700;letter-spacing:-.025em;line-height:1;
+    margin:10px 0 6px;color:var(--accent);
+  }
+  .hourbank-card.featured .hb-price{color:#fff}
+  .hourbank-card .hb-meta{
+    font-size:13.5px;margin-top:6px;line-height:1.5;
+  }
+  @media (max-width:760px){
+    .hourbank-grid{grid-template-columns:1fr;gap:14px}
+    .hourbank-card{padding:22px 22px 20px}
+    .hourbank-card .hb-price{font-size:28px}
+  }
+
   /* Monthly card, horizontal */
   .monthly-card{
     display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
@@ -1827,8 +1866,8 @@
 
       <div class="section-label">How we price</div>
 
-      <!-- BLUEPRINT, required first step (shown in both views) -->
-      <div class="phase-pricing-list" style="margin-bottom:18px">
+      <!-- BLUEPRINT, required first step (shown for both options) -->
+      <div class="phase-pricing-list" style="margin-bottom:8px">
         <div class="phase-row required">
           <div class="phase-row-left">
             <div class="phase-row-tag">Required first step</div>
@@ -1838,14 +1877,44 @@
           <div class="phase-row-price">$21,000</div>
         </div>
       </div>
+      <p style="font-size:14.5px;color:var(--muted);line-height:1.55;margin:0 0 22px;max-width:780px">The Blueprint is a necessary step to get into the details of each feature, size it, prioritize it, and plan the team's resources. Without it, neither pricing option below can begin.</p>
 
+      <!-- TOP-LEVEL TOGGLE: Hour Bank / Retainer -->
       <div class="pricing-toggle">
-        <button type="button" class="active" data-target="monthly">Monthly retainer</button>
-        <button type="button" data-target="phase">Estimated price per phase</button>
+        <button type="button" class="active" data-target="hourbank">Hour Bank</button>
+        <button type="button" data-target="retainer">Retainer</button>
       </div>
 
-      <!-- MONTHLY RETAINER -->
-      <div class="pricing-view" data-view="monthly">
+      <!-- HOUR BANK -->
+      <div class="pricing-view" data-view="hourbank">
+        <p style="font-size:15px;color:var(--text);line-height:1.55;margin:0 0 18px;max-width:780px">A block of senior team hours you can draw down as needed. Best for flexible projects where pace varies, mixed advisory + execution work, or when you want a fixed budget cap without a monthly commitment. Studio hourly rate is <strong>$350/hour</strong>.</p>
+
+        <div class="hourbank-grid">
+          <div class="hourbank-card">
+            <div class="hb-tag">Smaller block</div>
+            <h3>200 hours</h3>
+            <p>200 × $350/hour</p>
+            <div class="hb-price">$70,000</div>
+            <p class="hb-meta">Good for an initial sprint, a focused workstream, or advisory + spot execution.</p>
+          </div>
+          <div class="hourbank-card featured">
+            <div class="hb-tag">Larger block</div>
+            <h3>400 hours</h3>
+            <p>400 × $350/hour</p>
+            <div class="hb-price">$140,000</div>
+            <p class="hb-meta">Roughly a full phase of focused build at senior pace. Most cost-effective per hour.</p>
+          </div>
+        </div>
+
+        <div class="pricing-disclaimer">
+          Hours are drawn down against actual senior team time. Unused hours roll over. Top-up at any time.
+        </div>
+      </div>
+
+      <!-- RETAINER -->
+      <div class="pricing-view" data-view="retainer" style="display:none">
+        <p style="font-size:15px;color:var(--text);line-height:1.55;margin:0 0 18px;max-width:780px">Predictable monthly partnership. Senior team capacity reserved for Galgal, delivering against the agreed plan in monthly milestones. Best when you want maximum velocity and continuity all the way to launch.</p>
+
         <div class="monthly-card">
           <div class="monthly-left">
             <div class="monthly-tag">Predictable monthly partnership</div>
@@ -1880,54 +1949,17 @@
         </div>
       </div>
 
-      <!-- PER PHASE -->
-      <div class="pricing-view" data-view="phase" style="display:none">
-        <div class="phase-pricing-list">
-          <div class="phase-row">
-            <div class="phase-row-left">
-              <div class="phase-row-name">Phase 2, Design &amp; Build</div>
-              <div class="phase-row-meta">Estimated 10–12 weeks · the largest phase</div>
-            </div>
-            <div class="phase-row-price">$300K – $360K</div>
-          </div>
-
-          <div class="phase-row">
-            <div class="phase-row-left">
-              <div class="phase-row-name">Phase 3, Test &amp; Ship</div>
-              <div class="phase-row-meta">Estimated 3–4 weeks · validate, prepare, launch</div>
-            </div>
-            <div class="phase-row-price">$90K – $120K</div>
-          </div>
-
-          <div class="phase-row">
-            <div class="phase-row-left">
-              <div class="phase-row-name">Phase 4, Fast Follow</div>
-              <div class="phase-row-meta">After traction · live, AI, web app, more</div>
-            </div>
-            <div class="phase-row-price">Scope-dependent</div>
-          </div>
-        </div>
-
-        <div class="pricing-total">
+      <!-- OVERALL ESTIMATE (shown under either option) -->
+      <div class="pricing-total" style="margin-top:24px">
+        <div>
           <div class="pt-label">Estimated total to MVP (Blueprint + Phase 2 + Phase 3)</div>
-          <div class="pt-amount">$410K – $500K</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5">Assuming ~6 months to finish the project with the scope defined here.</div>
         </div>
-
-        <div class="pricing-disclaimer">
-          Pricing is derived directly from the monthly retainer ($120,000/mo, ~$30K/week) multiplied by the estimated time per phase. Phase 4 is scope-dependent and continues at the same monthly rate.
-        </div>
-
-        <div class="pricing-disclaimer">
-          <strong>Stop at any phase.</strong> You decide whether to continue at the end of each phase, no commitment beyond what you've agreed to.
-        </div>
-      </div>
-
-      <div class="pricing-disclaimer">
-        <strong>Blueprint is required first</strong> ($21,000, up to 2 weeks). Neither path can begin without an agreed plan.
+        <div class="pt-amount">$410K – $500K</div>
       </div>
 
       <div class="hourly">
-        <div class="rate">$450<span>/hour</span></div>
+        <div class="rate">$350<span>/hour</span></div>
         <div class="note"><strong>Hourly is available for transparency.</strong> Use it for advisory work, audits, and out-of-scope requests outside an active engagement.</div>
       </div>
     </div>
