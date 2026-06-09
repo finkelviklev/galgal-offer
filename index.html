@@ -826,34 +826,46 @@
     color:var(--accent);
   }
 
-  /* HOUR BANK cards, simple white + 4px green border */
+  /* HOUR BANK cards, white + 4px green border, Claude-pricing template */
   .hourbank-grid{
-    display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px;
   }
   .hourbank-card{
-    padding:28px 28px 26px;border-radius:18px;
+    padding:32px 32px 30px;border-radius:20px;
     background:#fff;border:4px solid var(--accent);
-    display:flex;flex-direction:column;gap:6px;
-  }
-  .hourbank-card .hb-tag{
-    font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent);margin-bottom:2px;
+    display:flex;flex-direction:column;
   }
   .hourbank-card h3{
-    font-size:28px;font-weight:700;letter-spacing:-.02em;margin:0 0 4px;line-height:1.1;color:var(--ink);
+    font-size:32px;font-weight:700;letter-spacing:-.025em;margin:0 0 8px;line-height:1.15;color:var(--ink);
   }
-  .hourbank-card .hb-rate{font-size:14px;color:var(--muted);margin:0 0 8px;line-height:1.5}
-  .hourbank-card .hb-price{
-    font-size:38px;font-weight:700;letter-spacing:-.025em;line-height:1;
-    margin:6px 0 10px;color:var(--ink);
+  .hourbank-card .hb-subtitle{
+    font-size:16px;color:var(--muted);margin:0 0 22px;line-height:1.5;
   }
-  .hourbank-card .hb-meta{
-    font-size:14px;color:var(--text);margin:0;line-height:1.55;
+  .hourbank-card .hb-divider{
+    height:1px;background:rgba(0,0,0,.08);margin:0 0 18px;
+  }
+  .hourbank-card .hb-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:16px;padding:14px 0;
+    border-bottom:1px solid rgba(0,0,0,.08);
+  }
+  .hourbank-card .hb-row:last-child{border-bottom:none;padding-bottom:0}
+  .hourbank-card .hb-row .label{
+    font-size:16px;color:var(--text);font-weight:400;
+  }
+  .hourbank-card .hb-row .value{
+    font-size:20px;color:var(--ink);font-weight:700;letter-spacing:-.01em;
+    white-space:nowrap;
+  }
+  .hourbank-card .hb-row.total .label{font-weight:600;color:var(--ink)}
+  .hourbank-card .hb-row.total .value{
+    font-size:30px;color:var(--accent);letter-spacing:-.02em;
   }
   @media (max-width:760px){
     .hourbank-grid{grid-template-columns:1fr;gap:14px}
-    .hourbank-card{padding:22px 22px 20px}
-    .hourbank-card .hb-price{font-size:30px}
+    .hourbank-card{padding:24px 24px 22px}
+    .hourbank-card h3{font-size:26px}
+    .hourbank-card .hb-row.total .value{font-size:24px}
   }
 
   /* Monthly card, horizontal */
@@ -1888,15 +1900,37 @@
         <div class="hourbank-grid">
           <div class="hourbank-card">
             <h3>200 hours</h3>
-            <p class="hb-rate">$350 / hour</p>
-            <div class="hb-price">$70,000</div>
-            <p class="hb-meta">Good for an initial sprint or a focused workstream.</p>
+            <p class="hb-subtitle">An initial sprint or a focused workstream.</p>
+            <div class="hb-divider"></div>
+            <div class="hb-row">
+              <span class="label">Rate</span>
+              <span class="value">$350 / hour</span>
+            </div>
+            <div class="hb-row">
+              <span class="label">Hours</span>
+              <span class="value">200</span>
+            </div>
+            <div class="hb-row total">
+              <span class="label">Total</span>
+              <span class="value">$70,000</span>
+            </div>
           </div>
           <div class="hourbank-card">
             <h3>400 hours</h3>
-            <p class="hb-rate">$350 / hour</p>
-            <div class="hb-price">$140,000</div>
-            <p class="hb-meta">Roughly a full phase of focused build at senior pace.</p>
+            <p class="hb-subtitle">Roughly a full phase of focused build at senior pace.</p>
+            <div class="hb-divider"></div>
+            <div class="hb-row">
+              <span class="label">Rate</span>
+              <span class="value">$350 / hour</span>
+            </div>
+            <div class="hb-row">
+              <span class="label">Hours</span>
+              <span class="value">400</span>
+            </div>
+            <div class="hb-row total">
+              <span class="label">Total</span>
+              <span class="value">$140,000</span>
+            </div>
           </div>
         </div>
 
