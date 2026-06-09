@@ -364,6 +364,16 @@
     .phases-grid{grid-template-columns:1fr;gap:12px}
   }
 
+  /* Phase 2 parallel-work disclaimer */
+  .phases-disclaimer{
+    margin-top:24px;padding:18px 22px;
+    background:linear-gradient(135deg, rgba(70,109,86,.08) 0%, rgba(70,109,86,.04) 100%);
+    border-left:3px solid var(--accent);
+    border-radius:10px;
+    font-size:14.5px;color:var(--text);line-height:1.55;
+  }
+  .phases-disclaimer strong{color:var(--accent);font-weight:700}
+
   /* INDEX slide */
   .index-list{
     display:grid;grid-template-columns:repeat(2,1fr);gap:18px 28px;margin-top:28px;
@@ -1329,13 +1339,11 @@
             </svg>
           </div>
           <div class="phase-tag">Phase 1</div>
-          <div class="phase-name">Align &amp; Design</div>
-          <div class="phase-timing">~3 weeks</div>
-          <p class="phase-goal">Lock the scope, build the roadmap, and design the core experience together.</p>
+          <div class="phase-name">Blueprint</div>
+          <div class="phase-timing">2 weeks</div>
+          <p class="phase-goal">Close the scope and the roadmap. Final pricing for Phase 2 may adjust based on what we agree here.</p>
           <ul class="phase-steps">
-            <li><span class="step-num">01</span><span>Align on scope &amp; roadmap</span></li>
-            <li><span class="step-num">02</span><span>Quick brand direction (colors, logo, illustration style — light pass)</span></li>
-            <li><span class="step-num">03</span><span>Design core app flows &amp; onboarding — approve with you</span></li>
+            <li><span class="step-num">01</span><span>Close scope &amp; roadmap together</span></li>
           </ul>
         </div>
 
@@ -1372,10 +1380,12 @@
             </svg>
           </div>
           <div class="phase-tag">Phase 2</div>
-          <div class="phase-name">Build</div>
+          <div class="phase-name">Design &amp; Build</div>
           <div class="phase-timing">8–10 weeks</div>
-          <p class="phase-goal">Develop the iOS and Android apps end-to-end.</p>
+          <p class="phase-goal">Brand, design, and engineering happen in parallel — fast and tight.</p>
           <ul class="phase-steps">
+            <li><span class="step-num">02</span><span>Quick brand direction (colors, logo, illustration style — light pass)</span></li>
+            <li><span class="step-num">03</span><span>Design core app flows &amp; onboarding — approve with you</span></li>
             <li><span class="step-num">04</span><span>Develop the iOS and Android apps (React Native)</span></li>
             <li><span class="step-num">05</span><span>Add Stripe payments — buying, selling, payouts, Shabbat lock</span></li>
           </ul>
@@ -1424,6 +1434,10 @@
           </ul>
         </div>
 
+      </div>
+
+      <div class="phases-disclaimer">
+        <strong>Design and code run in parallel — not sequential.</strong> We work from a list of screens. The moment one screen is approved, it moves to code while we design the next. We never stop design and code happens after — they overlap from day one. It's how we move very fast without sacrificing quality.
       </div>
     </div>
   </section>
@@ -1683,7 +1697,7 @@
             <div class="pz-tag">Start here · risk-free entry</div>
             <div class="pz-name">Phase 0 — Blueprint</div>
             <div class="pz-desc">2 weeks. We define scope, flows, architecture, and the final plan together. You stop here with a complete blueprint, or continue with full confidence.</div>
-            <div class="pz-price">$4,500</div>
+            <div class="pz-price">$9,500</div>
             <div class="pz-note">Fully credited toward Phase 1 if you continue.</div>
           </div>
 
