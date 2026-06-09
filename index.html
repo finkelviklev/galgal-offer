@@ -315,9 +315,16 @@
   }
   .phase-card{
     padding:24px 22px 22px;border-radius:16px;
-    background:linear-gradient(180deg, #f6faf3 0%, #fafcf8 100%);
     display:flex;flex-direction:column;gap:0;
   }
+  /* Phase 1 — bright sage */
+  .phase-card:nth-child(1){background:linear-gradient(135deg, #cfe5bd 0%, #e2ecca 100%)}
+  /* Phase 2 — deeper sage */
+  .phase-card:nth-child(2){background:linear-gradient(135deg, #b9d8a4 0%, #d4e6bb 100%)}
+  /* Phase 3 — warm sage */
+  .phase-card:nth-child(3){background:linear-gradient(135deg, #c6dfb2 0%, #dceac9 100%)}
+  /* Phase 4 (future) — muted */
+  .phase-card:nth-child(4){background:linear-gradient(135deg, #e2e8d8 0%, #ecefe2 100%)}
   .phase-card .phase-icon{display:none}
   .phase-card .phase-tag{
     font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.16em;
