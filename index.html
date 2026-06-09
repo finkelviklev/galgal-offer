@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Galgal — Project Offer for Alana Yakovlev</title>
+<title>Galgal, Project Offer for Alana Yakovlev</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
@@ -23,7 +23,7 @@
     --pill:#f3f3f3;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Product Sans','Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100%;width:100%}
+  html, body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Product Sans','Inter',-apple-system, BlinkMacSystemFont, system-ui, sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100%;width:100%}
 
   /* DECK CONTAINER */
   .deck-viewport{
@@ -34,7 +34,7 @@
     position:relative;width:100vw;height:100vh;
   }
 
-  /* SLIDE — stacked, crossfade + subtle scale (Keynote-style) */
+  /* SLIDE, stacked, crossfade + subtle scale (Keynote-style) */
   .slide{
     position:absolute;inset:0;
     width:100vw;height:100vh;
@@ -70,7 +70,7 @@
   .slide-header .brand .dot{color:var(--accent)}
   .slide-header .slide-meta{font-size:13px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-weight:500}
 
-  /* SLIDE BODY — every content slide is top-aligned so titles sit in the same place */
+  /* SLIDE BODY, every content slide is top-aligned so titles sit in the same place */
   .slide-body{
     flex:1;display:flex;flex-direction:column;justify-content:flex-start;
     max-width:1080px;width:100%;margin:0 auto;
@@ -86,7 +86,7 @@
   h1.hero-title{font-size:45px;font-weight:600;letter-spacing:-.025em;line-height:1.15;margin:0 auto 28px;color:var(--ink);max-width:920px;text-align:center}
   .slide[data-title="The Idea"] .lead{font-size:36px;font-weight:400;letter-spacing:-.015em;line-height:1.3;color:var(--muted);max-width:940px;margin:0 auto;text-align:center}
 
-  /* COVER slide — banner + meta text below, all centered */
+  /* COVER slide, banner + meta text below, all centered */
   .slide.cover-slide .cover-body{
     flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
     gap:44px;
@@ -99,7 +99,7 @@
   .cover-meta-below .name{display:block;font-weight:700}
   .cover-meta-below .date{display:block;font-weight:600;margin-top:6px}
 
-  /* IDEA slide — illustration on left, text on right */
+  /* IDEA slide, illustration on left, text on right */
   .slide.idea-slide .idea-body{
     flex:1;display:flex;align-items:center;justify-content:center;
     padding:0 24px;
@@ -129,7 +129,7 @@
   h2.slide-title{font-size:clamp(56px,7.5vw,112px);font-weight:500;letter-spacing:-.025em;line-height:1.02;margin:0 0 24px;color:var(--ink)}
   h2.slide-title.compact{font-size:32px;font-weight:600;letter-spacing:-.015em;line-height:1.15;margin:0 0 16px}
 
-  /* Inline title with number pill — consistent across every slide */
+  /* Inline title with number pill, consistent across every slide */
   .slide-title-row{
     display:flex;align-items:center;gap:18px;margin:0 0 18px;flex-wrap:wrap;
   }
@@ -144,15 +144,17 @@
     font-size:36px;font-weight:700;letter-spacing:-.02em;
     margin:0;color:var(--ink);line-height:1.1;
   }
-  /* Subtitle (.lead) — supports the title, doesn't compete with it */
+  /* Subtitle (.lead), supports the title, doesn't compete with it */
   .slide-body > .lead{
     font-size:17px;color:var(--muted);max-width:760px;
     margin:0 0 20px;line-height:1.5;font-weight:400;
   }
+  /* North Star subtitle reads as one line at full width */
+  .slide[data-title="Project North Star"] .slide-body > .lead{max-width:1080px}
   p.lead{font-size:clamp(18px,1.5vw,24px);color:var(--text);max-width:880px;margin:0 0 14px;line-height:1.45}
   p.lead.muted{color:var(--muted)}
 
-  /* INTRO SLIDE — banner + idea */
+  /* INTRO SLIDE, banner + idea */
   .intro-banner{
     position:relative;width:100%;
     margin-bottom:64px;flex-shrink:0;
@@ -177,14 +179,14 @@
   }
   .intro-overlay .brand-logo .dot{opacity:.85}
 
-  /* VISION HEADER — title block + platforms side by side */
+  /* VISION HEADER, title block + platforms side by side */
   .vision-header{
     display:grid;grid-template-columns:1.25fr 1fr;gap:64px;align-items:start;
     margin-bottom:8px;
   }
   .vision-header .platforms-band{margin:0}
 
-  /* VISION INTRO — title, subtitle, centered Built for, chunks */
+  /* VISION INTRO, title, subtitle, centered Built for, chunks */
   .vision-intro-platforms{
     margin:32px auto 36px;max-width:780px;
   }
@@ -203,7 +205,7 @@
     font-size:15px;color:var(--muted);margin:0;line-height:1.55;
   }
 
-  /* THEMED CARDS slide — cards grouped by theme (Community / Commerce / Platform) */
+  /* THEMED CARDS slide, cards grouped by theme (Community / Commerce / Platform) */
   .themed-cards{display:flex;flex-direction:column;gap:20px}
   .theme-section{}
   .theme-label{
@@ -227,17 +229,22 @@
   .themed-cards .vision-card.featured{padding:16px 18px}
   .themed-cards .vision-card.featured::after{top:12px;right:14px;font-size:14px}
 
-  /* HOVER POP — card scales 2x for readability */
+  /* Slide 02, larger title & bullets, scoped */
+  .slide.all-cards-slide .slide-title-row h2{font-size:44px}
+  .slide.all-cards-slide .themed-cards .vision-card li{font-size:16px;padding:3px 0}
+  .slide.all-cards-slide .themed-cards .vision-card .num{font-size:15.5px}
+
+  /* HOVER POP, gentler zoom on hover */
   .themed-cards .vision-card:hover{
-    transform:scale(2);
+    transform:scale(1.6);
     z-index:50;
     box-shadow:0 24px 60px rgba(70,109,86,.28);
   }
-  .themed-cards .vision-card.featured:hover{transform:scale(1.5)}
-  /* Edge cards — pop inward so they don't get clipped */
+  .themed-cards .vision-card.featured:hover{transform:scale(1.3)}
+  /* Edge cards, pop inward so they don't get clipped */
   .theme-grid > .vision-card:first-child:hover{transform-origin:20% center}
   .theme-grid > .vision-card:last-child:hover{transform-origin:80% center}
-  /* Featured AI spans 2 cols — anchor its scale to its center, never overflow */
+  /* Featured AI spans 2 cols, anchor its scale to its center, never overflow */
   .theme-grid.cols-3 > .vision-card.featured:hover{transform-origin:25% center}
 
   @media (max-width:880px){
@@ -246,7 +253,7 @@
     .theme-grid.cols-3 .vision-card.featured{grid-column:span 1}
   }
 
-  /* PLATFORMS BAND — minimalistic line illustrations */
+  /* PLATFORMS BAND, minimalistic line illustrations */
   .platforms-band{
     margin:24px 0 36px;
   }
@@ -267,7 +274,7 @@
     font-size:13px;color:var(--text);font-weight:500;letter-spacing:.04em;
   }
 
-  /* PRODUCT VISION — modular grid */
+  /* PRODUCT VISION, modular grid */
   .features-label{
     font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.18em;text-transform:uppercase;
     text-align:left;margin:24px 0 14px;
@@ -275,7 +282,7 @@
   .vision-grid{
     display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0;
   }
-  /* No borders — soft green-tinted backgrounds instead */
+  /* No borders, soft green-tinted backgrounds instead */
   .vision-card{
     padding:26px 24px 22px;border-radius:16px;
     background:linear-gradient(180deg, #f5faf2 0%, #fafcf8 100%);
@@ -286,7 +293,7 @@
     line-height:1.3;margin-bottom:14px;padding-bottom:10px;
     border-bottom:1px solid rgba(70,109,86,.14);
   }
-  /* Featured (AI) card — the bright star with full gradient */
+  /* Featured (AI) card, the bright star with full gradient */
   .vision-card.featured{
     grid-column:span 2;
     background:linear-gradient(135deg,#466d56 0%,#6b8e74 55%,#9bca80 100%);
@@ -307,7 +314,7 @@
   .vision-card li{font-size:15px;color:var(--text);padding:3px 0;line-height:1.5;display:flex;gap:8px;align-items:flex-start}
   .vision-card li::before{content:"·";color:var(--accent);font-weight:700;flex-shrink:0}
 
-  /* PHASES GRID — 4 phase columns, all visible, no scroll */
+  /* PHASES GRID,4 phase columns, all visible, no scroll */
   .phases-grid{
     display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
     margin-top:32px;
@@ -316,13 +323,13 @@
     padding:24px 22px 22px;border-radius:16px;
     display:flex;flex-direction:column;gap:0;
   }
-  /* Phase 1 — bright sage */
+  /* Phase 1, bright sage */
   .phase-card:nth-child(1){background:linear-gradient(135deg, #cfe5bd 0%, #e2ecca 100%)}
-  /* Phase 2 — deeper sage */
+  /* Phase 2, deeper sage */
   .phase-card:nth-child(2){background:linear-gradient(135deg, #b9d8a4 0%, #d4e6bb 100%)}
-  /* Phase 3 — warm sage */
+  /* Phase 3, warm sage */
   .phase-card:nth-child(3){background:linear-gradient(135deg, #c6dfb2 0%, #dceac9 100%)}
-  /* Phase 4 (future) — muted */
+  /* Phase 4 (future), muted */
   .phase-card:nth-child(4){background:linear-gradient(135deg, #e2e8d8 0%, #ecefe2 100%)}
   .phase-card .phase-icon{display:none}
   .phase-card .phase-tag{
@@ -393,7 +400,7 @@
   }
   @media (max-width:880px){.index-list{grid-template-columns:1fr;gap:14px}}
 
-  /* HORIZONTAL TIMELINE — illustrations above, line in middle, content below, scrollable */
+  /* HORIZONTAL TIMELINE, illustrations above, line in middle, content below, scrollable */
   .horizon-wrap{position:relative;margin-top:36px;margin-right:-88px}
   .horizon-timeline{
     display:flex;gap:36px;
@@ -450,7 +457,7 @@
     letter-spacing:.04em;
   }
 
-  /* PROCESS — isometric step illustrations */
+  /* PROCESS, isometric step illustrations */
   .process-grid{
     display:grid;grid-template-columns:repeat(3,1fr);gap:36px 24px;margin-top:36px;
   }
@@ -489,7 +496,7 @@
     padding:3px 8px;border-radius:100px;margin-right:8px;
   }
 
-  /* WHAT WE BUILD — 3x3 GRID */
+  /* WHAT WE BUILD,3x3 GRID */
   .layers-grid{
     display:grid;grid-template-columns:repeat(3,1fr);gap:32px 40px;margin-top:36px;
   }
@@ -512,7 +519,7 @@
   .timeline-step .phase-row .txt{font-size:15px;color:var(--text);line-height:1.45}
   .timeline-step .phase-row .txt.muted{color:var(--muted)}
 
-  /* SHIP — what members can do, day one & later, with flip cards */
+  /* SHIP, what members can do, day one & later, with flip cards */
   .ship-grid{
     display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px;
   }
@@ -582,7 +589,7 @@
   .ship-col.after .flip-btn{background:rgba(70,109,86,.14);color:var(--accent)}
   .ship-col.after .flip-btn:hover{background:rgba(70,109,86,.2);transform:translateY(-1px)}
 
-  /* Back-face feature list — compact 2-col */
+  /* Back-face feature list, compact 2-col */
   .feat-list{
     list-style:none;padding:0;margin:0;
     display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;flex:1;
@@ -606,7 +613,7 @@
     .feat-list{grid-template-columns:1fr}
   }
 
-  /* MVP BOARDS — interactive feature buckets (split across two slides) */
+  /* MVP BOARDS, interactive feature buckets (split across two slides) */
   .mvp-board{
     display:grid;gap:18px;margin-top:24px;align-items:stretch;
   }
@@ -696,7 +703,7 @@
   .ai-card li{font-size:15px;color:var(--text);margin:6px 0;line-height:1.5}
   .ai-card li strong{color:var(--ink);font-weight:600}
 
-  /* VALUE — what you get section */
+  /* VALUE, what you get section */
   .value-section{margin-top:24px;margin-bottom:36px}
   .section-label{
     font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.18em;
@@ -718,7 +725,7 @@
   }
   .value-item p{font-size:15px;color:var(--muted);margin:0;line-height:1.5}
 
-  /* PHASE 0 "Start here" block — low-commitment entry */
+  /* PHASE 0 "Start here" block, low-commitment entry */
   .phase-zero{
     background:rgba(255,255,255,.28);
     border-radius:14px;padding:18px 22px;margin-bottom:14px;
@@ -734,38 +741,6 @@
   .phase-zero .pz-desc{font-size:14px;opacity:.85;margin-bottom:10px;line-height:1.4}
   .phase-zero .pz-price{font-size:24px;font-weight:700;letter-spacing:-.02em}
   .phase-zero .pz-note{font-size:13px;opacity:.78;margin-top:6px;font-style:italic}
-
-  /* MARKET COMPARISON slide */
-  .market-rows{
-    display:flex;flex-direction:column;gap:14px;margin-top:32px;
-  }
-  .market-row{
-    display:grid;grid-template-columns:280px 1fr auto;gap:24px;align-items:center;
-    padding:18px 22px;border-radius:14px;
-    background:linear-gradient(180deg, #f6faf3 0%, #fafcf8 100%);
-  }
-  .market-row.us{
-    background:linear-gradient(135deg,#466d56 0%,#6b8e74 55%,#9bca80 100%);
-    color:#fff;box-shadow:0 14px 40px rgba(70,109,86,.22);
-  }
-  .market-row .market-name{font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
-  .market-row .market-note{font-size:14px;color:var(--muted);line-height:1.4}
-  .market-row.us .market-note{color:rgba(255,255,255,.88)}
-  .market-row .market-price{
-    font-size:20px;font-weight:700;color:var(--accent);
-    white-space:nowrap;letter-spacing:-.01em;
-  }
-  .market-row.us .market-price{color:#fff}
-  .market-row.us .market-star{
-    display:inline-flex;align-items:center;gap:8px;
-  }
-  .market-row.us .market-star::before{
-    content:"★";color:#fff;font-size:14px;
-  }
-  @media (max-width:880px){
-    .market-row{grid-template-columns:1fr;gap:8px;text-align:left}
-    .market-row .market-price{justify-self:start}
-  }
 
   /* FAQ slide */
   .faq-grid{
@@ -788,15 +763,15 @@
   .faq-a strong{color:var(--text);font-weight:600}
   @media (max-width:880px){.faq-grid{grid-template-columns:1fr;gap:14px}}
 
-  /* PRICING TOGGLE — Per phase / Monthly */
+  /* PRICING TOGGLE, Monthly / Per phase */
   .pricing-toggle{
     display:inline-flex;background:rgba(70,109,86,.1);
-    border-radius:100px;padding:5px;margin:0 0 28px;gap:2px;
+    border-radius:100px;padding:5px;margin:0 0 22px;gap:2px;
   }
   .pricing-toggle button{
     font-family:inherit;font-size:14px;font-weight:600;letter-spacing:.02em;
     background:transparent;border:none;cursor:pointer;
-    padding:10px 24px;border-radius:100px;color:var(--muted);
+    padding:10px 22px;border-radius:100px;color:var(--muted);
     transition:all .2s;
   }
   .pricing-toggle button.active{
@@ -848,7 +823,7 @@
     color:var(--accent);
   }
 
-  /* Monthly card — horizontal */
+  /* Monthly card, horizontal */
   .monthly-card{
     display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
     padding:32px 36px;border-radius:18px;
@@ -937,7 +912,7 @@
   }
   .post-mvp-note strong{color:var(--text);font-weight:600}
 
-  /* PRICING 3-card — colored hierarchy */
+  /* PRICING 3-card, colored hierarchy */
   .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
   .price{
     padding:28px 26px;border-radius:18px;
@@ -945,7 +920,7 @@
     transition:transform .25s, box-shadow .25s;
   }
   .price:hover{transform:translateY(-4px)}
-  /* Option 1 — bold green gradient, primary visual weight */
+  /* Option 1, bold green gradient, primary visual weight */
   .price:nth-child(1){
     background:linear-gradient(160deg, #466d56 0%, #5b8870 50%, #7aa884 100%);
     color:#fff;
@@ -968,14 +943,14 @@
   .price:nth-child(1) .vision-total{background:#fff}
   .price:nth-child(1) .vt-label{color:var(--accent)}
   .price:nth-child(1) .vt-amount{color:var(--accent)}
-  /* Option 2 — light green tint */
+  /* Option 2, light green tint */
   .price:nth-child(2){
     background:linear-gradient(180deg, #e6f0df 0%, #f3f9ee 100%);
     box-shadow:0 6px 20px rgba(70,109,86,.08);
   }
   .price:nth-child(2) .pill{background:rgba(70,109,86,.14);color:var(--accent)}
   .price:nth-child(2) .big{color:var(--accent)}
-  /* Option 3 — cream/neutral tint with subtle green accent */
+  /* Option 3, cream/neutral tint with subtle green accent */
   .price:nth-child(3){
     background:linear-gradient(180deg, #faf8ef 0%, #fdfcf6 100%);
     box-shadow:0 6px 20px rgba(155,202,128,.12);
@@ -1042,30 +1017,34 @@
   .cb-row .company:hover{color:var(--accent)}
   .cb-row .dot{color:var(--accent);opacity:.5;font-size:18px}
 
-  /* THANK YOU slide — three-photo cascade layout */
+  /* THANK YOU slide, left/right aligned photos with centered banner */
   .slide.thanks .thanks-body{
-    flex:1;display:flex;align-items:center;justify-content:center;
-    position:relative;
+    flex:1;display:flex;flex-direction:column;align-items:stretch;justify-content:center;
+    gap:32px;
   }
   .thanks-collage{
-    position:relative;
-    width:100%;max-width:740px;
-    height:82vh;
-    margin:0 auto;
+    display:flex;flex-direction:column;gap:32px;
+    width:100%;max-width:1100px;margin:0 auto;
   }
-  .thanks-photo{position:absolute}
-  /* Photos show at their natural size — no cropping */
-  .thanks-photo img{width:100%;height:auto;display:block}
-  /* Top-right square */
-  .thanks-photo.p1{width:24%;top:4%;right:2%}
-  /* Middle wide banner */
-  .thanks-photo.p2{width:88%;top:34%;left:1%}
-  /* Bottom-left landscape */
-  .thanks-photo.p3{width:38%;bottom:2%;left:5%}
+  .thanks-row{
+    display:flex;justify-content:space-between;align-items:center;gap:32px;
+  }
+  .thanks-photo{display:block;line-height:0}
+  .thanks-photo img{width:100%;height:auto;display:block;border-radius:14px}
+  /* Left photo, hard-left */
+  .thanks-photo.p1{width:38%;align-self:flex-start}
+  /* Right photo, hard-right */
+  .thanks-photo.p3{width:38%;align-self:flex-end}
+  /* Centered banner with overlaid text */
+  .thanks-photo.p2{position:relative;width:100%;max-width:550px;margin:0 auto}
   .thanks-photo.p2 .thanks-text{
-    position:absolute;right:6%;top:50%;transform:translateY(-50%);
-    color:#fff;font-size:clamp(28px,3.4vw,42px);font-weight:700;letter-spacing:-.01em;
-    text-shadow:0 2px 16px rgba(0,0,0,.18);
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    color:#fff;font-size:clamp(28px,3.6vw,46px);font-weight:700;letter-spacing:-.01em;
+    text-shadow:0 2px 16px rgba(0,0,0,.22);text-align:center;white-space:nowrap;
+  }
+  @media (max-width:760px){
+    .thanks-row{flex-direction:column;gap:20px}
+    .thanks-photo.p1,.thanks-photo.p3{width:80%;align-self:center}
   }
 
   /* DECK NAV */
@@ -1097,7 +1076,7 @@
   .pw-gate{
     position:fixed;inset:0;background:#fff;z-index:9999;
     display:flex;align-items:center;justify-content:center;padding:24px;
-    font-family:'Inter',-apple-system,sans-serif;
+    font-family:'Inter',-apple-system, sans-serif;
   }
   .pw-gate.unlocked{display:none}
   .pw-card{
@@ -1125,10 +1104,10 @@
   .pw-submit:hover{opacity:.9}
   .pw-error{color:#c33;font-size:14px;margin-top:10px;display:none}
 
-  /* PRINT — one slide per landscape page */
+  /* PRINT, one slide per landscape page */
   @page{size:landscape;margin:0}
   @media print{
-    html,body{height:auto !important;overflow:visible !important;background:#fff}
+    html, body{height:auto !important;overflow:visible !important;background:#fff}
     .deck-viewport{height:auto !important;overflow:visible !important}
     .deck{display:block !important;height:auto !important;transform:none !important;transition:none !important;width:100% !important}
     .slide{
@@ -1145,11 +1124,26 @@
     *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;color-adjust:exact !important}
   }
 
-  /* MOBILE — fallback to vertical */
+  /* Disable hover-scale tricks on touch devices */
+  @media (hover:none){
+    .themed-cards .vision-card:hover,
+    .themed-cards .vision-card.featured:hover{transform:none;box-shadow:none;z-index:auto}
+    .feature-chip:hover{transform:none;box-shadow:0 1px 0 rgba(70,109,86,.08)}
+    .price:hover{transform:none}
+  }
+
+  /* TABLET / SMALL DESKTOP */
+  @media (max-width:880px){
+    .slide{padding:clamp(28px,5vw,56px) clamp(20px,4vw,40px) clamp(56px,8vw,88px)}
+    .slide-title-row h2{font-size:clamp(26px,4.5vw,36px)}
+    .slide.all-cards-slide .slide-title-row h2{font-size:clamp(28px,5vw,40px)}
+  }
+
+  /* MOBILE, fallback to vertical */
   @media (max-width:760px){
-    html,body{overflow:auto;height:auto}
+    html, body{overflow:auto;height:auto}
     .deck{display:block;width:100%;height:auto;overflow:visible}
-    .slide{width:100%;height:auto;min-height:auto;padding:40px 20px 64px;page-break-after:always}
+    .slide{width:100%;height:auto;min-height:auto;padding:32px 18px 64px;page-break-after:always}
     .slide.cover{height:auto;min-height:60vh}
     .slide.cover .cover-overlay{padding:24px 22px}
     .layers-grid,.vision-grid,.process-grid{grid-template-columns:1fr;gap:16px}
@@ -1161,16 +1155,41 @@
     .timeline-dur,.timeline-dots,.timeline-labels{grid-template-columns:1fr 1fr}
     .timeline-line{display:none}
     .timeline-labels{gap:32px}
-    .scope,.ai-grid,.pricing,.team,.mvp-board,.value-grid{grid-template-columns:1fr;gap:16px}
+    .scope,.ai-grid,.pricing,.team,.mvp-board,.value-grid,.faq-grid,.ship-grid,.chunks-list,.phases-grid{grid-template-columns:1fr;gap:16px}
     .feature-col{min-height:auto}
     .deck-nav{display:none}
-    h1.hero-title,h2.slide-title{font-size:clamp(32px,8vw,48px)}
+    h1.hero-title, h2.slide-title{font-size:clamp(32px,8vw,48px)}
+    .slide.all-cards-slide .slide-title-row h2{font-size:clamp(28px,7vw,40px)}
+    .slide.all-cards-slide .themed-cards .vision-card li{font-size:15px}
+    .ship-col,.ship-flip,.ship-face.front,.ship-face.back{min-height:auto}
+    .ship-face.back{position:relative}
+    .ship-col.flipped .ship-flip{transform:none}
+    .feat-list{grid-template-columns:1fr}
+    .horizon-wrap{margin-right:-18px}
+    .station{flex-basis:230px}
+    .monthly-card{grid-template-columns:1fr;gap:18px}
+    .monthly-right{align-items:flex-start;text-align:left}
+    .phase-row{grid-template-columns:1fr;gap:8px}
+    .intro-overlay .meta-right{font-size:12px}
+    .intro-overlay .brand-logo{font-size:clamp(26px,7vw,42px)}
+    .cover-meta-below{font-size:clamp(26px,6vw,38px)}
+  }
+
+  /* PHONE, tighter spacing */
+  @media (max-width:480px){
+    .slide{padding:24px 14px 56px}
+    .slide-title-row h2{font-size:24px}
+    .slide.all-cards-slide .slide-title-row h2{font-size:26px}
+    .themed-cards .vision-card{padding:12px 14px}
+    .themed-cards .vision-card li{font-size:13px}
+    .intro-overlay{padding:18px 18px}
+    .platform svg{height:72px}
   }
 </style>
 </head>
 <body>
 
-<!-- PASSWORD GATE — change the PASSWORD value in the script below to update -->
+<!-- PASSWORD GATE, change the PASSWORD value in the script below to update -->
 <div class="pw-gate" id="pwGate">
   <div class="pw-card">
     <div class="pw-brand">communication band<span class="pw-dot">.</span></div>
@@ -1184,7 +1203,7 @@
 <div class="deck-viewport">
 <div class="deck" id="deck">
 
-  <!-- SLIDE 1 — COVER -->
+  <!-- SLIDE 1, COVER -->
   <section class="slide cover-slide" data-title="Cover">
     <div class="slide-body cover-body">
       <div class="intro-banner cover-banner">
@@ -1200,22 +1219,23 @@
     </div>
   </section>
 
-  <!-- SLIDE 2 — THE IDEA -->
+  <!-- SLIDE 2, THE IDEA -->
   <section class="slide idea-slide" data-title="The Idea">
     <div class="slide-body idea-body">
       <div class="idea-grid">
         <div class="idea-illustration">
-          <img src="banner3.png" alt="Hands joined together — inner circle" />
+          <img src="banner3.png" alt="Hands joined together, inner circle" />
         </div>
         <div class="idea-text">
           <h1 class="hero-title">An inner circle for Jewish women to connect, create, and grow.</h1>
           <p class="lead muted">Galgal is a private, trusted digital home to learn, shop, sell, and discover opportunities, all in one place.</p>
+          <p class="lead muted" style="font-style:italic;margin-top:18px"><strong style="color:var(--accent);font-style:normal">Galgal is not an app or service</strong>, it's a tech platform.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SLIDE 3 — PROJECT NORTH STAR (intro only: title, subtitle, Built for centered, chunks explanation) -->
+  <!-- SLIDE 3, PROJECT NORTH STAR (intro only: title, subtitle, Built for centered, chunks explanation) -->
   <section class="slide" data-title="Project North Star">
     <div class="slide-header">
       <div class="brand">communication band<span class="dot">.</span></div>
@@ -1277,22 +1297,22 @@
         <div class="chunks-list">
           <div class="chunk">
             <h4>Community</h4>
-            <p>How members find each other, gather, post, and discover — identity, channels, items, communication, search.</p>
+            <p>How members find each other, gather, post, and discover, identity, channels, items, communication, search.</p>
           </div>
           <div class="chunk">
             <h4>Commerce</h4>
-            <p>How items, events, classes, and services get bought and sold — marketplace, payments, payouts, commission.</p>
+            <p>How items, events, classes, and services get bought and sold, marketplace, payments, payouts, commission.</p>
           </div>
           <div class="chunk">
             <h4>Platform</h4>
-            <p>The intelligence and operations underneath — AI, safety, customer support, admin, and infrastructure.</p>
+            <p>The intelligence and operations underneath, AI, safety, customer support, admin, and infrastructure.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SLIDE 4 — CARDS GROUPED BY THEME -->
+  <!-- SLIDE 4, CARDS GROUPED BY THEME -->
   <section class="slide all-cards-slide" data-title="Features by theme">
     <div class="slide-header">
       <div class="brand">communication band<span class="dot">.</span></div>
@@ -1301,8 +1321,9 @@
     <div class="slide-body">
       <div class="slide-title-row">
         <span class="title-num">02</span>
-        <h2>Features and capabilities list</h2>
+        <h2>North Star Features and capabilities list</h2>
       </div>
+      <p class="lead muted">Galgal is not an app or service, it's a tech platform.</p>
       <div class="themed-cards">
 
         <!-- COMMUNITY -->
@@ -1313,7 +1334,6 @@
               <div class="num">Identity &amp; Access</div>
               <ul>
                 <li>AI-led onboarding flow</li>
-                <li>Verification questionnaire (Jewish + Israel-support)</li>
                 <li>Identity verification for extra safety</li>
                 <li>Invitation system + referral tracking</li>
                 <li>Member profiles &amp; roles</li>
@@ -1331,7 +1351,7 @@
               <div class="num">Communication &amp; Live</div>
               <ul>
                 <li>Public conversations on items &amp; channels</li>
-                <li>WhatsApp for personal conversations</li>
+                <li>Share-out to WhatsApp for personal conversations</li>
                 <li>One-button live broadcasts</li>
                 <li>Live chat during broadcasts</li>
               </ul>
@@ -1355,16 +1375,16 @@
             <div class="vision-card">
               <div class="num">Items &amp; Catalog</div>
               <ul>
-                <li>Universal item primitive — events, products, services, classes, listings</li>
+                <li>Universal item primitive, events, products, services, classes, listings</li>
                 <li>Fields: title, description, media, optional price, date, location</li>
                 <li>Categories and tags</li>
-                <li>Embed Instagram and TikTok posts via shared URL</li>
+                <li>Embed Instagram or TikTok posts that a creator chooses to share via URL, by design, never scraped</li>
               </ul>
             </div>
             <div class="vision-card">
               <div class="num">Marketplace &amp; Payments</div>
               <ul>
-                <li>Stripe rails for any item with a price</li>
+                <li>Payment service provider (like Stripe) rails for any item with a price</li>
                 <li>One-time, subscription, recurring purchases</li>
                 <li>Seller payouts and marketplace commission</li>
                 <li>Advertising and sponsored placements</li>
@@ -1383,11 +1403,10 @@
               <ul>
                 <li>AI-led onboarding flow</li>
                 <li>AI navigation helper</li>
-                <li>AI content help (descriptions, tags)</li>
+                <li>AI content help (auto-fill description &amp; tags from a photo)</li>
                 <li>AI conversation summaries</li>
-                <li>AI-assisted moderation</li>
+                <li>AI-assisted moderation <em style="opacity:.85">(post-MVP, needs heavy testing)</em></li>
                 <li>Smart discovery and recommendations</li>
-                <li>Embedded AI chat across the platform</li>
               </ul>
             </div>
             <div class="vision-card">
@@ -1422,8 +1441,8 @@
               <ul>
                 <li>Hosting, backend, deployment pipeline</li>
                 <li>Database with cultural-sensitivity safeguards</li>
-                <li>Stripe API and WhatsApp integration</li>
-                <li>Security baseline — encryption, backups, monitoring</li>
+                <li>Payment service provider API (like Stripe) and WhatsApp share-out integration</li>
+                <li>Security baseline, encryption, backups, monitoring</li>
               </ul>
             </div>
           </div>
@@ -1433,7 +1452,7 @@
     </div>
   </section>
 
-  <!-- SLIDE 3 — PROCESS + PHASES (COMBINED HORIZONTAL TIMELINE) -->
+  <!-- SLIDE 3, PROCESS + PHASES (COMBINED HORIZONTAL TIMELINE) -->
   <section class="slide" data-title="Process">
     <div class="slide-header">
       <div class="brand">communication band<span class="dot">.</span></div>
@@ -1444,7 +1463,7 @@
         <span class="title-num">03</span>
         <h2>How we get there, phase by phase</h2>
       </div>
-      <p class="lead muted">Each station builds on the last. Each phase earns the next — we don't pay for features before there's usage to make them successful.</p>
+      <p class="lead muted">Each station builds on the last. Each phase earns the next, we don't pay for features before there's usage to make them successful.</p>
 
       <div class="phases-grid">
 
@@ -1458,10 +1477,10 @@
               <line x1="97" y1="47" x2="63" y2="65" stroke-width="0.9" stroke-opacity=".6" />
             </svg>
           </div>
-          <div class="phase-tag">Phase 1</div>
+          <div class="phase-tag">Phase 1 · Required</div>
           <div class="phase-name">Blueprint</div>
-          <div class="phase-timing">2 weeks</div>
-          <p class="phase-goal">Close the scope and the roadmap. Final pricing for Phase 2 may adjust based on what we agree here.</p>
+          <div class="phase-timing">Up to 2 weeks</div>
+          <p class="phase-goal">Close the scope and the roadmap. <strong>Mandatory step for any engagement</strong>, required before the monthly retainer can begin.</p>
           <ul class="phase-steps">
             <li><span class="step-num">01</span><span>Close scope &amp; roadmap together</span></li>
           </ul>
@@ -1502,12 +1521,12 @@
           <div class="phase-tag">Phase 2</div>
           <div class="phase-name">Design &amp; Build</div>
           <div class="phase-timing">10–12 weeks · ~3 months</div>
-          <p class="phase-goal">Brand, design, and engineering happen in parallel — fast and tight.</p>
+          <p class="phase-goal">Brand, design, and engineering happen in parallel, fast and tight.</p>
           <ul class="phase-steps">
-            <li><span class="step-num">02</span><span>Quick brand direction (colors, logo, illustration style — light pass)</span></li>
-            <li><span class="step-num">03</span><span>Design core app flows &amp; onboarding — approve with you</span></li>
+            <li><span class="step-num">02</span><span>Quick brand direction (colors, logo, illustration style, light pass)</span></li>
+            <li><span class="step-num">03</span><span>Design core app flows &amp; onboarding, approve with you</span></li>
             <li><span class="step-num">04</span><span>Develop the iOS and Android apps (React Native)</span></li>
-            <li><span class="step-num">05</span><span>Add Stripe payments — buying, selling, payouts, Shabbat lock</span></li>
+            <li><span class="step-num">05</span><span>Add payments via a payment service provider (like Stripe), buying, selling, payouts, Shabbat lock</span></li>
           </ul>
         </div>
 
@@ -1545,11 +1564,11 @@
           <div class="phase-tag">Phase 4</div>
           <div class="phase-name">Fast Follow</div>
           <div class="phase-timing">After traction</div>
-          <p class="phase-goal">Add the features that need a real audience — only once the MVP proves the loop works.</p>
+          <p class="phase-goal">Add the features that need a real audience, only once the MVP proves the loop works.</p>
           <ul class="phase-steps">
             <li><span class="step-num">09</span><span>Live streaming</span></li>
             <li><span class="step-num">10</span><span>AI chat assistant</span></li>
-            <li><span class="step-num">11</span><span>Web app — full platform on the browser, same capabilities as iOS &amp; Android</span></li>
+            <li><span class="step-num">11</span><span>Web app, full platform on the browser, same capabilities as iOS &amp; Android</span></li>
             <li><span class="step-num">12</span><span>Live auctions, premium tiers, multi-language</span></li>
           </ul>
         </div>
@@ -1557,12 +1576,12 @@
       </div>
 
       <div class="phases-disclaimer">
-        <strong>Design and code run in parallel — not sequential.</strong> We work from a list of screens. The moment one screen is approved, it moves to code while we design the next. We never stop design and code happens after — they overlap from day one. It's how we move very fast without sacrificing quality.
+        <strong>Design and code run in parallel, not sequential.</strong> We work from a list of screens. The moment one screen is approved, it moves to code while we design the next. We never stop design and code happens after, they overlap from day one. It's how we move very fast without sacrificing quality.
       </div>
     </div>
   </section>
 
-  <!-- SLIDE 4 — WHAT YOU CAN DO (MVP + Beyond, friendly) -->
+  <!-- SLIDE 4, WHAT YOU CAN DO (MVP + Beyond, friendly) -->
   <section class="slide" data-title="What members can do">
     <div class="slide-header">
       <div class="brand">communication band<span class="dot">.</span></div>
@@ -1573,7 +1592,7 @@
         <span class="title-num">04</span>
         <h2>What members can do, day one</h2>
       </div>
-      <p class="lead muted">Here's what Galgal feels like at launch — and what comes after.</p>
+      <p class="lead muted">Here's what Galgal feels like at launch, and what comes after.</p>
 
       <div class="ship-grid">
 
@@ -1584,15 +1603,16 @@
               <h3>When we launch</h3>
               <ul class="ship-list">
                 <li><span class="icon">✓</span><span>Join an inner circle of trusted Jewish women</span></li>
-                <li><span class="icon">✓</span><span>Find your tribe in channels you join or get invited to</span></li>
-                <li><span class="icon">✓</span><span>Post anything — events, classes, products, services</span></li>
+                <li><span class="icon">✓</span><span>Find your people in channels you join or get invited to</span></li>
+                <li><span class="icon">✓</span><span>Post anything, events, classes, products, services</span></li>
                 <li><span class="icon">✓</span><span>Browse and search the community</span></li>
-                <li><span class="icon">✓</span><span>Buy and sell safely with Stripe</span></li>
+                <li><span class="icon">✓</span><span>Buy and sell safely via a payment service provider (like Stripe)</span></li>
                 <li><span class="icon">✓</span><span>Chat openly with members on items and channels</span></li>
-                <li><span class="icon">✓</span><span>Reach out one-on-one via WhatsApp</span></li>
+                <li><span class="icon">✓</span><span>Reach out one-on-one via WhatsApp<sup>*</sup></span></li>
                 <li><span class="icon">✓</span><span>Get AI help onboarding and writing posts</span></li>
-                <li><span class="icon">✓</span><span>Trust the rules — Shabbat &amp; holiday lock built in</span></li>
+                <li><span class="icon">✓</span><span>Trust the rules, Shabbat &amp; holiday lock built in</span></li>
               </ul>
+              <p style="font-size:12px;opacity:.78;margin:14px 0 0;font-style:italic;line-height:1.4"><sup>*</sup> WhatsApp is an external platform. Galgal can link out, but conversations that happen on WhatsApp live outside Galgal and aren't moderated by us.</p>
               <button type="button" class="flip-btn" data-flip>See all features →</button>
             </div>
             <div class="ship-face back">
@@ -1600,29 +1620,29 @@
               <h3>What we build for MVP</h3>
               <ul class="feat-list">
                 <li>React Native app (iOS, Android, Web)</li>
-                <li>Member verification (Jewish + Israel-support)</li>
+                <li>Member verification (Jewish questionnaire)</li>
                 <li>Invitation system + referral tracking</li>
                 <li>Profiles &amp; roles</li>
                 <li>Email + password recovery</li>
-                <li>Channels &amp; groups (4 access modes)</li>
+                <li>Channels &amp; groups, open, locked, invite-only, admin-approved</li>
                 <li>Channel admin tools</li>
-                <li>Universal item primitive</li>
+                <li>One item type that covers events, products, services, classes, and listings</li>
                 <li>Categories &amp; tags</li>
-                <li>Stripe payments (one-time + subscription)</li>
-                <li>Seller payouts &amp; commission</li>
+                <li>Payments (one-time + subscription) via a payment service provider (like Stripe)</li>
+                <li>Seller payouts &amp; commission (simplified scheme at MVP)</li>
                 <li>Shabbat &amp; holiday transaction pause</li>
-                <li>WhatsApp integration</li>
-                <li>Public conversations on items &amp; channels</li>
+                <li>Share-out to WhatsApp (deep WhatsApp integration isn't possible, sharing out is)</li>
+                <li>Public conversations on items &amp; channels (with Day-1 moderation queue)</li>
                 <li>Safety: report, block, moderation queue</li>
                 <li>Search across items, channels, members</li>
                 <li>Browse by category &amp; tag</li>
                 <li>AI-led onboarding</li>
-                <li>AI content help (photo descriptions)</li>
+                <li>AI content help, auto-fill description &amp; tags from your photo</li>
                 <li>Admin dashboard</li>
                 <li>Basic analytics</li>
                 <li>Customer support: help center + requests</li>
                 <li>Hosting, backend, security baseline</li>
-                <li>Instagram &amp; TikTok embeds (oEmbed)</li>
+                <li>Instagram &amp; TikTok posts shared by creator via URL (never scraped)</li>
               </ul>
               <button type="button" class="flip-btn" data-flip>← Back to overview</button>
             </div>
@@ -1635,14 +1655,15 @@
               <div class="ship-eyebrow">Coming next</div>
               <h3>After launch</h3>
               <ul class="ship-list">
-                <li><span class="icon">+</span><span>Go live in one tap — host classes, Q&amp;A, sessions</span></li>
+                <li><span class="icon">+</span><span>Go live in one tap, host classes, Q&amp;A, sessions</span></li>
                 <li><span class="icon">+</span><span>Watch live broadcasts and chat in real time</span></li>
                 <li><span class="icon">+</span><span>Run live auctions and sell in the moment</span></li>
-                <li><span class="icon">+</span><span>Get an AI assistant — "what do you want to do today?"</span></li>
+                <li><span class="icon">+</span><span>Get an AI assistant,"what do you want to do today?"</span></li>
                 <li><span class="icon">+</span><span>See a feed personalized to your interests</span></li>
                 <li><span class="icon">+</span><span>Subscribe to premium creators and content</span></li>
                 <li><span class="icon">+</span><span>Find professional services (lawyers, doctors, CPAs, nannies)</span></li>
                 <li><span class="icon">+</span><span>Use Galgal in Hebrew, Russian, and Spanish</span></li>
+                <li><span class="icon">+</span><span>Deeper Safety &amp; Moderation, AI-assisted flagging, harassment monitoring, expanded admin tools</span></li>
               </ul>
               <button type="button" class="flip-btn" data-flip>See all features →</button>
             </div>
@@ -1657,6 +1678,7 @@
                 <li>Personalized feed</li>
                 <li>ID verification (admin-reviewed)</li>
                 <li>AI-assisted moderation flagging</li>
+                <li>Harassment monitoring &amp; expanded admin moderation tools</li>
                 <li>Advertising &amp; sponsored placements</li>
                 <li>AI-powered first response in support</li>
                 <li>Live auctions (Whatnot-style)</li>
@@ -1677,7 +1699,7 @@
     </div>
   </section>
 
-  <!-- SLIDE 6 — AI -->
+  <!-- SLIDE 6, AI -->
   <section class="slide" data-title="AI">
     <div class="slide-header">
       <div class="brand">communication band<span class="dot">.</span></div>
@@ -1688,7 +1710,7 @@
         <span class="title-num">05</span>
         <h2>AI runs through our process, and lives in the product.</h2>
       </div>
-      <p class="lead muted">AI is why a small senior team can ship a real platform in 6 months, and how Galgal will feel calm and easy to use, even for less tech-savvy women.</p>
+      <p class="lead muted">AI is why a small senior team can ship a real platform in months, and how Galgal stays easy to use for members of any technical level.</p>
 
       <div class="ai-grid">
         <div class="ai-card process">
@@ -1704,190 +1726,162 @@
         <div class="ai-card product">
           <h3>In the product</h3>
           <ul>
-            <li><strong>AI-assisted moderation</strong> <em>(Phase 1)</em> · flag harassment before a human sees it</li>
             <li><strong>Navigation helper</strong> <em>(Phase 2)</em> · "what do you want to do today?"</li>
-            <li><strong>Content help</strong> <em>(Phase 2)</em> · auto descriptions from a photo, invitations, tags</li>
+            <li><strong>Content help</strong> <em>(Phase 2)</em> · auto-fill descriptions, invitations, and tags from a photo</li>
             <li><strong>Conversation summaries</strong> <em>(Phase 2)</em> · long threads condensed</li>
-            <li><strong>Smart discovery</strong> <em>(Phase 3)</em> · calm, modest recommendations</li>
+            <li><strong>Smart discovery</strong> <em>(Phase 3)</em> · personalized recommendations across items, channels, and members</li>
+            <li><strong>AI-assisted moderation</strong> <em>(post-MVP)</em> · flagging support for human moderators. Requires extensive testing before AI is given any autonomous role.</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SLIDE — MARKET CONTEXT -->
-  <section class="slide" data-title="Market context">
+
+  <!-- SLIDE 7, PRICING -->
+  <section class="slide" data-title="Pricing">
     <div class="slide-header">
       <div class="brand">communication band<span class="dot">.</span></div>
-      <div class="slide-meta">06 · Market context</div>
+      <div class="slide-meta">06 · Pricing</div>
     </div>
     <div class="slide-body">
       <div class="slide-title-row">
         <span class="title-num">06</span>
-        <h2>Where this sits in the market</h2>
-      </div>
-      <p class="lead muted">Senior expertise at fair pricing — not top-tier markup, not offshore risk.</p>
-
-      <div class="market-rows">
-        <div class="market-row">
-          <div class="market-name">Top global agencies</div>
-          <div class="market-note">IDEO, MetaLab, ustwo, Work &amp; Co. Premium brand, 8–12 person teams, account managers.</div>
-          <div class="market-price">$400K – $1.5M+</div>
-        </div>
-        <div class="market-row">
-          <div class="market-name">Mid-tier US/EU consultancies</div>
-          <div class="market-note">Larger boutiques, 4–8 person teams, mixed seniority.</div>
-          <div class="market-price">$200K – $450K</div>
-        </div>
-        <div class="market-row us">
-          <div class="market-name market-star">Communication Band — senior team, AI-native</div>
-          <div class="market-note">3–4 senior people, ex-Meta, end-to-end design + brand + code. AI accelerates every step.</div>
-          <div class="market-price">$360K – $500K</div>
-        </div>
-        <div class="market-row">
-          <div class="market-name">Offshore agencies</div>
-          <div class="market-note">India / Eastern Europe. Quality variance high; rework often eats the savings.</div>
-          <div class="market-price">$50K – $150K</div>
-        </div>
-        <div class="market-row">
-          <div class="market-name">Vibe-coded / no-code</div>
-          <div class="market-note">Cursor, Lovable, Bubble, Glide. Great for prototypes — won't reach launch for a Stripe marketplace with AI, live, and religious-schedule logic.</div>
-          <div class="market-price">$5K – $30K</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SLIDE 7 — PRICING -->
-  <section class="slide" data-title="Pricing">
-    <div class="slide-header">
-      <div class="brand">communication band<span class="dot">.</span></div>
-      <div class="slide-meta">07 · Pricing</div>
-    </div>
-    <div class="slide-body">
-      <div class="slide-title-row">
-        <span class="title-num">07</span>
         <h2>How we work together</h2>
       </div>
-      <p class="lead muted">More than just money — what you get from a small senior team that has done this before.</p>
+      <p class="lead muted">What you get from a small senior team that has done this before.</p>
 
       <div class="value-section">
         <div class="section-label">What you get</div>
         <div class="value-grid">
           <div class="value-item">
             <div class="vn">01</div>
-            <h4>Senior team, no PM layer</h4>
-            <p>You work directly with the people designing, engineering, and leading. No account managers in between.</p>
+            <h4>Senior team, hands-on</h4>
+            <p>You work directly with exceptional zero-to-one experts who do the hands-on work themselves. The actual design and engineering isn't delegated to juniors, no account managers, no handoffs.</p>
           </div>
           <div class="value-item">
             <div class="vn">02</div>
-            <h4>20+ years at Meta &amp; beyond</h4>
-            <p>Real experience shipping Facebook, WhatsApp, Instagram, and Messenger. We have built products like this.</p>
+            <h4>From Meta to zero-to-IPO</h4>
+            <p>More than building social and communication platforms at Meta, Elad has started companies and built e-commerce and marketing platforms for small businesses and enterprises that served millions, taking them all the way from zero to IPO.</p>
           </div>
           <div class="value-item">
             <div class="vn">03</div>
-            <h4>AI-native development</h4>
-            <p>AI is in our design, code, QA, and project flow — so we ship faster, smarter, with fewer bugs.</p>
+            <h4>Working at the AI frontier</h4>
+            <p>We don't just "work with AI", we work at the AI frontier. We research how AI is best applied to real business-building problems, then bring those findings into your product, our design, code, and process.</p>
           </div>
           <div class="value-item">
             <div class="vn">04</div>
-            <h4>End-to-end ownership</h4>
-            <p>Design, brand direction, engineering — one team, one handoff-free flow from idea to shipped code.</p>
+            <h4>End-to-end, plus business advice</h4>
+            <p>Design, brand direction, engineering, one team, one handoff-free flow from idea to shipped code. Plus business consultation on building e-commerce and social platforms, and on building the tech company itself.</p>
           </div>
           <div class="value-item">
             <div class="vn">05</div>
-            <h4>Weekly working rhythm</h4>
-            <p>Same day every week. Shared timeline document. Open WhatsApp line for questions between meetings.</p>
+            <h4>Full transparency</h4>
+            <p>You always know where the project stands and where the risks are. You can ask for explanations, insights, or a walk-through of what's being built, how, when, and why.</p>
           </div>
           <div class="value-item">
             <div class="vn">06</div>
-            <h4>Production-ready output</h4>
-            <p>Not a demo or a prototype. Real React Native code, ready to scale from soft launch to thousands.</p>
+            <h4>Production-grade platform</h4>
+            <p>A platform built to industry standards, high-quality, easy to maintain, easy to upgrade. Not a demo, not a prototype. Ready to scale from soft launch to thousands.</p>
           </div>
         </div>
       </div>
 
-      <div class="section-label">Pricing options</div>
+      <div class="section-label">How we price</div>
+
+      <!-- BLUEPRINT, required first step (shown in both views) -->
+      <div class="phase-pricing-list" style="margin-bottom:18px">
+        <div class="phase-row required">
+          <div class="phase-row-left">
+            <div class="phase-row-tag">Required first step</div>
+            <div class="phase-row-name">Blueprint</div>
+            <div class="phase-row-meta">Up to 2 weeks · close scope and roadmap together.</div>
+          </div>
+          <div class="phase-row-price">$21,000</div>
+        </div>
+      </div>
 
       <div class="pricing-toggle">
-        <button type="button" class="active" data-target="phase">Price per phase</button>
-        <button type="button" data-target="monthly">Monthly price</button>
+        <button type="button" class="active" data-target="monthly">Monthly retainer</button>
+        <button type="button" data-target="phase">Price per phase</button>
       </div>
 
-      <!-- PER PHASE -->
-      <div class="pricing-view" data-view="phase">
-        <div class="phase-pricing-list">
-          <div class="phase-row required">
-            <div class="phase-row-left">
-              <div class="phase-row-tag">Required first step</div>
-              <div class="phase-row-name">Phase 1 — Blueprint</div>
-              <div class="phase-row-meta">2 weeks · scope and roadmap. Required for monthly plan too.</div>
-            </div>
-            <div class="phase-row-price">$9,500</div>
-          </div>
-
-          <div class="phase-row">
-            <div class="phase-row-left">
-              <div class="phase-row-name">Phase 2 — Design &amp; Build</div>
-              <div class="phase-row-meta">10–12 weeks · the largest phase</div>
-            </div>
-            <div class="phase-row-price">$130K – $160K</div>
-          </div>
-
-          <div class="phase-row">
-            <div class="phase-row-left">
-              <div class="phase-row-name">Phase 3 — Test &amp; Ship</div>
-              <div class="phase-row-meta">3–4 weeks · validate, prepare, launch</div>
-            </div>
-            <div class="phase-row-price">$30K – $50K</div>
-          </div>
-
-          <div class="phase-row">
-            <div class="phase-row-left">
-              <div class="phase-row-name">Phase 4 — Fast Follow</div>
-              <div class="phase-row-meta">After traction · live, AI, web app, more</div>
-            </div>
-            <div class="phase-row-price">$180K – $260K</div>
-          </div>
-        </div>
-
-        <div class="pricing-total">
-          <div class="pt-label">Full vision total</div>
-          <div class="pt-amount">$350K – $480K</div>
-        </div>
-
-        <div class="pricing-disclaimer">
-          <strong>Stop at any phase.</strong> You decide whether to continue at the end of each phase — no commitment beyond what you've agreed to.
-        </div>
-      </div>
-
-      <!-- MONTHLY -->
-      <div class="pricing-view" data-view="monthly" style="display:none">
+      <!-- MONTHLY RETAINER -->
+      <div class="pricing-view" data-view="monthly">
         <div class="monthly-card">
           <div class="monthly-left">
             <div class="monthly-tag">Predictable monthly partnership</div>
             <h3>Monthly retainer</h3>
-            <p>Senior team capacity fully dedicated to Galgal. We deliver against the plan we agreed in the Blueprint, in monthly milestones.</p>
+            <p>Senior team capacity for Galgal. We deliver against the plan with full transparency at every stage, the plan starts at the Blueprint and evolves as we learn.</p>
             <ul class="monthly-includes">
-              <li>Same scope and quality as per-phase pricing</li>
-              <li>Direct work with Vika, Elad, and the engineering team</li>
-              <li>Weekly working sessions, shared timeline</li>
-              <li>Production-ready output, end-to-end</li>
+              <li>Direct work with Vika, Elad, and senior engineers as required</li>
+              <li>Single invoice, single company to work with for building the platform</li>
+              <li>Production-grade output, end-to-end</li>
             </ul>
+            <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22)">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:8px">Expected delivery milestones</div>
+              <ul class="monthly-includes" style="opacity:.94">
+                <li>Design &amp; Build · ~10–12 weeks after Blueprint</li>
+                <li>Test &amp; Ship · ~3–4 weeks · validate, prepare, launch</li>
+                <li>Fast Follow · after traction · live, AI, web, more</li>
+              </ul>
+            </div>
+            <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22)">
+              <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:8px">Not included</div>
+              <p style="font-size:14px;line-height:1.5;margin:0;opacity:.92">Use of external experts, for example, external security or compliance audits. Usually not applicable at this stage of company building. If requested, billed separately by the provider.</p>
+            </div>
           </div>
           <div class="monthly-right">
-            <div class="monthly-price">$85,000</div>
+            <div class="monthly-price">$120,000</div>
             <div class="monthly-period">/ month</div>
           </div>
         </div>
 
         <div class="pricing-disclaimer">
-          <strong>Phase 1 Blueprint is still required first</strong> ($9,500, 2 weeks). We can't start a monthly engagement without an agreed plan.
+          <strong>30-day notice, both ways.</strong> Either side can end the monthly engagement with 30 days written notice, no additional fees.
+        </div>
+      </div>
+
+      <!-- PER PHASE -->
+      <div class="pricing-view" data-view="phase" style="display:none">
+        <div class="phase-pricing-list">
+          <div class="phase-row">
+            <div class="phase-row-left">
+              <div class="phase-row-name">Phase 2, Design &amp; Build</div>
+              <div class="phase-row-meta">10–12 weeks · the largest phase</div>
+            </div>
+            <div class="phase-row-price">$180K – $230K</div>
+          </div>
+
+          <div class="phase-row">
+            <div class="phase-row-left">
+              <div class="phase-row-name">Phase 3, Test &amp; Ship</div>
+              <div class="phase-row-meta">3–4 weeks · validate, prepare, launch</div>
+            </div>
+            <div class="phase-row-price">$40K – $70K</div>
+          </div>
+
+          <div class="phase-row">
+            <div class="phase-row-left">
+              <div class="phase-row-name">Phase 4, Fast Follow</div>
+              <div class="phase-row-meta">After traction · live, AI, web app, more</div>
+            </div>
+            <div class="phase-row-price">$250K – $370K</div>
+          </div>
+        </div>
+
+        <div class="pricing-total">
+          <div class="pt-label">Full vision total (incl. Blueprint)</div>
+          <div class="pt-amount">$490K – $690K</div>
         </div>
 
         <div class="pricing-disclaimer">
-          <strong>30-day notice to end.</strong> You can end the monthly engagement at any time with 30 days written notice — no additional fees.
+          <strong>Stop at any phase.</strong> You decide whether to continue at the end of each phase, no commitment beyond what you've agreed to.
         </div>
+      </div>
+
+      <div class="pricing-disclaimer">
+        <strong>Blueprint is required first</strong> ($21,000, up to 2 weeks). Neither path can begin without an agreed plan.
       </div>
 
       <div class="hourly">
@@ -1898,82 +1892,62 @@
   </section>
 
 
-  <!-- SLIDE — FAQ -->
+  <!-- SLIDE, FAQ -->
   <section class="slide" data-title="FAQ">
     <div class="slide-header">
       <div class="brand">communication band<span class="dot">.</span></div>
-      <div class="slide-meta">08 · FAQ</div>
+      <div class="slide-meta">07 · FAQ</div>
     </div>
     <div class="slide-body">
       <div class="slide-title-row">
-        <span class="title-num">08</span>
+        <span class="title-num">07</span>
         <h2>Questions you might be having</h2>
       </div>
       <p class="lead muted">Honest answers to the ones we hear most.</p>
 
       <div class="faq-grid">
         <div class="faq-item">
-          <h4 class="faq-q">Why $350–480K and not $50K?</h4>
-          <p class="faq-a">A Stripe-marketplace platform with AI, live, religious-schedule logic, safety, and 100K-user ambitions is a real engineering project. <strong>Top agencies charge $500K–$1.5M for the same scope.</strong> We're priced for senior expertise without the agency overhead — and you can stop at the end of any phase.</p>
+          <h4 class="faq-q">Does the price make sense and is it competitive?</h4>
+          <p class="faq-a">Yes, and that's the rare part. You're hiring senior, hands-on builders who do the work themselves, not a layer of PMs and juniors. Most teams at this price either don't have the seniority, or do, but route the actual work down to cheaper hands. <br><br><strong>The realistic alternatives for the same scope:</strong> top global agencies (IDEO, MetaLab, Work &amp; Co.) run <strong>$400K–$1.5M+</strong> for 8–12 person teams with account managers. Mid-tier US/EU consultancies run <strong>$200K–$450K</strong> with mixed seniority. Bigger isn't better, large teams spend ~3× the overhead just coordinating themselves. Offshore at <strong>$50K–$150K</strong> sounds cheap, but communication lag, a 1:8 senior-to-junior ratio, and rework typically mean paying twice within a year. Generalist agencies don't know the domain landmines: WhatsApp Business API approval timing, payment-provider marketplace compliance gates, Apple's "private community" review behaviour, Shabbat/holiday logic across time zones, each surprise costs 2–4 weeks. We've shipped social, marketplace, payment, and community products at Meta scale, and Elad has taken a company from zero to IPO.</p>
         </div>
 
         <div class="faq-item">
-          <h4 class="faq-q">Why not offshore for $30K?</h4>
-          <p class="faq-a">Three real costs hidden inside the cheap price. <strong>One:</strong> communication lag — 8-hour time zones plus cultural distance from US/Jewish-women product nuance means decisions take days, not hours. <strong>Two:</strong> senior judgment is rare — offshore teams typically have 1 senior to 8 juniors, and Galgal's architecture needs senior calls on Stripe Connect + religious schedule + multi-platform on day one. <strong>Three:</strong> rework eats the savings — most offshore-built MVPs get rebuilt within a year by a senior team. You end up paying twice.</p>
-        </div>
-
-        <div class="faq-item">
-          <h4 class="faq-q">What about a bigger agency or studio?</h4>
-          <p class="faq-a">Bigger isn't better — it's more time and more cost. Large teams need <strong>PMs, account managers, design directors, engineering leads</strong> just to coordinate themselves. A 12-person team for a 4-person scope means you're paying ~3x in overhead for the same output. Senior boutiques like us ship faster <em>because</em> we don't have layers between you and the work.</p>
-        </div>
-
-        <div class="faq-item">
-          <h4 class="faq-q">Why a senior team over an experienced one in a different space?</h4>
-          <p class="faq-a">Generalist agencies can build apps. They can't anticipate that <strong>WhatsApp Business API approval takes 6 weeks</strong>, that <strong>Stripe Connect marketplace approval has specific compliance gates</strong>, that <strong>Apple sometimes rejects "private community" apps</strong>, or how to handle <strong>Shabbat/holiday transaction logic across time zones</strong>. Each surprise costs 2-4 weeks. We've shipped social, marketplace, payment, and community products at Meta scale — we know the traps before they happen.</p>
-        </div>
-
-        <div class="faq-item">
-          <h4 class="faq-q">Can't I just vibe-code this with Cursor or Lovable?</h4>
-          <p class="faq-a">AI is amazing — we use it daily and it's why we can move fast. But AI can't make architecture decisions for Stripe Connect + WhatsApp + religious schedule + safety + scale. <strong>That's why $5K vibe-coded MVPs never reach 1,000 paying users.</strong></p>
-        </div>
-
-        <div class="faq-item">
-          <h4 class="faq-q">What about no-code (Bubble, Glide, Webflow)?</h4>
-          <p class="faq-a">Great for landing pages and simple tools. Not great for: Stripe Connect with religious schedule logic, native mobile feel, custom AI, sub-second search. <strong>You'd hit hard walls within 3 months and rebuild from scratch.</strong></p>
+          <h4 class="faq-q">I heard about vibe coding, can't it be done like that?</h4>
+          <p class="faq-a">No professional would suggest building a real platform with vibe coding. "Vibe coding" means code that isn't monitored and fixed by an expert, it won't run at real load, won't scale, and can't be maintained. AI is a tool we use heavily, but AI alone can't make architecture decisions for payment-provider integrations, WhatsApp constraints, religious-schedule logic, safety, and scale. Same for no-code platforms (Bubble, Glide, Webflow), fine for landing pages, but they hit hard walls within ~3 months for a real marketplace and get rebuilt from scratch.</p>
         </div>
 
         <div class="faq-item">
           <h4 class="faq-q">What if I want to stop halfway?</h4>
-          <p class="faq-a">You can stop at the end of any phase with no penalty. Monthly plan needs 30 days notice. Phase 1 Blueprint ($9,500) is the only paid commitment to get started. <strong>You bet one phase at a time, not the whole project.</strong></p>
-        </div>
-
-        <div class="faq-item">
-          <h4 class="faq-q">What if Apple or Stripe rejects us?</h4>
-          <p class="faq-a">We start both applications Day 1 of Phase 1 Blueprint, so any approval issues surface early. Apple/Google rejections are usually fixable in a week. Stripe Connect for marketplaces is well-trodden — we handle the paperwork.</p>
+          <p class="faq-a">The only paid commitment to start is the Blueprint (<strong>$21,000</strong>, up to 2 weeks). After that you're on a monthly retainer and can stop at any point with <strong>30 days written notice, both ways</strong>. No penalties.</p>
         </div>
 
         <div class="faq-item">
           <h4 class="faq-q">Do I own the code, design, and brand?</h4>
-          <p class="faq-a">Yes — everything. Source code, Figma files, brand assets, Stripe and hosting accounts in your name. <strong>A future developer can take over with zero handoff drama.</strong></p>
+          <p class="faq-a">Yes, everything. Source code, Figma files, brand assets, and all third-party accounts in your name. <strong>A future developer can take over with zero handoff drama.</strong></p>
         </div>
 
         <div class="faq-item">
-          <h4 class="faq-q">Should I get a second opinion?</h4>
-          <p class="faq-a">Please do — we welcome it. Ask other agencies: "How many seniors are actually on the team? Have you shipped marketplace + Stripe Connect + social before? Who do I work with directly? How fast does AI accelerate your build?" <strong>You'll quickly see we're fairly priced for senior expertise.</strong></p>
+          <h4 class="faq-q">How long would it take to onboard a new team if I want to switch later?</h4>
+          <p class="faq-a">In the age of AI, fast. A competent team can pick up a well-built codebase quickly: they use AI to read the code and lean on the design and planning documents to hit the ground running. We deliberately build this way because it's simpler for <em>us</em> to keep maintaining what we build years later, we build as if <strong>for us</strong>, not to lock you in with us. Low switching cost is a feature, not a risk.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-q">Can I speak with people who've worked with you and can recommend you?</h4>
+          <p class="faq-a">Yes. We'll connect you directly with past partners and founders we've worked with, names, roles, and intro emails sent as soon as you'd like to talk to them.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SLIDE 9 — TEAM -->
+  <!-- SLIDE 9, TEAM -->
   <section class="slide" data-title="Who we are">
     <div class="slide-header">
       <div class="brand">communication band<span class="dot">.</span></div>
-      <div class="slide-meta">09 · Who we are</div>
+      <div class="slide-meta">08 · Who we are</div>
     </div>
     <div class="slide-body">
       <div class="slide-title-row">
-        <span class="title-num">09</span>
+        <span class="title-num">08</span>
         <h2>A small senior team. You work directly with the builders.</h2>
       </div>
       <p class="lead muted">Over 40 years of combined experience in tech, design, and company building. Strong in execution. Deep experience across the world's top-leading product companies.</p>
@@ -1986,7 +1960,7 @@
           </div>
           <div class="role">Product &amp; Design Lead</div>
           <h4>Vika Finkel</h4>
-          <p>Product &amp; design are led by Vika Finkel, former Senior Product Design Manager at Meta, where she owned and delivered major initiatives across Facebook, WhatsApp, Instagram, Messenger, and Novi. She brings experience building products from zero to launch as well as evolving systems at massive scale — spanning product vision, execution, and team building.</p>
+          <p>Product &amp; design are led by Vika Finkel, former Senior Product Design Manager at Meta, where she owned and delivered major initiatives across Facebook, WhatsApp, Instagram, Messenger, and Novi. She brings experience building products from zero to launch as well as evolving systems at massive scale, spanning product vision, execution, and team building.</p>
         </div>
 
         <div class="member">
@@ -1996,7 +1970,7 @@
           </div>
           <div class="role">Engineering &amp; AI Lead</div>
           <h4>Elad Daniel</h4>
-          <p>Engineering, AI, and R&amp;D are led by Elad Daniel — a tech veteran with deep experience building large-scale platforms for millions of users. Architect of data and technology systems, expert in payment infrastructure, and proven across social and marketing platforms. Equally fluent in 0-to-1 product building and leading large technical teams. Advises on the business side of the companies he partners with.</p>
+          <p>Engineering, AI, and R&amp;D are led by Elad Daniel, a tech veteran with deep experience building large-scale platforms for millions of users. Architect of data and technology systems, expert in payment infrastructure, and proven across social and marketing platforms. Equally fluent in 0-to-1 product building and leading large technical teams. In his most recent co-founded company, Elad led both product and operations end-to-end, from zero to IPO. Advises on the business side of the companies he partners with.</p>
         </div>
 
         <div class="member">
@@ -2035,72 +2009,48 @@
     </div>
   </section>
 
-  <!-- SLIDE — INDEX (appendix notes) -->
+  <!-- SLIDE, INDEX (appendix notes) -->
   <section class="slide" data-title="Index">
     <div class="slide-header">
       <div class="brand">communication band<span class="dot">.</span></div>
-      <div class="slide-meta">10 · Index</div>
+      <div class="slide-meta">09 · Index</div>
     </div>
     <div class="slide-body">
       <div class="slide-title-row">
-        <span class="title-num">10</span>
+        <span class="title-num">09</span>
         <h2>Index</h2>
       </div>
-      <p class="lead muted">Notes, optional add-ons, and details that didn't fit in the main flow.</p>
+      <p class="lead muted">A few things worth flagging.</p>
 
       <div class="index-list">
         <div class="index-item">
-          <div class="ix-letter">A · Optional add-on</div>
-          <h4>Full branding (not part of scope)</h4>
-          <p>Full brand identity is <strong>not part of the MVP scope</strong>. Phase 2 includes a light brand direction (colors, logo, illustration style) just to align the product. If you want a complete branding sprint — name treatment, logo system, full identity, brand book — we can add it mid-way through Phase 2. <strong>Average cost: $15,000–$29,000.</strong></p>
+          <div class="ix-letter">A · Additional payments</div>
+          <h4>Third-party costs, billed separately</h4>
+          <p>Branding, cloud services, AI services, payment service provider fees, WhatsApp Business integration costs, and any other 3rd-party services or operational costs are billed separately by their providers, not part of the monthly retainer.</p>
         </div>
 
         <div class="index-item">
-          <div class="ix-letter">B · Content from social platforms</div>
-          <h4>Instagram &amp; TikTok embeds (not scraping)</h4>
-          <p>Scraping third-party social platforms is against their ToS and brittle to maintain. Instead, we use the official oEmbed flow — creators paste a URL, we render an embed. Lightweight, legal, works for any public post.</p>
+          <div class="ix-letter">B · Legal stance</div>
+          <h4>External service provider</h4>
+          <p>We do not take on legal responsibility for Galgal as a product or business. We operate strictly as an external service provider, as described in this proposal. Naturally, we sit in a legal inferiority position to Galgal as the operator.</p>
         </div>
 
         <div class="index-item">
-          <div class="ix-letter">C · Religious schedule logic</div>
-          <h4>Shabbat &amp; holiday transaction pause</h4>
-          <p>Location-aware pausing of marketplace transactions on Shabbat and Jewish holidays. Complex edge cases (time zones, daylight saving, in-flight transactions) handled in Phase 1. May warrant a rabbinic review before launch.</p>
-        </div>
-
-        <div class="index-item">
-          <div class="ix-letter">D · One codebase, three platforms</div>
-          <h4>React Native</h4>
-          <p>iOS, Android, and Web all ship from one React Native codebase. That's why native iOS and Android apps don't appear as a separate phase — they're built from day one alongside web.</p>
-        </div>
-
-        <div class="index-item">
-          <div class="ix-letter">E · What's not included</div>
-          <h4>Outside our scope</h4>
-          <p>We provide end-to-end design, brand, and code for product readiness. Not included: go-to-market, marketing, paid ads, influencer outreach, content moderation staffing, legal counsel, accounting, customer support staffing, and ongoing post-launch operations.</p>
-        </div>
-
-        <div class="index-item">
-          <div class="ix-letter">F · Working relationship</div>
-          <h4>How we collaborate</h4>
-          <p>Weekly working session (same day each week). Shared timeline document Alana can see at any time. Open WhatsApp line for quick questions. Final product decisions: Alana and her husband. We advise on product and technology.</p>
+          <div class="ix-letter">C · Content &amp; external services</div>
+          <h4>What we help with vs. recommend vendors for</h4>
+          <p>We'll help with initial content using AI to move fast. If you want a professional content strategy, we can recommend and help you find vendors. Same goes for other services like professional audits and certifications, we won't run them in-house, but we'll connect you to the right partners.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SLIDE — THANK YOU -->
+  <!-- SLIDE, THANK YOU -->
   <section class="slide thanks" data-title="Thank you">
     <div class="thanks-body">
       <div class="thanks-collage">
-        <div class="thanks-photo p1">
-          <img src="banner5.png" alt="" />
-        </div>
         <div class="thanks-photo p2">
           <img src="banner2.png" alt="" />
           <span class="thanks-text">Toda Raba</span>
-        </div>
-        <div class="thanks-photo p3">
-          <img src="banner4.png" alt="" />
         </div>
       </div>
     </div>
@@ -2112,12 +2062,12 @@
 <!-- DECK NAV -->
 <div class="deck-nav">
   <button class="nav-btn" id="prevBtn" aria-label="Previous slide">←</button>
-  <div class="nav-counter"><strong id="navCurrent">01</strong> / <span id="navTotal">10</span></div>
+  <div class="nav-counter"><strong id="navCurrent">01</strong> / <span id="navTotal">09</span></div>
   <button class="nav-btn" id="nextBtn" aria-label="Next slide">→</button>
 </div>
 
 <script>
-// PASSWORD GATE — change this value to update the password
+// PASSWORD GATE, change this value to update the password
 (function(){
   const PASSWORD = "555";
   const gate = document.getElementById('pwGate');
@@ -2133,13 +2083,13 @@
       error.style.display='block';input.value='';input.focus();
     }
   }
-  submit.addEventListener('click',tryUnlock);
-  input.addEventListener('keydown',function(e){if(e.key==='Enter')tryUnlock()});
-  input.addEventListener('input',function(){error.style.display='none'});
+  submit.addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){if(e.key==='Enter')tryUnlock()});
+  input.addEventListener('input', function(){error.style.display='none'});
   setTimeout(()=>input.focus(),100);
 })();
 
-// PRICING TOGGLE — switch between Per phase and Monthly
+// PRICING TOGGLE, switch between Monthly and Per phase
 document.querySelectorAll('.pricing-toggle button').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.pricing-toggle button').forEach(b => b.classList.remove('active'));
@@ -2151,18 +2101,18 @@ document.querySelectorAll('.pricing-toggle button').forEach(btn => {
   });
 });
 
-// SHIP CARDS — flip between overview and full feature list
+// SHIP CARDS, flip between overview and full feature list
 document.querySelectorAll('[data-flip]').forEach(btn => {
   btn.addEventListener('click', () => {
     btn.closest('.ship-col').classList.toggle('flipped');
   });
 });
 
-// MVP BOARD — feature list with click-to-cycle buckets
+// MVP BOARD, feature list with click-to-cycle buckets
 const FEATURES = [
-  // MVP (now) — the focused first set for PMF
+  // MVP (now), the focused first set for PMF
   { name: "React Native app (iOS, Android, Web)", size: "L", bucket: "mvp" },
-  { name: "Member verification (Jewish + Israel-support questionnaire)", size: "M", bucket: "mvp" },
+  { name: "Member verification (Jewish questionnaire)", size: "M", bucket: "mvp" },
   { name: "Invitation system + referral tracking", size: "M", bucket: "mvp" },
   { name: "Profiles & roles (member, seller, channel admin)", size: "M", bucket: "mvp" },
   { name: "Email + password recovery", size: "S", bucket: "mvp" },
@@ -2170,34 +2120,34 @@ const FEATURES = [
   { name: "Channel admin tools", size: "M", bucket: "mvp" },
   { name: "Universal item primitive (events, products, services, classes)", size: "L", bucket: "mvp" },
   { name: "Categories & tags", size: "S", bucket: "mvp" },
-  { name: "Stripe payments (one-time + subscription)", size: "L", bucket: "mvp" },
+  { name: "Payments (one-time + subscription)", size: "L", bucket: "mvp" },
   { name: "Seller payouts & marketplace commission", size: "M", bucket: "mvp" },
   { name: "Shabbat & holiday transaction pause (location-aware)", size: "M", bucket: "mvp" },
-  { name: "WhatsApp integration", size: "M", bucket: "mvp" },
+  { name: "Share-out to WhatsApp (no deep integration)", size: "M", bucket: "mvp" },
   { name: "Public conversations on items & channels", size: "M", bucket: "mvp" },
   { name: "Safety: reporting, blocking, moderation queue", size: "M", bucket: "mvp" },
   { name: "Search across items, channels, members", size: "M", bucket: "mvp" },
   { name: "Browse by category & tag", size: "S", bucket: "mvp" },
   { name: "AI-led onboarding", size: "M", bucket: "mvp" },
-  { name: "AI content help (photo descriptions)", size: "M", bucket: "mvp" },
+  { name: "AI content help (auto-fill description & tags from photo)", size: "M", bucket: "mvp" },
   { name: "Admin dashboard", size: "M", bucket: "mvp" },
   { name: "Basic analytics (signups, posts, transactions)", size: "M", bucket: "mvp" },
   { name: "Customer support: help center + request submission", size: "M", bucket: "mvp" },
   { name: "Hosting, backend, security baseline", size: "L", bucket: "mvp" },
-  { name: "Embed Instagram & TikTok posts via shared URL (oEmbed)", size: "S", bucket: "mvp" },
+  { name: "Embed Instagram & TikTok posts shared by creator via URL (never scraped)", size: "S", bucket: "mvp" },
 
-  // FAST FOLLOW — soon after launch
+  // FAST FOLLOW, soon after launch
   { name: "One-button live streaming", size: "XL", bucket: "fast" },
   { name: "Live chat during broadcasts", size: "M", bucket: "fast" },
   { name: "AI navigation helper", size: "L", bucket: "fast" },
   { name: "AI conversation summaries", size: "M", bucket: "fast" },
   { name: "Personalized feed", size: "L", bucket: "fast" },
   { name: "ID verification (admin-reviewed, optional document)", size: "L", bucket: "fast" },
-  { name: "AI-assisted moderation flagging", size: "M", bucket: "fast" },
+  { name: "AI-assisted moderation flagging", size: "M", bucket: "future" },
   { name: "Advertising & sponsored placements", size: "L", bucket: "fast" },
   { name: "AI-powered first response in customer support", size: "M", bucket: "fast" },
 
-  // FUTURE — Phase 3+
+  // FUTURE, Phase 3+
   { name: "Live auctions (Whatnot-style)", size: "XL", bucket: "future" },
   { name: "Embedded AI chat across the platform", size: "L", bucket: "future" },
   { name: "Premium tiers & memberships", size: "M", bucket: "future" },
