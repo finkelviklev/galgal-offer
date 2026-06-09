@@ -788,6 +788,104 @@
   .faq-a strong{color:var(--text);font-weight:600}
   @media (max-width:880px){.faq-grid{grid-template-columns:1fr;gap:14px}}
 
+  /* PRICING TOGGLE — Per phase / Monthly */
+  .pricing-toggle{
+    display:inline-flex;background:rgba(70,109,86,.1);
+    border-radius:100px;padding:5px;margin:0 0 28px;gap:2px;
+  }
+  .pricing-toggle button{
+    font-family:inherit;font-size:14px;font-weight:600;letter-spacing:.02em;
+    background:transparent;border:none;cursor:pointer;
+    padding:10px 24px;border-radius:100px;color:var(--muted);
+    transition:all .2s;
+  }
+  .pricing-toggle button.active{
+    background:#fff;color:var(--accent);
+    box-shadow:0 2px 10px rgba(70,109,86,.18);
+  }
+
+  /* Per-phase pricing list */
+  .phase-pricing-list{display:flex;flex-direction:column;gap:12px}
+  .phase-row{
+    display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+    padding:22px 26px;border-radius:14px;
+    background:linear-gradient(135deg, #cfe5bd 0%, #e2ecca 100%);
+  }
+  .phase-row:nth-child(2){background:linear-gradient(135deg, #b9d8a4 0%, #d4e6bb 100%)}
+  .phase-row:nth-child(3){background:linear-gradient(135deg, #c6dfb2 0%, #dceac9 100%)}
+  .phase-row:nth-child(4){background:linear-gradient(135deg, #e2e8d8 0%, #ecefe2 100%)}
+  .phase-row.required{
+    background:linear-gradient(135deg, #466d56 0%, #6b8e74 100%);
+    color:#fff;
+    box-shadow:0 8px 24px rgba(70,109,86,.18);
+  }
+  .phase-row-left{display:flex;flex-direction:column;gap:4px}
+  .phase-row-tag{
+    font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:rgba(255,255,255,.82);margin-bottom:4px;
+  }
+  .phase-row-name{font-size:19px;font-weight:700;color:var(--ink);letter-spacing:-.01em;line-height:1.2}
+  .phase-row.required .phase-row-name{color:#fff}
+  .phase-row-meta{font-size:14px;color:var(--muted);margin-top:2px;line-height:1.4}
+  .phase-row.required .phase-row-meta{color:rgba(255,255,255,.85)}
+  .phase-row-price{
+    font-size:24px;font-weight:700;letter-spacing:-.02em;
+    color:var(--accent);white-space:nowrap;
+  }
+  .phase-row.required .phase-row-price{color:#fff}
+
+  .pricing-total{
+    margin-top:14px;background:#fff;border-radius:14px;
+    padding:20px 26px;display:flex;justify-content:space-between;align-items:center;
+    gap:14px;border:2px solid var(--accent);
+  }
+  .pt-label{
+    font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);
+  }
+  .pt-amount{
+    font-size:30px;font-weight:700;letter-spacing:-.025em;line-height:1;
+    color:var(--accent);
+  }
+
+  /* Monthly card — horizontal */
+  .monthly-card{
+    display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+    padding:32px 36px;border-radius:18px;
+    background:linear-gradient(135deg, #466d56 0%, #6b8e74 55%, #9bca80 100%);
+    color:#fff;box-shadow:0 14px 40px rgba(70,109,86,.22);
+  }
+  .monthly-tag{
+    font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    opacity:.85;margin-bottom:6px;
+  }
+  .monthly-card h3{
+    font-size:26px;font-weight:700;letter-spacing:-.018em;margin:0 0 12px;line-height:1.1;color:#fff;
+  }
+  .monthly-card p{font-size:15px;line-height:1.5;margin:0 0 14px;opacity:.92}
+  .monthly-includes{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+  .monthly-includes li{font-size:14px;line-height:1.4;opacity:.94}
+  .monthly-includes li::before{content:"✓ ";font-weight:700;margin-right:4px;opacity:.7}
+  .monthly-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end}
+  .monthly-price{font-size:48px;font-weight:700;letter-spacing:-.03em;line-height:1}
+  .monthly-period{font-size:18px;opacity:.85;margin-top:2px}
+
+  /* Disclaimers */
+  .pricing-disclaimer{
+    margin-top:16px;padding:14px 22px;
+    background:linear-gradient(135deg, rgba(70,109,86,.08) 0%, rgba(70,109,86,.04) 100%);
+    border-left:3px solid var(--accent);
+    border-radius:10px;
+    font-size:14.5px;color:var(--text);line-height:1.55;
+  }
+  .pricing-disclaimer strong{color:var(--accent);font-weight:700}
+
+  @media (max-width:880px){
+    .phase-row{grid-template-columns:1fr;gap:8px}
+    .monthly-card{grid-template-columns:1fr;gap:18px}
+    .monthly-right{align-items:flex-start;text-align:left}
+  }
+
   /* VISION-PHASE blocks inside Cost per phase card */
   .vision-phase{
     background:rgba(255,255,255,.18);
@@ -1690,70 +1788,86 @@
         </div>
       </div>
 
-      <div class="section-label">Three ways to structure the work</div>
-      <div class="pricing">
+      <div class="section-label">Pricing options</div>
 
-        <div class="price">
-          <span class="pill">Cost per phase</span>
+      <div class="pricing-toggle">
+        <button type="button" class="active" data-target="phase">Price per phase</button>
+        <button type="button" data-target="monthly">Monthly price</button>
+      </div>
 
-          <div class="phase-zero">
-            <div class="pz-tag">Start here · risk-free entry</div>
-            <div class="pz-name">Phase 0 — Blueprint</div>
-            <div class="pz-desc">2 weeks. We define scope, flows, architecture, and the final plan together. You stop here with a complete blueprint, or continue with full confidence.</div>
-            <div class="pz-price">$9,500</div>
-            <div class="pz-note">Fully credited toward Phase 1 if you continue.</div>
-          </div>
-
-          <div class="vision-phase">
-            <div class="vp-head">
-              <div class="vp-name">Phase 1 — MVP</div>
-              <div class="vp-time">14–16 weeks</div>
+      <!-- PER PHASE -->
+      <div class="pricing-view" data-view="phase">
+        <div class="phase-pricing-list">
+          <div class="phase-row required">
+            <div class="phase-row-left">
+              <div class="phase-row-tag">Required first step</div>
+              <div class="phase-row-name">Phase 1 — Blueprint</div>
+              <div class="phase-row-meta">2 weeks · scope and roadmap. Required for monthly plan too.</div>
             </div>
-            <div class="vp-desc">What we need to build first. Everything members can do on day one.</div>
-            <div class="vp-price">$180,000 – $240,000</div>
+            <div class="phase-row-price">$9,500</div>
           </div>
 
-          <div class="vision-phase">
-            <div class="vp-head">
-              <div class="vp-name">Phase 2 — Fast follow</div>
-              <div class="vp-time">After MVP traction</div>
+          <div class="phase-row">
+            <div class="phase-row-left">
+              <div class="phase-row-name">Phase 2 — Design &amp; Build</div>
+              <div class="phase-row-meta">10–12 weeks · the largest phase</div>
             </div>
-            <div class="vp-desc">Everything after MVP. Live streaming, advanced AI, auctions, premium, multi-language.</div>
-            <div class="vp-price">$180,000 – $260,000</div>
+            <div class="phase-row-price">$130K – $160K</div>
           </div>
 
-          <div class="vision-total">
-            <div class="vt-label">Full vision</div>
-            <div class="vt-amount">$360K – $500K</div>
+          <div class="phase-row">
+            <div class="phase-row-left">
+              <div class="phase-row-name">Phase 3 — Test &amp; Ship</div>
+              <div class="phase-row-meta">3–4 weeks · validate, prepare, launch</div>
+            </div>
+            <div class="phase-row-price">$30K – $50K</div>
           </div>
 
-          <p class="footnote">Ranges reflect scope choices we make together. We don't assume the max — we'll always show why we're at a given number.</p>
+          <div class="phase-row">
+            <div class="phase-row-left">
+              <div class="phase-row-name">Phase 4 — Fast Follow</div>
+              <div class="phase-row-meta">After traction · live, AI, web app, more</div>
+            </div>
+            <div class="phase-row-price">$180K – $260K</div>
+          </div>
         </div>
 
-        <div class="price">
-          <span class="pill">Monthly with scope</span>
-          <div class="big">$40,000<span>/mo</span></div>
-          <div class="sub">5–6 months for full MVP</div>
-          <ul>
-            <li>Written scope list each month</li>
-            <li>Predictable monthly burn</li>
-            <li>Room to evolve as we learn</li>
-            <li>Same senior team end-to-end</li>
-          </ul>
-          <p class="footnote">Best when you want monthly predictability with a clear plan.</p>
+        <div class="pricing-total">
+          <div class="pt-label">Full vision total</div>
+          <div class="pt-amount">$350K – $480K</div>
         </div>
 
-        <div class="price">
-          <span class="pill">Monthly partnership</span>
-          <div class="big">$48,000<span>/mo</span></div>
-          <div class="sub">Min 3 months · 5–6 for full MVP</div>
-          <ul>
-            <li>Senior team capacity dedicated to Galgal</li>
-            <li>Scope flexes month to month</li>
-            <li>Best for speed and flexibility</li>
-            <li>Long-term partner posture</li>
-          </ul>
-          <p class="footnote">Best when you want us as an ongoing partner.</p>
+        <div class="pricing-disclaimer">
+          <strong>Stop at any phase.</strong> You decide whether to continue at the end of each phase — no commitment beyond what you've agreed to.
+        </div>
+      </div>
+
+      <!-- MONTHLY -->
+      <div class="pricing-view" data-view="monthly" style="display:none">
+        <div class="monthly-card">
+          <div class="monthly-left">
+            <div class="monthly-tag">Predictable monthly partnership</div>
+            <h3>Monthly retainer</h3>
+            <p>Senior team capacity fully dedicated to Galgal. We deliver against the plan we agreed in the Blueprint, in monthly milestones.</p>
+            <ul class="monthly-includes">
+              <li>Same scope and quality as per-phase pricing</li>
+              <li>Direct work with Vika, Elad, and the engineering team</li>
+              <li>Weekly working sessions, shared timeline</li>
+              <li>Production-ready output, end-to-end</li>
+            </ul>
+          </div>
+          <div class="monthly-right">
+            <div class="monthly-price">$85,000</div>
+            <div class="monthly-period">/ month</div>
+          </div>
+        </div>
+
+        <div class="pricing-disclaimer">
+          <strong>Phase 1 Blueprint is still required first</strong> ($9,500, 2 weeks). We can't start a monthly engagement without an agreed plan.
+        </div>
+
+        <div class="pricing-disclaimer">
+          <strong>30-day notice to end.</strong> You can end the monthly engagement at any time with 30 days written notice — no additional fees.
         </div>
       </div>
 
@@ -1971,6 +2085,18 @@
   input.addEventListener('input',function(){error.style.display='none'});
   setTimeout(()=>input.focus(),100);
 })();
+
+// PRICING TOGGLE — switch between Per phase and Monthly
+document.querySelectorAll('.pricing-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pricing-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const target = btn.dataset.target;
+    document.querySelectorAll('.pricing-view').forEach(v => {
+      v.style.display = v.dataset.view === target ? 'block' : 'none';
+    });
+  });
+});
 
 // SHIP CARDS — flip between overview and full feature list
 document.querySelectorAll('[data-flip]').forEach(btn => {
