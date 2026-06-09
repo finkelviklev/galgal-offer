@@ -832,6 +832,7 @@
   .hourbank-grid{
     display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px;
   }
+  .hourbank-grid.single{grid-template-columns:1fr}
   .hourbank-card{
     padding:32px 32px 30px;border-radius:20px;
     background:#fff;border:4px solid var(--accent);
@@ -1950,39 +1951,31 @@
 
       <!-- RETAINER -->
       <div class="pricing-view" data-view="retainer" style="display:none">
-        <p style="font-size:15px;color:var(--text);line-height:1.55;margin:0 0 18px;max-width:780px">Predictable monthly partnership. Senior team capacity reserved for Galgal, delivering against the agreed plan in monthly milestones. Best when you want maximum velocity and continuity all the way to launch.</p>
-
-        <div class="monthly-card">
-          <div class="monthly-left">
-            <div class="monthly-tag">Predictable monthly partnership</div>
+        <div class="hourbank-grid single">
+          <div class="hourbank-card">
             <h3>Monthly retainer</h3>
-            <p>Senior team capacity for Galgal. We deliver against the plan with full transparency at every stage, the plan starts at the Blueprint and evolves as we learn.</p>
-            <ul class="monthly-includes">
+            <p class="hb-subtitle">Predictable monthly partnership. Senior team capacity reserved for Galgal, delivering against the agreed plan in monthly milestones.</p>
+            <div class="hb-divider"></div>
+            <div class="hb-row">
+              <span class="label">Monthly rate</span>
+              <span class="value">$120,000 / month</span>
+            </div>
+            <div class="hb-row">
+              <span class="label">Notice period</span>
+              <span class="value">30 days, both ways</span>
+            </div>
+            <div class="hb-row total">
+              <span class="label">Total per month</span>
+              <span class="value">$120,000</span>
+            </div>
+            <ul class="hb-includes">
               <li>Direct work with Vika, Elad, and senior engineers as required</li>
               <li>Single invoice, single company to work with for building the platform</li>
               <li>Production-grade output, end-to-end</li>
+              <li>Estimated delivery: Design &amp; Build ~10–12 wks, Test &amp; Ship ~3–4 wks, then Fast Follow</li>
+              <li>External experts (e.g. security audits) billed separately by the provider, if needed</li>
             </ul>
-            <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22)">
-              <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:8px">Expected delivery milestones</div>
-              <ul class="monthly-includes" style="opacity:.94">
-                <li>Design &amp; Build · estimated ~10–12 weeks after Blueprint</li>
-                <li>Test &amp; Ship · estimated ~3–4 weeks · validate, prepare, launch</li>
-                <li>Fast Follow · after traction · live, AI, web, more</li>
-              </ul>
-            </div>
-            <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22)">
-              <div style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin-bottom:8px">Not included</div>
-              <p style="font-size:14px;line-height:1.5;margin:0;opacity:.92">Use of external experts, for example, external security or compliance audits. Usually not applicable at this stage of company building. If requested, billed separately by the provider.</p>
-            </div>
           </div>
-          <div class="monthly-right">
-            <div class="monthly-price">$120,000</div>
-            <div class="monthly-period">/ month</div>
-          </div>
-        </div>
-
-        <div class="pricing-disclaimer">
-          <strong>30-day notice, both ways.</strong> Either side can end the monthly engagement with 30 days written notice, no additional fees.
         </div>
       </div>
 
