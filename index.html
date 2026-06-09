@@ -1025,22 +1025,33 @@
 
   /* COMPANIES bar (Who we are slide) */
   .companies-bar{
-    margin-top:44px;padding-top:28px;border-top:1px solid var(--line);
+    margin-top:36px;padding-top:24px;border-top:1px solid var(--line);
   }
   .cb-label{
     font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--muted);margin-bottom:20px;
+    color:var(--muted);margin-bottom:18px;
   }
   .cb-row{
-    display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;
+    display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;
   }
-  .cb-row .company{
-    font-size:20px;font-weight:600;color:var(--text);
-    letter-spacing:-.018em;line-height:1;
-    transition:color .2s;
+  .company-mark{
+    display:inline-flex;align-items:center;gap:9px;
+    transition:transform .2s;
   }
-  .cb-row .company:hover{color:var(--accent)}
-  .cb-row .dot{color:var(--accent);opacity:.5;font-size:18px}
+  .company-mark:hover{transform:translateY(-2px)}
+  .cm-icon{
+    width:32px;height:32px;border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;font-weight:800;color:#fff;
+    letter-spacing:-.02em;flex-shrink:0;
+  }
+  .cm-icon.ig{
+    background:linear-gradient(135deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  }
+  .cm-icon.msg{
+    background:linear-gradient(135deg, #00B2FF 0%,#006AFF 50%,#A033FF 100%);
+  }
+  .cm-name{font-size:16px;font-weight:600;color:var(--text);letter-spacing:-.01em;line-height:1}
 
   /* THANK YOU slide — three-photo cascade layout */
   .slide.thanks .thanks-body{
@@ -1913,8 +1924,23 @@
 
       <div class="faq-grid">
         <div class="faq-item">
-          <h4 class="faq-q">Why $360–500K and not $50K?</h4>
-          <p class="faq-a">A Stripe-marketplace platform with AI, live, religious-schedule logic, safety, and 100K-user ambitions is a real engineering project. <strong>Top agencies charge $500K–$1.5M for the same scope.</strong> We're priced for senior expertise without the agency overhead.</p>
+          <h4 class="faq-q">Why $350–480K and not $50K?</h4>
+          <p class="faq-a">A Stripe-marketplace platform with AI, live, religious-schedule logic, safety, and 100K-user ambitions is a real engineering project. <strong>Top agencies charge $500K–$1.5M for the same scope.</strong> We're priced for senior expertise without the agency overhead — and you can stop at the end of any phase.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-q">Why not offshore for $30K?</h4>
+          <p class="faq-a">Three real costs hidden inside the cheap price. <strong>One:</strong> communication lag — 8-hour time zones plus cultural distance from US/Jewish-women product nuance means decisions take days, not hours. <strong>Two:</strong> senior judgment is rare — offshore teams typically have 1 senior to 8 juniors, and Galgal's architecture needs senior calls on Stripe Connect + religious schedule + multi-platform on day one. <strong>Three:</strong> rework eats the savings — most offshore-built MVPs get rebuilt within a year by a senior team. You end up paying twice.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-q">What about a bigger agency or studio?</h4>
+          <p class="faq-a">Bigger isn't better — it's more time and more cost. Large teams need <strong>PMs, account managers, design directors, engineering leads</strong> just to coordinate themselves. A 12-person team for a 4-person scope means you're paying ~3x in overhead for the same output. Senior boutiques like us ship faster <em>because</em> we don't have layers between you and the work.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-q">Why a senior team over an experienced one in a different space?</h4>
+          <p class="faq-a">Generalist agencies can build apps. They can't anticipate that <strong>WhatsApp Business API approval takes 6 weeks</strong>, that <strong>Stripe Connect marketplace approval has specific compliance gates</strong>, that <strong>Apple sometimes rejects "private community" apps</strong>, or how to handle <strong>Shabbat/holiday transaction logic across time zones</strong>. Each surprise costs 2-4 weeks. We've shipped social, marketplace, payment, and community products at Meta scale — we know the traps before they happen.</p>
         </div>
 
         <div class="faq-item">
@@ -1928,18 +1954,13 @@
         </div>
 
         <div class="faq-item">
-          <h4 class="faq-q">Why not offshore for $30K?</h4>
-          <p class="faq-a">Quality and communication variance is real. Senior architectural judgment is rare. <strong>The 50–80% savings usually disappear in rework and missed launch windows.</strong> If you go this route, budget for a senior architect to oversee — and then you're back at our price.</p>
-        </div>
-
-        <div class="faq-item">
           <h4 class="faq-q">What if I want to stop halfway?</h4>
-          <p class="faq-a">You can pause between phases with no penalty. Phase 0 Blueprint is also fully credited toward Phase 1 if you continue. <strong>You bet one phase at a time, not the whole project.</strong></p>
+          <p class="faq-a">You can stop at the end of any phase with no penalty. Monthly plan needs 30 days notice. Phase 1 Blueprint ($9,500) is the only paid commitment to get started. <strong>You bet one phase at a time, not the whole project.</strong></p>
         </div>
 
         <div class="faq-item">
           <h4 class="faq-q">What if Apple or Stripe rejects us?</h4>
-          <p class="faq-a">We start both applications Day 1 of Phase 0, so any approval issues surface early. Apple/Google rejections are usually fixable in a week. Stripe Connect for marketplaces is well-trodden — we handle the paperwork.</p>
+          <p class="faq-a">We start both applications Day 1 of Phase 1 Blueprint, so any approval issues surface early. Apple/Google rejections are usually fixable in a week. Stripe Connect for marketplaces is well-trodden — we handle the paperwork.</p>
         </div>
 
         <div class="faq-item">
@@ -1949,7 +1970,7 @@
 
         <div class="faq-item">
           <h4 class="faq-q">Should I get a second opinion?</h4>
-          <p class="faq-a">Please do — we welcome it. Ask other agencies: "Do you do design + brand + code in one team? AI in your build? Who do I work with directly?" <strong>You'll quickly see we're fairly priced for senior expertise.</strong></p>
+          <p class="faq-a">Please do — we welcome it. Ask other agencies: "How many seniors are actually on the team? Have you shipped marketplace + Stripe Connect + social before? Who do I work with directly? How fast does AI accelerate your build?" <strong>You'll quickly see we're fairly priced for senior expertise.</strong></p>
         </div>
       </div>
     </div>
@@ -1966,6 +1987,7 @@
         <span class="title-num">09</span>
         <h2>A small senior team. You work directly with the builders.</h2>
       </div>
+      <p class="lead muted">Over 40 years of combined experience in tech, design, and company building. Strong in execution. Deep experience across the world's top-leading product companies.</p>
 
       <div class="team">
         <div class="member">
@@ -2002,21 +2024,14 @@
       <div class="companies-bar">
         <div class="cb-label">Where we've built and shipped</div>
         <div class="cb-row">
-          <span class="company">Meta</span>
-          <span class="dot">·</span>
-          <span class="company">WhatsApp</span>
-          <span class="dot">·</span>
-          <span class="company">Instagram</span>
-          <span class="dot">·</span>
-          <span class="company">Messenger</span>
-          <span class="dot">·</span>
-          <span class="company">Novi</span>
-          <span class="dot">·</span>
-          <span class="company">Gett</span>
-          <span class="dot">·</span>
-          <span class="company">Gefen</span>
-          <span class="dot">·</span>
-          <span class="company">Ottavia</span>
+          <span class="company-mark"><span class="cm-icon" style="background:#0866FF">M</span><span class="cm-name">Meta</span></span>
+          <span class="company-mark"><span class="cm-icon" style="background:#25D366">W</span><span class="cm-name">WhatsApp</span></span>
+          <span class="company-mark"><span class="cm-icon ig">Ig</span><span class="cm-name">Instagram</span></span>
+          <span class="company-mark"><span class="cm-icon msg">M</span><span class="cm-name">Messenger</span></span>
+          <span class="company-mark"><span class="cm-icon" style="background:#7B68EE">N</span><span class="cm-name">Novi</span></span>
+          <span class="company-mark"><span class="cm-icon" style="background:#FFC107;color:#1a1a1a">G</span><span class="cm-name">Gett</span></span>
+          <span class="company-mark"><span class="cm-icon" style="background:#2E7D32">G</span><span class="cm-name">Gefen</span></span>
+          <span class="company-mark"><span class="cm-icon" style="background:#466d56">O</span><span class="cm-name">Ottavia</span></span>
         </div>
       </div>
     </div>
