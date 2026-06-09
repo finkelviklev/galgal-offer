@@ -813,17 +813,19 @@
   .phase-row.required .phase-row-price{color:#fff}
 
   .pricing-total{
-    margin-top:14px;background:#fff;border-radius:14px;
-    padding:20px 26px;display:flex;justify-content:space-between;align-items:center;
-    gap:14px;border:2px solid var(--accent);
+    margin-top:24px;padding:22px 26px;
+    border:1px dashed var(--line);border-radius:14px;
+    background:#fafafa;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:24px;flex-wrap:wrap;
   }
   .pt-label{
     font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
     color:var(--accent);
   }
   .pt-amount{
-    font-size:30px;font-weight:700;letter-spacing:-.025em;line-height:1;
-    color:var(--accent);
+    font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1;
+    color:var(--accent);white-space:nowrap;
   }
 
   /* HOUR BANK cards, white + 4px green border, Claude-pricing template */
@@ -1023,13 +1025,6 @@
   .price li{font-size:15px;color:var(--text);padding:5px 0;display:flex;align-items:flex-start;gap:8px}
   .price li::before{content:"✓";color:var(--accent);font-weight:600;flex-shrink:0}
   .price .footnote{font-size:14px;color:var(--muted);margin-top:12px;font-style:italic}
-
-  /* HOURLY */
-  .hourly{margin-top:24px;padding:18px 24px;border:1px dashed var(--line);border-radius:14px;background:#fafafa;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-  .hourly .rate{font-size:26px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
-  .hourly .rate span{font-size:14px;font-weight:500;color:var(--muted)}
-  .hourly .note{font-size:15px;color:var(--text);flex:1;min-width:280px;line-height:1.5}
-  .hourly .note strong{color:var(--ink)}
 
   /* PATH */
   .path-card{padding:40px;border:1px solid var(--line);border-radius:18px;background:var(--tint);margin-top:32px}
@@ -2000,10 +1995,6 @@
         <div class="pt-amount">$410K – $500K</div>
       </div>
 
-      <div class="hourly">
-        <div class="rate">$350<span>/hour</span></div>
-        <div class="note"><strong>Hourly is available for transparency.</strong> Use it for advisory work, audits, and out-of-scope requests outside an active engagement.</div>
-      </div>
     </div>
   </section>
 
