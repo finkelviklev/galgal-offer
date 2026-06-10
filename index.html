@@ -864,6 +864,25 @@
   .hourbank-card .hb-row.total .value{
     font-size:30px;color:var(--accent);letter-spacing:-.02em;
   }
+  /* Stacked rows (label above, descriptive value below) */
+  .hourbank-card .hb-row.stacked{
+    display:flex;flex-direction:column;align-items:flex-start;gap:6px;
+    padding:16px 0;
+  }
+  .hourbank-card .hb-row.stacked .label{
+    font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .hourbank-card .hb-row.stacked .value{
+    font-size:15px;font-weight:400;color:var(--text);line-height:1.55;
+    text-align:left;white-space:normal;
+  }
+  .hourbank-card .hb-footer{
+    margin:18px 0 0;padding-top:16px;
+    border-top:1px solid rgba(0,0,0,.08);
+    font-size:14px;color:var(--muted);font-style:italic;line-height:1.55;
+  }
+
   .hourbank-card .hb-includes{
     list-style:none;padding:0;margin:22px 0 0;
     display:flex;flex-direction:column;gap:8px;
@@ -1956,25 +1975,28 @@
             <h3>Monthly retainer</h3>
             <p class="hb-subtitle">Predictable monthly partnership. Senior team capacity reserved for Galgal, delivering against the agreed plan in monthly milestones.</p>
             <div class="hb-divider"></div>
-            <div class="hb-row">
-              <span class="label">Monthly rate</span>
-              <span class="value">$120,000 / month</span>
-            </div>
-            <div class="hb-row">
-              <span class="label">Notice period</span>
-              <span class="value">30 days, both ways</span>
-            </div>
+
             <div class="hb-row total">
-              <span class="label">Total per month</span>
+              <span class="label">Price per month</span>
               <span class="value">$120,000</span>
             </div>
-            <ul class="hb-includes">
-              <li>Direct work with Vika, Elad, and senior engineers as required</li>
-              <li>Single invoice, single company to work with for building the platform</li>
-              <li>Production-grade output, end-to-end</li>
-              <li>Estimated delivery: Design &amp; Build ~10–12 wks, Test &amp; Ship ~3–4 wks, then Fast Follow</li>
-              <li>External experts (e.g. security audits) billed separately by the provider, if needed</li>
-            </ul>
+
+            <div class="hb-row stacked">
+              <span class="label">Estimated team</span>
+              <span class="value">Direct work with Vika, Elad, and senior engineers as required.</span>
+            </div>
+
+            <div class="hb-row stacked">
+              <span class="label">Approximate monthly progress</span>
+              <span class="value">In a typical month, we can move 2–3 core flows from design through working code, lay down the backend foundations, and set up payment integration scaffolding, all production-grade.</span>
+            </div>
+
+            <div class="hb-row stacked">
+              <span class="label">Flexible contract</span>
+              <span class="value">Exit option with 30 days written notice, both ways. No additional fees.</span>
+            </div>
+
+            <p class="hb-footer">Gives us flexibility to shift scope, move fast, and adapt as we go.</p>
           </div>
         </div>
       </div>
